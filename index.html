@@ -118,7 +118,31 @@ input, select, textarea { font-family: inherit; font-size: 13px; color: var(--te
   font-size: 9px; font-weight: 700; background: #3D55E0; color: #fff;
   padding: 2px 5px; border-radius: 4px; letter-spacing: .04em;
 }
-.sidebar-foot { margin-top: auto; font-size: 11px; color: rgba(255,255,255,.45); padding: 8px; line-height: 1.5; }
+.sidebar-foot { margin-top: auto; font-size: 11px; color: rgba(255,255,255,.55); padding: 10px 6px 0; line-height: 1.5; border-top: 1px solid rgba(255,255,255,.09); }
+.user-email { color: #fff; font-size: 12px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sync { display: flex; align-items: center; gap: 6px; margin: 2px 0 8px; }
+.sync::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #3ECF8E; }
+.sync.busy::before { background: #F2C14B; }
+.sync.err::before { background: #FF6B6B; }
+.signout { display: flex; align-items: center; gap: 10px; width: 100%; background: transparent; border: 0; color: rgba(255,255,255,.72); padding: 9px 8px; border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 500; }
+.signout:hover { background: rgba(255,255,255,.08); color: #fff; }
+.app.collapsed .user-box { display: none; }
+.app.collapsed .signout { justify-content: center; }
+
+/* Auth screen */
+.auth-screen {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+  background: radial-gradient(1200px 600px at 20% 0%, #1A2563 0%, transparent 60%), linear-gradient(180deg, var(--navy-900), var(--navy-700));
+}
+.auth-screen[hidden] { display: none; }
+.auth-card { width: 100%; max-width: 400px; background: #fff; border-radius: 16px; padding: 30px 28px; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+.auth-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .14em; font-size: 13px; color: var(--navy-800); margin-bottom: 22px; }
+.auth-brand .logo { color: #fff; }
+.auth-card h2 { margin: 0 0 18px; font-size: 21px; letter-spacing: -.01em; }
+.auth-card .inp { min-height: 42px; font-size: 14px; }
+.auth-submit { width: 100%; margin-top: 18px; padding: 11px; font-size: 14px; }
+.auth-links { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.auth-links a { font-weight: 600; }
 
 .app.collapsed .sidebar { width: 72px; }
 .app.collapsed .brand-name, .app.collapsed .nav span, .app.collapsed .btn-add .lbl,
@@ -483,7 +507,8 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
 </style>
 </head>
 <body>
-  <div class="app" id="app">
+  <div id="auth" class="auth-screen" hidden></div>
+  <div class="app" id="app" style="display:none">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="logo">
@@ -495,7 +520,14 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
       <a href="#/import" class="btn-add"><span class="plus">+</span><span class="lbl">Import Trades</span></a>
       <nav class="nav" id="nav"></nav>
       <div class="sidebar-foot">
-        <span class="lbl">Data is stored in this browser.<br>Back it up in Settings.</span>
+        <div class="lbl user-box">
+          <div id="userEmail" class="user-email"></div>
+          <div id="syncStatus" class="sync">Synced</div>
+        </div>
+        <button class="signout" id="signOutBtn" title="Sign out">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>
+          <span class="lbl">Sign out</span>
+        </button>
       </div>
     </aside>
 
@@ -516,6 +548,7 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
   <div id="toast" class="toast"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
 /* Small helpers shared by every view. */
 const U = (() => {
@@ -620,7 +653,8 @@ const U = (() => {
 /* Persistence: everything lives in this browser's localStorage.
    Use Settings → Backup to move data between browsers/devices. */
 const Store = (() => {
-  const KEY = 'mubu-journal-v1';
+  const LEGACY_KEY = 'mubu-journal-v1';   // pre-accounts, this-browser-only data
+  let KEY = LEGACY_KEY;
 
   const DEFAULT_RULES = [
     'Only took A+ setups from my plan',
@@ -651,22 +685,54 @@ const Store = (() => {
   const S = {
     data: null,
 
-    load() {
-      let parsed = null;
-      try { parsed = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { parsed = null; }
+    /* Each signed-in user gets their own local cache key. */
+    useUser(userId) { KEY = LEGACY_KEY + ':' + userId; },
+    legacyData() {
+      try { const d = JSON.parse(localStorage.getItem(LEGACY_KEY) || 'null'); return d && Array.isArray(d.trades) ? d : null; } catch (e) { return null; }
+    },
+    retireLegacy() {
+      try { const v = localStorage.getItem(LEGACY_KEY); if (v) { localStorage.setItem(LEGACY_KEY + ':migrated', v); localStorage.removeItem(LEGACY_KEY); } } catch (e) {}
+    },
+
+    normalize(parsed) {
       const d = defaults();
       if (parsed && typeof parsed === 'object') {
         Object.assign(d, parsed);
         d.settings = Object.assign(defaults().settings, parsed.settings || {});
         d.ui = Object.assign(defaults().ui, parsed.ui || {});
+        if (!Array.isArray(d.trades)) d.trades = [];
+        if (!Array.isArray(d.imports)) d.imports = [];
       }
-      this.data = d;
       return d;
     },
 
+    load() {
+      let parsed = null;
+      try { parsed = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { parsed = null; }
+      this.data = this.normalize(parsed);
+      return this.data;
+    },
+
+    /* Replace in-memory + local copy without marking it as a new local edit (used when pulling from the cloud). */
+    setFromRemote(obj, remoteAt) {
+      this.data = this.normalize(obj);
+      this.writeLocal();
+      this.setMeta({ dirty: false, syncedAt: remoteAt, localAt: remoteAt });
+    },
+
+    meta() { try { return JSON.parse(localStorage.getItem(KEY + ':meta') || '{}'); } catch (e) { return {}; } },
+    setMeta(patch) { try { localStorage.setItem(KEY + ':meta', JSON.stringify(Object.assign(this.meta(), patch))); } catch (e) {} },
+
+    writeLocal() {
+      try { localStorage.setItem(KEY, JSON.stringify(this.data)); return true; }
+      catch (e) { return false; }
+    },
+
     save() {
-      try { localStorage.setItem(KEY, JSON.stringify(this.data)); }
-      catch (e) { App.toast('Could not save — browser storage is full. Export a backup.', 'err'); }
+      const ok = this.writeLocal();
+      this.setMeta({ dirty: true, localAt: new Date().toISOString() });
+      if (typeof Cloud !== 'undefined' && Cloud.user) Cloud.queue();
+      else if (!ok) App.toast('Could not save — browser storage is full. Export a backup.', 'err');
     },
 
     accounts() { return [...new Set(this.data.trades.map(t => t.account))].sort(); },
@@ -706,8 +772,8 @@ const Store = (() => {
     exportJSON() { return JSON.stringify(this.data, null, 2); },
     importJSON(obj) {
       if (!obj || !Array.isArray(obj.trades)) throw new Error('Not a Mubu Journal backup file.');
-      localStorage.setItem(KEY, JSON.stringify(obj));
-      this.load();
+      this.data = this.normalize(obj);
+      this.save();
     },
     clearAll() { this.data = defaults(); this.save(); },
     removeAccount(acct) {
@@ -1452,8 +1518,8 @@ const UI = (() => {
   function confirm(title, msg, label = 'Confirm', danger = true) {
     return new Promise(res => {
       modal({ title, body: `<p style="margin:0;line-height:1.6">${msg}</p>`, footer: [
-        { label: 'Cancel', onClick: c => { c(); res(false); } },
-        { label, cls: danger ? 'danger' : 'primary', onClick: c => { c(); res(true); } },
+        { label: 'Cancel', onClick: c => { res(false); c(); } },
+        { label, cls: danger ? 'danger' : 'primary', onClick: c => { res(true); c(); } },
       ], onClose: () => res(false) });
     });
   }
@@ -2394,7 +2460,7 @@ Views.settings = {
 
       <div class="card"><div class="card-head"><h3>Data &amp; backup</h3></div>
         <div class="card-body">
-          <p class="help" style="margin-top:0">Your journal is saved in this browser only (nothing is uploaded anywhere). Export a backup regularly, and use <b>Restore</b> to move your journal to another computer or browser.</p>
+          <p class="help" style="margin-top:0">Your journal is saved to your account and syncs across every device you sign in on. A backup file is still handy as an extra copy you control.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn primary" id="sBackup">⇩ Export backup (.json)</button>
             <label class="btn">⇧ Restore backup<input type="file" id="sRestore" accept=".json,application/json" hidden></label>
@@ -2463,7 +2529,7 @@ Views.settings = {
       const f = e.target.files[0]; if (!f) return;
       try {
         const obj = JSON.parse(await U.readFile(f));
-        if (await UI.confirm('Restore backup?', `This replaces everything in this browser with <b>${obj.trades?.length ?? 0}</b> trades from the backup.`, 'Restore', false)) {
+        if (await UI.confirm('Restore backup?', `This replaces everything in your account with <b>${obj.trades?.length ?? 0}</b> trades from the backup.`, 'Restore', false)) {
           Store.importJSON(obj); App.loadFilters(); App.refreshFilters(); App.toast('Backup restored'); App.render();
         }
       } catch (err) { App.toast(err.message || 'Invalid backup file', 'err'); }
@@ -2471,12 +2537,278 @@ Views.settings = {
     U.$('#sCSV', el).onclick = () => Views.trades.exportCSV([...Store.data.trades].sort(M.byTime));
     U.$('#sDemo', el).onclick = () => { App.toggleDemo(); };
     U.$('#sClear', el).onclick = async () => {
-      if (await UI.confirm('Delete everything?', 'All trades, notes, imports and settings in this browser will be erased. Export a backup first if you might need it.', 'Delete everything')) {
+      if (await UI.confirm('Delete everything?', 'All trades, notes, imports and settings in your account will be erased on every device. Export a backup first if you might need it.', 'Delete everything')) {
         Store.clearAll(); App.filters = App.defaultFilters(); App.refreshFilters(); App.toast('All data deleted'); App.render();
       }
     };
   },
 };
+
+</script>
+  <script>
+/* Accounts + cloud sync through Supabase.
+   Each user has one row in public.journals holding their whole journal (trades, notes, settings) as JSON.
+   The browser keeps a cached copy so pages load instantly; every change is pushed to the cloud a moment later. */
+const Cloud = (() => {
+  const SUPABASE_URL = 'https://vfpjddkmdirhwekcaubn.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_-u5S2qowcoOJz10EtW43aA_6eW7af8y'; // publishable key — safe in a public page
+
+  let sb = null, timer = null, saving = false, again = false, status = 'idle';
+  const C = { user: null };
+
+  function client() {
+    if (sb) return sb;
+    if (!window.supabase || !window.supabase.createClient) throw new Error('Could not load the sign-in service. Check your internet connection and refresh.');
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' },
+    });
+    return sb;
+  }
+  const redirectUrl = () => location.origin + location.pathname;
+
+  /* ---------- status indicator ---------- */
+  function setStatus(s) {
+    status = s;
+    const el = document.getElementById('syncStatus');
+    if (!el) return;
+    const map = {
+      idle: ['', 'Synced'], saved: ['ok', 'All changes saved'], pending: ['busy', 'Saving…'], saving: ['busy', 'Saving…'],
+      error: ['err', 'Not saved — retrying'], offline: ['err', 'Offline — will sync when back'],
+    };
+    const [cls, txt] = map[s] || map.idle;
+    el.className = 'sync ' + cls;
+    el.textContent = txt;
+  }
+
+  /* ---------- sync ---------- */
+  async function pull() {
+    const { data, error } = await client().from('journals').select('data, updated_at').eq('user_id', C.user.id).maybeSingle();
+    if (error) throw error;
+    return data;
+  }
+
+  async function push() {
+    if (!C.user) return;
+    if (saving) { again = true; return; }
+    if (!navigator.onLine) { setStatus('offline'); return; }
+    saving = true; setStatus('saving');
+    const now = new Date().toISOString();
+    try {
+      const { error } = await client().from('journals').upsert({ user_id: C.user.id, data: Store.data, updated_at: now });
+      if (error) throw error;
+      Store.setMeta({ dirty: false, syncedAt: now });
+      setStatus('saved');
+    } catch (e) {
+      console.error('Sync failed', e);
+      setStatus('error');
+      clearTimeout(timer); timer = setTimeout(push, 15000);
+    } finally {
+      saving = false;
+      if (again) { again = false; queue(); }
+    }
+  }
+
+  function queue(delay = 1200) {
+    clearTimeout(timer);
+    setStatus('pending');
+    timer = setTimeout(push, delay);
+  }
+  function flush() { if (Store.meta().dirty) { clearTimeout(timer); push(); } }
+
+  /* Decide which copy wins when the app opens. */
+  async function loadForUser(user) {
+    C.user = user;
+    Store.useUser(user.id);
+    Store.load();
+    const meta = Store.meta();
+    let remote = null;
+    try { remote = await pull(); }
+    catch (e) {
+      console.error(e);
+      setStatus('offline');
+      App.toast('Could not reach the server — showing the copy saved on this device.', 'err');
+      return;
+    }
+    if (remote) {
+      const localNewer = meta.dirty && meta.localAt && meta.localAt > remote.updated_at;
+      if (localNewer) { push(); }
+      else Store.setFromRemote(remote.data, remote.updated_at);
+    } else {
+      // First sign-in: bring over anything saved in this browser before accounts existed.
+      const legacy = Store.legacyData();
+      if (!Store.data.trades.length && legacy && (legacy.trades.length || Object.keys(legacy.notes || {}).length)) {
+        Store.data = Store.normalize(legacy);
+        Store.retireLegacy();
+        setTimeout(() => App.toast(`Moved ${legacy.trades.length} trades from this browser into your account`), 600);
+      }
+      Store.save();
+      await push();
+    }
+    setStatus('saved');
+  }
+
+  /* Pick up changes made on another device when this tab comes back into focus. */
+  async function refreshIfStale() {
+    if (!C.user || saving || Store.meta().dirty) return;
+    try {
+      const remote = await pull();
+      const meta = Store.meta();
+      if (remote && (!meta.syncedAt || remote.updated_at > meta.syncedAt)) {
+        Store.setFromRemote(remote.data, remote.updated_at);
+        App.loadFilters(); App.refreshFilters(); App.render();
+        App.toast('Updated with changes from another device');
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flush(); else refreshIfStale();
+  });
+  window.addEventListener('online', () => { if (Store.meta && Store.meta().dirty) queue(200); });
+  window.addEventListener('beforeunload', e => {
+    if (C.user && (saving || Store.meta().dirty)) { flush(); e.preventDefault(); e.returnValue = ''; }
+  });
+
+  /* ---------- auth ---------- */
+  async function session() {
+    const { data } = await client().auth.getSession();
+    return data.session;
+  }
+  async function signIn(email, password) {
+    const { data, error } = await client().auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return data.session;
+  }
+  async function signUp(email, password) {
+    const { data, error } = await client().auth.signUp({ email, password, options: { emailRedirectTo: redirectUrl() } });
+    if (error) throw error;
+    return data; // data.session is null when email confirmation is required
+  }
+  async function resetPassword(email) {
+    const { error } = await client().auth.resetPasswordForEmail(email, { redirectTo: redirectUrl() });
+    if (error) throw error;
+  }
+  async function updatePassword(password) {
+    const { error } = await client().auth.updateUser({ password });
+    if (error) throw error;
+  }
+  async function signOut() {
+    if (Store.meta().dirty) { clearTimeout(timer); await push(); }
+    await client().auth.signOut();
+    history.replaceState(null, '', redirectUrl());
+    location.reload();
+  }
+  function onAuth(cb) { client().auth.onAuthStateChange((event, s) => cb(event, s)); }
+
+  return Object.assign(C, { client, queue, flush, loadForUser, session, signIn, signUp, resetPassword, updatePassword, signOut, onAuth, setStatus });
+})();
+
+</script>
+  <script>
+/* Sign in / create account / reset password screen. */
+const Auth = (() => {
+  let mode = 'signin'; // signin | signup | forgot | recover
+  let booted = false;
+
+  const screen = () => document.getElementById('auth');
+
+  function show(m, msg = '', kind = '') {
+    mode = m;
+    document.getElementById('app').style.display = 'none';
+    const el = screen();
+    el.hidden = false;
+    const titles = { signin: 'Sign in to your journal', signup: 'Create your account', forgot: 'Reset your password', recover: 'Choose a new password' };
+    const btn = { signin: 'Sign in', signup: 'Create account', forgot: 'Send reset link', recover: 'Save new password' };
+    el.innerHTML = `
+      <div class="auth-card">
+        <div class="auth-brand"><div class="logo"><svg viewBox="0 0 32 32"><path d="M7 23V9l9 9 9-9v14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>MUBU JOURNAL</span></div>
+        <h2>${titles[m]}</h2>
+        ${msg ? `<div class="result-box ${kind || 'warn'}" style="margin:0 0 14px">${msg}</div>` : ''}
+        <form id="authForm" novalidate>
+          ${m !== 'recover' ? `<label class="field-label" for="aEmail">Email</label>
+            <input class="inp" id="aEmail" type="email" autocomplete="email" required>` : ''}
+          ${m === 'signin' || m === 'signup' || m === 'recover' ? `<label class="field-label" for="aPass" style="margin-top:12px">${m === 'recover' ? 'New password' : 'Password'}</label>
+            <input class="inp" id="aPass" type="password" autocomplete="${m === 'signin' ? 'current-password' : 'new-password'}" minlength="8" required>` : ''}
+          ${m === 'signup' || m === 'recover' ? `<div class="help" style="margin-top:6px">At least 8 characters.</div>` : ''}
+          <button class="btn primary auth-submit" type="submit">${btn[m]}</button>
+        </form>
+        <div class="auth-links">
+          ${m === 'signin' ? `<a href="#" data-m="forgot">Forgot password?</a><span>New here? <a href="#" data-m="signup">Create an account</a></span>` : ''}
+          ${m === 'signup' ? `<span>Already have an account? <a href="#" data-m="signin">Sign in</a></span>` : ''}
+          ${m === 'forgot' ? `<a href="#" data-m="signin">Back to sign in</a>` : ''}
+        </div>
+      </div>`;
+    el.querySelectorAll('[data-m]').forEach(a => a.onclick = e => { e.preventDefault(); show(a.dataset.m); });
+    const f = document.getElementById('authForm');
+    f.onsubmit = e => { e.preventDefault(); submit(f); };
+    const first = f.querySelector('input'); if (first) first.focus();
+  }
+
+  async function submit(f) {
+    const btn = f.querySelector('button'); const label = btn.textContent;
+    const email = (f.querySelector('#aEmail')?.value || '').trim();
+    const pass = f.querySelector('#aPass')?.value || '';
+    if (mode !== 'recover' && !/^\S+@\S+\.\S+$/.test(email)) return show(mode, 'Enter a valid email address.', 'err');
+    if ((mode === 'signup' || mode === 'recover') && pass.length < 8) return show(mode, 'Password must be at least 8 characters.', 'err');
+    btn.disabled = true; btn.textContent = 'Please wait…';
+    try {
+      if (mode === 'signin') {
+        const s = await Cloud.signIn(email, pass);
+        await enter(s.user);
+      } else if (mode === 'signup') {
+        const r = await Cloud.signUp(email, pass);
+        if (r.session) await enter(r.session.user);
+        else show('signin', `Almost done — we sent a confirmation link to <b>${U.esc(email)}</b>. Click it, then sign in here.`, 'ok');
+      } else if (mode === 'forgot') {
+        await Cloud.resetPassword(email);
+        show('signin', `If an account exists for <b>${U.esc(email)}</b>, a reset link is on its way.`, 'ok');
+      } else if (mode === 'recover') {
+        await Cloud.updatePassword(pass);
+        const s = await Cloud.session();
+        App.toast('Password updated');
+        if (s) await enter(s.user); else show('signin', 'Password updated — sign in with your new password.', 'ok');
+      }
+    } catch (err) {
+      btn.disabled = false; btn.textContent = label;
+      let m = err.message || 'Something went wrong.';
+      if (/invalid login/i.test(m)) m = 'Wrong email or password.';
+      if (/email not confirmed/i.test(m)) m = 'Please confirm your email first — check your inbox for the link.';
+      if (/already registered/i.test(m)) m = 'An account with this email already exists. Sign in instead.';
+      show(mode, U.esc(m), 'err');
+    }
+  }
+
+  async function enter(user) {
+    screen().hidden = true;
+    screen().innerHTML = '';
+    document.getElementById('app').style.display = '';
+    document.getElementById('view').innerHTML = '<div class="empty">Loading your journal…</div>';
+    await Cloud.loadForUser(user);
+    if (!booted) { booted = true; App.boot(); } else { App.loadFilters(); App.refreshFilters(); App.render(); }
+    const who = document.getElementById('userEmail'); if (who) who.textContent = user.email;
+  }
+
+  async function start() {
+    let s = null;
+    try {
+      Cloud.onAuth((event, sess) => {
+        if (event === 'PASSWORD_RECOVERY') show('recover');
+      });
+      s = await Cloud.session();
+    } catch (e) {
+      screen().hidden = false;
+      document.getElementById('app').style.display = 'none';
+      screen().innerHTML = `<div class="auth-card"><h2>Can't connect</h2><div class="result-box err">${U.esc(e.message)}</div><button class="btn primary auth-submit" onclick="location.reload()">Try again</button></div>`;
+      return;
+    }
+    // Clean the ?code=… left in the address bar after email links.
+    if (/[?&]code=/.test(location.search)) history.replaceState(null, '', location.pathname + location.hash);
+    if (mode === 'recover') return;
+    if (s) await enter(s.user); else show('signin');
+  }
+
+  return { start, show };
+})();
 
 </script>
   <script>
@@ -2497,8 +2829,8 @@ const App = {
     { r: 'settings', label: 'Settings', icon: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>' },
   ],
 
-  init() {
-    Store.load();
+  /* Called once after sign-in, when Store already holds the user's journal. */
+  boot() {
     this.loadFilters();
     U.$('#nav').innerHTML = this.NAV.map(n => n.sep ? '<div class="sep"></div>' :
       `<a href="#/${n.r}" data-route="${n.r}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${n.icon}</svg><span>${n.label}</span></a>`).join('');
@@ -2515,6 +2847,9 @@ const App = {
       if (e.target.closest('[data-demo]')) this.toggleDemo();
     });
     window.addEventListener('hashchange', () => this.render());
+    U.$('#signOutBtn').onclick = async () => {
+      if (await UI.confirm('Sign out?', 'Your journal stays saved in your account.', 'Sign out', false)) Cloud.signOut();
+    };
     this.refreshFilters();
     this.render();
   },
@@ -2669,7 +3004,7 @@ const App = {
   },
 };
 
-document.addEventListener('DOMContentLoaded', () => App.init());
+document.addEventListener('DOMContentLoaded', () => Auth.start());
 
 </script>
 </body>
