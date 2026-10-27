@@ -334,6 +334,62 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .cal .week .amt { font-size: 17px; font-weight: 700; }
 .cal .week .chip { align-self: flex-start; font-size: 11px; padding: 2px 8px; }
 
+/* Runs on the calendar */
+.cal .cell { padding-bottom: var(--run-pad, 6px); }
+.run-lines { position: absolute; left: 0; right: 0; bottom: 0; height: 0; pointer-events: none; }
+.run-line {
+  position: absolute; left: -4px; right: -4px; height: 4px; pointer-events: auto;
+  background: var(--rc); border-radius: 0;
+}
+.run-line.st-eval { background: repeating-linear-gradient(90deg, var(--rc) 0 6px, transparent 6px 9px); }
+.run-line.st-live { height: 5px; box-shadow: 0 0 0 1.5px #fff, 0 0 0 2.5px var(--rc); }
+.run-line.rs { left: 7px; border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.run-line.re { right: 7px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.run-promo { position: absolute; left: 4px; top: 50%; width: 9px; height: 9px; background: var(--rc); border: 2px solid #fff; transform: translate(-50%, -50%) rotate(45deg); box-shadow: 0 0 0 1px var(--rc); }
+.run-pay { position: absolute; right: 6px; bottom: 5px; font-style: normal; font-size: 9px; font-weight: 800; color: #fff; background: var(--rc); border: 1.5px solid #fff; width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 1px var(--rc); }
+.run-x { position: absolute; right: 2px; top: 50%; transform: translateY(-50%); font-style: normal; font-weight: 800; font-size: 12px; color: var(--red-strong); line-height: 1; }
+.run-legend { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 0 14px 14px; }
+.run-legend.empty { justify-content: space-between; gap: 12px; }
+.run-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: #fff; border-radius: 99px; padding: 5px 12px 5px 8px; font-size: 12px; color: var(--text); }
+.run-chip:hover { border-color: var(--brand-line); background: #F8F9FE; }
+.run-swatch { display: inline-block; width: 22px; height: 4px; border-radius: 2px; background: var(--rc); }
+.run-swatch.st-eval { background: repeating-linear-gradient(90deg, var(--rc) 0 5px, transparent 5px 8px); }
+.run-key { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); flex-wrap: wrap; }
+.run-key .run-swatch { margin-left: 6px; }
+.run-key i.static { position: static; transform: none; display: inline-grid; margin-left: 6px; --rc: #6B7290; }
+.run-key .run-promo.static { transform: rotate(45deg); width: 8px; height: 8px; }
+
+/* Runs page */
+.run-card { margin-bottom: 16px; scroll-margin-top: 90px; }
+.run-card .card-head { flex-wrap: wrap; }
+.run-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--rc); flex-shrink: 0; }
+.run-title { font-size: 16px; font-weight: 600; }
+.run-dates { font-size: 12px; color: var(--muted); }
+.stages { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; }
+.stage {
+  min-width: 190px; flex: 1; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; background: #FBFCFE;
+  border-top: 4px solid var(--rc);
+}
+.stage.st-eval { border-top-style: dashed; }
+.stage .k { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.stage .acct { font-weight: 600; margin: 4px 0 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stage .meta { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+.stage-arrow { display: grid; place-items: center; padding: 0 8px; color: var(--faint); font-size: 18px; flex-shrink: 0; }
+.run-kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.run-kpis .k { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+.run-kpis .v { font-size: 17px; font-weight: 600; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatches button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--border-strong); cursor: pointer; background: var(--rc); }
+.swatches button.on { box-shadow: 0 0 0 2px var(--text); }
+.stage-edit { display: grid; grid-template-columns: 1.4fr .8fr 1fr 1fr .9fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+.stage-edit .field-label { font-size: 11px; margin-bottom: 3px; }
+@media (max-width: 900px) {
+  .run-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stage-edit { grid-template-columns: 1fr 1fr; }
+  .run-line { height: 3px; }
+  .run-pay { width: 12px; height: 12px; font-size: 7px; right: 2px; }
+}
+
 /* Mini calendar */
 .mini-cal { padding: 14px; }
 .mini-cal .mh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
@@ -491,7 +547,8 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
   .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cal { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; padding: 8px; }
   .cal .week { display: none; }
-  .cal .cell { min-height: 58px; padding: 4px; }
+  .cal .cell { min-height: 58px; padding: 4px 4px var(--run-pad, 4px); }
+  .cal .dow:nth-child(8) { display: none; }
   .cal .cell .amt { font-size: 11px; }
   .cal .cell .sub { display: none; }
   .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -674,6 +731,7 @@ const Store = (() => {
       imports: [],
       notes: {},   // { 'YYYY-MM-DD': 'text' }
       checks: {},  // { 'YYYY-MM-DD': ['r1','r3'] }
+      runs: [],    // eval → funded progressions (see js/runs.js)
       settings: {
         defaultCommission: 0,          // round-turn $ per contract when no root-specific value
         commissions: {},               // { NQ: 4.04, MNQ: 1.24 }
@@ -705,6 +763,7 @@ const Store = (() => {
         d.ui = Object.assign(defaults().ui, parsed.ui || {});
         if (!Array.isArray(d.trades)) d.trades = [];
         if (!Array.isArray(d.imports)) d.imports = [];
+        if (!Array.isArray(d.runs)) d.runs = [];
       }
       return d;
     },
@@ -1391,6 +1450,166 @@ const Charts = (() => {
 
 </script>
   <script>
+/* Runs: group several accounts (eval → funded → …) into one continuous progression.
+   A run = ordered stages; each stage is one account with a type (Eval / Funded / Live)
+   and a date window. Dates default to the account's first/last trade. */
+const Runs = (() => {
+  const PALETTE = ['#4F6BED', '#F59E0B', '#8B5CF6', '#06B6D4', '#EC4899', '#14B8A6', '#F97316', '#64748B'];
+  const TYPES = ['Eval', 'Funded', 'Live'];
+  const RESULTS = { '': 'In progress', passed: 'Passed', blown: 'Blown', payout: 'Paid out', closed: 'Closed' };
+
+  const all = () => (Store.data.runs = Array.isArray(Store.data.runs) ? Store.data.runs : []);
+  const get = id => all().find(r => r.id === id);
+  const nextColor = () => {
+    const used = new Set(all().map(r => r.color));
+    return PALETTE.find(c => !used.has(c)) || PALETTE[all().length % PALETTE.length];
+  };
+
+  function accountRange(account) {
+    let first = null, last = null;
+    Store.data.trades.forEach(t => {
+      if (t.account !== account) return;
+      const k = U.dayKey(t.entryTime);
+      if (!first || k < first) first = k;
+      if (!last || k > last) last = k;
+    });
+    return { first, last };
+  }
+
+  /* Resolved date window for every stage of a run. */
+  function stagesOf(run) {
+    const today = U.todayKey();
+    return run.stages.map((s, i) => {
+      const r = accountRange(s.account);
+      const from = s.start || r.first;
+      let to = s.end || r.last;
+      const isLast = i === run.stages.length - 1;
+      if (isLast && run.status === 'active' && !s.end && from) to = today > (to || '') ? today : to;
+      return { ...s, index: i, from, to: to || from };
+    }).filter(s => s.from);
+  }
+  /* Same windows, but each stage's line runs up to the day before the next stage starts,
+     so the progression on the calendar is continuous (no gap between passing and funded). */
+  function displayStages(run) {
+    const st = stagesOf(run);
+    return st.map((s, i) => {
+      const next = st[i + 1];
+      let dispTo = s.to;
+      if (next && next.from > s.to) dispTo = U.addDays(next.from, -1);
+      return { ...s, dispTo };
+    });
+  }
+
+  function span(run) {
+    const st = stagesOf(run);
+    if (!st.length) return null;
+    return { from: st[0].from, to: st.reduce((a, s) => (s.to > a ? s.to : a), st[0].to) };
+  }
+
+  /* Trades belonging to a run: each stage's account inside that stage's window. */
+  function tradesOf(run) {
+    const st = stagesOf(run);
+    return Store.data.trades.filter(t => {
+      const k = U.dayKey(t.entryTime);
+      return st.some(s => s.account === t.account && k >= s.from && k <= s.to);
+    }).map(t => {
+      const k = U.dayKey(t.entryTime);
+      const s = st.find(x => x.account === t.account && k >= x.from && k <= x.to);
+      return Object.assign(Object.create(t), { _stage: s.index });
+    });
+  }
+
+  /* What runs are visible on a given day (for the calendar). */
+  function onDay(key, visibleAccounts) {
+    const out = [];
+    all().forEach(run => {
+      if (visibleAccounts && !run.stages.some(s => visibleAccounts.has(s.account))) return;
+      const st = displayStages(run);
+      const s = st.find(x => key >= x.from && key <= x.dispTo);
+      if (!s) return;
+      const sp = span(run);
+      out.push({
+        run, stage: s,
+        runStart: key === sp.from, runEnd: key === sp.to,
+        stageStart: key === s.from && s.index > 0,
+        stageEnd: key === s.dispTo,
+        payout: (run.payouts || []).find(p => p.date === key),
+      });
+    });
+    return out;
+  }
+
+  function summary(run) {
+    const trades = tradesOf(run);
+    const s = M.summarize(trades);
+    const st = stagesOf(run);
+    const byStage = st.map(x => {
+      const ts = trades.filter(t => t._stage === x.index);
+      return { ...x, net: ts.reduce((a, t) => a + M.net(t), 0), trades: ts.length, days: new Set(ts.map(t => U.dayKey(t.entryTime))).size };
+    });
+    const sp = span(run);
+    const payouts = (run.payouts || []).reduce((a, p) => a + (+p.amount || 0), 0);
+    return { s, trades, stages: byStage, span: sp, calendarDays: sp ? Math.round((U.toLocal(sp.to) - U.toLocal(sp.from)) / 864e5) + 1 : 0, payouts };
+  }
+
+  function statusLabel(run) {
+    const last = run.stages[run.stages.length - 1];
+    if (run.status === 'blown') return { text: 'Blown', cls: 'r' };
+    if (run.status === 'closed') return { text: 'Closed', cls: 'b' };
+    if (!last) return { text: 'Empty', cls: 'b' };
+    return { text: `${last.type} · active`, cls: last.type === 'Eval' ? 'b' : 'g' };
+  }
+
+  /* ---------- mutations ---------- */
+  function create({ name, account, type = 'Eval', start = '' }) {
+    const run = { id: 'run_' + U.uid(), name: name || `Run ${all().length + 1}`, color: nextColor(), status: 'active',
+      stages: [{ id: 's_' + U.uid(), account, type, start, end: '', result: '' }], payouts: [], createdAt: U.isoOf(new Date()) };
+    all().push(run); Store.save(); return run;
+  }
+  /* "I'm funded": close the current stage as passed, open the next one. */
+  function promote(runId, { account, type = 'Funded', passDate, start = '' }) {
+    const run = get(runId); if (!run) return;
+    const cur = run.stages[run.stages.length - 1];
+    if (cur) {
+      cur.result = 'passed';
+      if (!cur.end) cur.end = passDate || accountRange(cur.account).last || U.todayKey();
+    }
+    run.stages.push({ id: 's_' + U.uid(), account, type, start, end: '', result: '' });
+    run.status = 'active';
+    Store.save();
+  }
+  function setStatus(runId, status) {
+    const run = get(runId); if (!run) return;
+    run.status = status;
+    const cur = run.stages[run.stages.length - 1];
+    if (cur && status !== 'active') {
+      cur.result = status === 'blown' ? 'blown' : cur.result || 'closed';
+      if (!cur.end) cur.end = accountRange(cur.account).last || U.todayKey();
+    }
+    if (cur && status === 'active' && cur.result !== 'passed') { cur.result = ''; }
+    Store.save();
+  }
+  function update(runId, patch) { const r = get(runId); if (r) { Object.assign(r, patch); Store.save(); } }
+  function remove(runId) { Store.data.runs = all().filter(r => r.id !== runId); Store.save(); }
+  function addPayout(runId, date, amount) {
+    const r = get(runId); if (!r) return;
+    (r.payouts = r.payouts || []).push({ id: 'p_' + U.uid(), date, amount: +amount || 0 });
+    r.payouts.sort((a, b) => (a.date < b.date ? -1 : 1)); Store.save();
+  }
+  function removePayout(runId, pid) { const r = get(runId); if (r) { r.payouts = (r.payouts || []).filter(p => p.id !== pid); Store.save(); } }
+
+  /* Accounts not used in any run yet (for suggestions). */
+  function unassigned() {
+    const used = new Set(all().flatMap(r => r.stages.map(s => s.account)));
+    return Store.accounts().filter(a => !used.has(a));
+  }
+
+  return { PALETTE, TYPES, RESULTS, all, get, stagesOf, span, tradesOf, onDay, summary, statusLabel,
+    create, promote, setStatus, update, remove, addPayout, removePayout, unassigned, accountRange };
+})();
+
+</script>
+  <script>
 /* Reusable UI pieces: KPI cards, calendar, heatmap, trade modal, checklist modal. */
 const UI = (() => {
   const info = tip => `<span class="info" title="${U.esc(tip)}">i</span>`;
@@ -1430,6 +1649,26 @@ const UI = (() => {
     const cells = Math.ceil((start + daysIn) / 7) * 7;
     const today = U.todayKey();
     let monthNet = 0, monthDays = 0;
+
+    /* Runs active this month get a fixed "lane" so their lines line up across days. */
+    const visAcc = App.filters && App.filters.account !== 'all' ? new Set([App.filters.account]) : null;
+    const monthFrom = `${y}-${U.pad(m)}-01`, monthTo = `${y}-${U.pad(m)}-${U.pad(daysIn)}`;
+    const lanes = Runs.all().filter(r => {
+      if (visAcc && !r.stages.some(st => visAcc.has(st.account))) return false;
+      const sp = Runs.span(r); return sp && sp.from <= monthTo && sp.to >= monthFrom;
+    }).sort((a, b) => (Runs.span(a).from < Runs.span(b).from ? -1 : 1));
+    const laneOf = new Map(lanes.map((r, i) => [r.id, i]));
+    const runLines = key => {
+      const hits = Runs.onDay(key, visAcc).filter(h => laneOf.has(h.run.id));
+      if (!hits.length) return '';
+      return '<div class="run-lines">' + hits.map(h => {
+        const lane = laneOf.get(h.run.id);
+        const cls = ['run-line', 'st-' + h.stage.type.toLowerCase(), h.runStart ? 'rs' : '', h.runEnd ? 're' : ''].join(' ');
+        const tip = `${h.run.name} — ${h.stage.type} (${h.stage.account})${h.stageStart ? ' · promoted to ' + h.stage.type : ''}${h.payout ? ' · payout ' + U.money(h.payout.amount) : ''}`;
+        return `<span class="${cls}" style="--rc:${h.run.color};bottom:${4 + lane * 7}px" title="${U.esc(tip)}">${h.stageStart ? '<i class="run-promo"></i>' : ''}${h.payout ? '<i class="run-pay">$</i>' : ''}${h.runEnd && h.run.status === 'blown' ? '<i class="run-x">×</i>' : ''}</span>`;
+      }).join('') + '</div>';
+    };
+
     let html = U.DOW.map(d => `<div class="dow">${d}</div>`).join('') + '<div class="dow" style="background:transparent"></div>';
     let wk = 0, wNet = 0, wDays = 0;
     for (let i = 0; i < cells; i++) {
@@ -1444,8 +1683,8 @@ const UI = (() => {
           const c = d.net > 0 ? 'win' : d.net < 0 ? 'loss' : 'be';
           html += `<div class="cell ${c} ${key === today ? 'today' : ''}" data-day="${key}">${note ? '<span class="note-dot" title="Has notes"></span>' : ''}
             <span class="d">${dn}</span><span class="amt">${U.moneyShort(d.net)}</span>
-            <span class="sub">${d.trades.length} trade${d.trades.length > 1 ? 's' : ''}<br>${(d.winRate * 100).toFixed(1)}%</span></div>`;
-        } else html += `<div class="cell ${key === today ? 'today' : ''}">${note ? '<span class="note-dot"></span>' : ''}<span class="d">${dn}</span></div>`;
+            <span class="sub">${d.trades.length} trade${d.trades.length > 1 ? 's' : ''}<br>${(d.winRate * 100).toFixed(1)}%</span>${runLines(key)}</div>`;
+        } else html += `<div class="cell ${key === today ? 'today' : ''}">${note ? '<span class="note-dot"></span>' : ''}<span class="d">${dn}</span>${runLines(key)}</div>`;
       }
       if (i % 7 === 6) {
         wk++;
@@ -1453,6 +1692,14 @@ const UI = (() => {
         wNet = 0; wDays = 0;
       }
     }
+    const legend = lanes.length ? `<div class="run-legend">
+        ${lanes.map(r => {
+          const sm = Runs.summary(r); const stl = Runs.statusLabel(r);
+          const lastType = (r.stages[r.stages.length - 1] || {}).type || 'Eval';
+          return `<a class="run-chip" href="#/runs?id=${r.id}" title="Open run"><span class="run-swatch st-${lastType.toLowerCase()}" style="--rc:${r.color}"></span><b>${U.esc(r.name)}</b><span class="pill ${stl.cls}">${stl.text}</span><span class="${U.cls(sm.s.total)}">${U.moneyShort(sm.s.total)}</span></a>`;
+        }).join('')}
+        <span class="run-key"><span class="run-swatch st-eval" style="--rc:#6B7290"></span>Eval <span class="run-swatch st-funded" style="--rc:#6B7290"></span>Funded <i class="run-promo static"></i>Promoted <i class="run-pay static">$</i>Payout</span>
+      </div>` : `<div class="run-legend empty"><span class="help">Group an eval and the funded account it became into one <b>run</b> to see your whole progression here.</span><a class="btn sm" href="#/runs">Set up runs</a></div>`;
     container.innerHTML = `
       <div class="cal-head">
         <button class="btn sm ghost" data-nav="-1">‹</button>
@@ -1461,7 +1708,8 @@ const UI = (() => {
         <button class="btn sm" data-nav="0">This month</button>
         <div class="stats">Monthly stats: <span class="chip ${U.cls(monthNet)}">${U.moneyShort(monthNet)}</span><span class="chip">${monthDays} day${monthDays === 1 ? '' : 's'}</span></div>
       </div>
-      <div class="cal">${html}</div>`;
+      <div class="cal" style="--run-pad:${lanes.length ? 8 + lanes.length * 7 : 6}px">${html}</div>
+      ${legend}`;
     U.$$('[data-nav]', container).forEach(b => b.onclick = () => {
       const n = +b.dataset.nav;
       let key;
@@ -2250,13 +2498,247 @@ Views.reports = {
   <script>
 window.Views = window.Views || {};
 
+Views.runs = {
+  title: 'Runs',
+
+  render(el, params) {
+    const runs = Runs.all();
+    const order = r => (r.status === 'active' ? 0 : 1);
+    const sorted = [...runs].sort((a, b) => order(a) - order(b) || ((Runs.span(b) || {}).from || '').localeCompare((Runs.span(a) || {}).from || ''));
+    const free = Runs.unassigned();
+
+    el.innerHTML = `
+      <div class="card" style="margin-bottom:16px"><div class="card-body" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <div style="font-weight:600;margin-bottom:4px">Keep your progress when you get promoted</div>
+          <div class="help">A <b>run</b> links an eval and the funded account it turned into, so your calendar and stats follow the whole journey instead of resetting at zero. Each run gets its own color line under the days on your P&amp;L calendar.</div>
+        </div>
+        <button class="btn primary" id="rNew" ${Store.accounts().length ? '' : 'disabled title="Import trades first"'}>+ New run</button>
+      </div></div>
+      ${free.length && runs.length ? `<div class="result-box warn" style="margin:0 0 16px">${free.length} account${free.length > 1 ? 's are' : ' is'} not in a run yet: ${free.map(a => `<b>${U.esc(a)}</b>`).join(', ')}.</div>` : ''}
+      <div id="rList">${sorted.length ? sorted.map(r => this.card(r)).join('') : `<div class="card"><div class="empty">
+        <h3>No runs yet</h3><div>Create a run for each eval you start. When you pass, click <b>I'm funded</b> and pick the funded account — the run keeps going.</div>
+        <div class="actions">${Store.accounts().length ? '<button class="btn primary" data-new>Create your first run</button>' : '<a class="btn primary" href="#/import">Import trades first</a>'}<button class="btn" data-demo>Load demo data</button></div></div></div>`}</div>`;
+
+    sorted.forEach(r => this.chart(el, r));
+    const newBtn = () => this.editModal(null);
+    U.$('#rNew', el).onclick = newBtn;
+    U.$$('[data-new]', el).forEach(b => b.onclick = newBtn);
+    U.$$('[data-act]', el).forEach(b => b.onclick = () => this.action(b.dataset.act, b.dataset.run, b.dataset.pid));
+    if (params.id) setTimeout(() => document.getElementById('run-' + params.id)?.scrollIntoView({ behavior: 'smooth' }), 60);
+  },
+
+  card(r) {
+    const sm = Runs.summary(r);
+    const st = Runs.statusLabel(r);
+    const last = r.stages[r.stages.length - 1];
+    const canPromote = r.status === 'active' && last && last.type === 'Eval';
+    const funded = r.stages.some(s => s.type !== 'Eval');
+    const sp = sm.span;
+    const stagesHtml = sm.stages.map((s, i) => `
+      ${i ? '<div class="stage-arrow">→</div>' : ''}
+      <div class="stage st-${s.type.toLowerCase()}" style="--rc:${r.color}">
+        <div class="k"><span>${s.type}</span><span class="pill ${s.result === 'blown' ? 'r' : s.result === 'passed' || s.result === 'payout' ? 'g' : 'b'}">${s.result ? Runs.RESULTS[s.result] : (r.status === 'active' && i === sm.stages.length - 1 ? 'Active' : 'Ended')}</span></div>
+        <div class="acct" title="${U.esc(s.account)}">${U.esc(s.account)}</div>
+        <div class="meta">${U.fmtShort(s.from)} → ${U.fmtShort(s.to)}<br>${s.days} trading day${s.days === 1 ? '' : 's'} · ${s.trades} trades<br>Net <b class="${U.cls(s.net)}">${U.money(s.net)}</b></div>
+      </div>`).join('');
+    return `<div class="card run-card" id="run-${r.id}" style="--rc:${r.color}">
+      <div class="card-head">
+        <span class="run-dot"></span>
+        <div><div class="run-title">${U.esc(r.name)}</div><div class="run-dates">${sp ? `${U.fmtDate(sp.from)} → ${r.status === 'active' ? 'today' : U.fmtDate(sp.to)}` : 'No trades yet in these accounts'}</div></div>
+        <span class="pill ${st.cls}" style="margin-left:6px">${st.text}</span>
+        <div class="right">
+          ${canPromote ? `<button class="btn sm primary" data-act="promote" data-run="${r.id}">🎉 I'm funded</button>` : ''}
+          ${funded && r.status === 'active' ? `<button class="btn sm" data-act="payout" data-run="${r.id}">+ Payout</button>` : ''}
+          ${r.status === 'active' ? `<button class="btn sm danger" data-act="blown" data-run="${r.id}">Mark blown</button>` : `<button class="btn sm" data-act="reopen" data-run="${r.id}">Reopen</button>`}
+          <button class="btn sm ghost" data-act="edit" data-run="${r.id}">Edit</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="stages">${stagesHtml || '<div class="help">This run has no stages with trades yet.</div>'}</div>
+        <div class="run-kpis">
+          <div><div class="k">Run net P&amp;L</div><div class="v ${U.cls(sm.s.total)}">${U.money(sm.s.total)}</div></div>
+          <div><div class="k">Payouts</div><div class="v ${sm.payouts ? 'pos' : ''}">${U.money(sm.payouts)}</div></div>
+          <div><div class="k">Trading days</div><div class="v">${sm.s.dayCount}</div></div>
+          <div><div class="k">Calendar days</div><div class="v">${sm.calendarDays}</div></div>
+          <div><div class="k">Win % · PF</div><div class="v">${U.pct(sm.s.winRate, 0)} · ${U.num(sm.s.pf)}</div></div>
+          <div><div class="k">Max drawdown</div><div class="v neg">${U.money(sm.s.maxDD)}</div></div>
+        </div>
+        <div class="chart-box sm"><canvas id="rc-${r.id}"></canvas></div>
+        ${(r.payouts || []).length ? `<div class="list-rows" style="margin-top:10px">${r.payouts.map(p => `<div class="row"><span>💰 Payout · ${U.fmtLong(p.date)}</span><b class="pos" style="margin-left:auto">${U.money(p.amount)}</b><button class="btn sm ghost" data-act="delpay" data-run="${r.id}" data-pid="${p.id}" title="Remove payout">✕</button></div>`).join('')}</div>` : ''}
+      </div></div>`;
+  },
+
+  chart(el, r) {
+    const cv = U.$('#rc-' + r.id, el);
+    if (!cv) return;
+    const sm = Runs.summary(r);
+    const days = M.days(sm.trades);
+    if (!days.length) { cv.parentElement.innerHTML = '<div class="no-data">No trades in this run yet</div>'; return; }
+    const stageOfDay = d => Math.min(...d.trades.map(t => t._stage));
+    let cum = 0;
+    const pts = days.map(d => { cum += d.net; return { key: d.key, y: +cum.toFixed(2), stage: stageOfDay(d) }; });
+    const labels = pts.map(p => U.fmtShort(p.key));
+    const stageIdx = [...new Set(pts.map(p => p.stage))];
+    const stInfo = Runs.stagesOf(r);
+    const datasets = stageIdx.map(si => {
+      const type = (stInfo.find(s => s.index === si) || {}).type || 'Eval';
+      const data = pts.map((p, i) => (p.stage === si || (pts[i + 1] && pts[i + 1].stage === si && p.stage !== si) ? p.y : null));
+      return { label: type, data, borderColor: r.color, backgroundColor: r.color + '22', fill: 'origin', borderWidth: 2.2, tension: .25, spanGaps: false,
+        borderDash: type === 'Eval' ? [6, 4] : [], pointRadius: pts.length < 40 ? 2 : 0, pointBackgroundColor: r.color };
+    });
+    const payKeys = new Map((r.payouts || []).map(p => [p.date, p]));
+    datasets.push({ label: 'Payout', data: pts.map(p => (payKeys.has(p.key) ? p.y : null)), showLine: false, pointRadius: 7, pointHoverRadius: 9,
+      pointStyle: 'rectRot', pointBackgroundColor: '#12A06A', pointBorderColor: '#fff', pointBorderWidth: 2 });
+    const promos = stInfo.filter(s => s.index > 0).map(s => s.from);
+    datasets.push({ label: 'Promoted', data: pts.map((p, i) => (promos.some(k => p.key >= k && (i === 0 || pts[i - 1].key < k)) ? p.y : null)), showLine: false,
+      pointRadius: 7, pointStyle: 'triangle', pointBackgroundColor: r.color, pointBorderColor: '#fff', pointBorderWidth: 2 });
+    Charts.make(cv, {
+      type: 'line', data: { labels, datasets },
+      options: {
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: true, position: 'bottom', labels: { boxWidth: 18, boxHeight: 2, usePointStyle: false, filter: (it, data) => !['Payout', 'Promoted'].includes(it.text) && data.datasets[it.datasetIndex].data.some(v => v != null) } },
+          tooltip: {
+            filter: (it, i, items) => ['Payout', 'Promoted'].includes(it.dataset.label) || items.findIndex(x => x.dataIndex === it.dataIndex && !['Payout', 'Promoted'].includes(x.dataset.label)) === i,
+            callbacks: { title: items => items.length ? U.fmtLong(pts[items[0].dataIndex].key) : '', label: ctx => {
+            const p = pts[ctx.dataIndex];
+            if (ctx.dataset.label === 'Payout') return `💰 Payout ${U.money(payKeys.get(p.key).amount)}`;
+            if (ctx.dataset.label === 'Promoted') return '▲ Promoted to the next stage';
+            return `${ctx.dataset.label}: ${U.money(ctx.parsed.y)} run total`;
+          } } },
+        },
+        scales: { x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8, maxRotation: 0 } },
+          y: { grid: { color: '#EEF1F6' }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 6 } } },
+      },
+    });
+  },
+
+  action(act, id, pid) {
+    const r = Runs.get(id);
+    if (!r) return;
+    if (act === 'edit') return this.editModal(r);
+    if (act === 'promote') return this.promoteModal(r);
+    if (act === 'payout') return this.payoutModal(r);
+    if (act === 'delpay') { Runs.removePayout(id, pid); App.toast('Payout removed'); return App.render(); }
+    if (act === 'reopen') { Runs.setStatus(id, 'active'); App.toast('Run reopened'); return App.render(); }
+    if (act === 'blown') {
+      UI.confirm('Mark run as blown?', `This ends <b>${U.esc(r.name)}</b>. Its line stops on the last trading day, and its history is kept.`, 'Mark blown').then(ok => {
+        if (ok) { Runs.setStatus(id, 'blown'); App.toast('Run marked as blown — onto the next one'); App.render(); }
+      });
+    }
+  },
+
+  accountOptions(selected, preferFree = true) {
+    const free = Runs.unassigned();
+    const all = Store.accounts();
+    const ordered = preferFree ? [...free, ...all.filter(a => !free.includes(a))] : all;
+    return ordered.map(a => `<option ${a === selected ? 'selected' : ''}>${U.esc(a)}</option>`).join('') + '<option value="__new">+ Account not imported yet…</option>';
+  },
+
+  promoteModal(r) {
+    const cur = r.stages[r.stages.length - 1];
+    const lastDay = Runs.accountRange(cur.account).last || U.todayKey();
+    const body = U.h(`<div>
+      <p style="margin-top:0;line-height:1.6">Nice work 🎉 — <b>${U.esc(cur.account)}</b> is marked as <b>passed</b>, and <b>${U.esc(r.name)}</b> continues on the account you pick below. Your progression stays in one line.</p>
+      <div class="form-row">
+        <div><label class="field-label">Passed on</label><input class="inp" type="date" id="pmPass" value="${lastDay}"></div>
+        <div><label class="field-label">New stage</label><select class="inp" id="pmType">${Runs.TYPES.filter(t => t !== 'Eval').map(t => `<option>${t}</option>`).join('')}</select></div>
+      </div>
+      <label class="field-label">Funded account</label>
+      <select class="inp" id="pmAcct">${this.accountOptions('', true)}</select>
+      <input class="inp" id="pmNew" placeholder="Name it exactly as you'll import it, e.g. Tradeify Funded 50K" style="margin-top:8px;display:none">
+      <div class="help" style="margin-top:8px">Haven't imported the funded account yet? Pick “Account not imported yet”, type its name, and import its CSV under that same name later — it'll join this run automatically.</div>
+    </div>`);
+    const sel = U.$('#pmAcct', body), inp = U.$('#pmNew', body);
+    const free = Runs.unassigned().filter(a => a !== cur.account);
+    if (!free.length) { sel.value = '__new'; inp.style.display = ''; }
+    else sel.value = free[0];
+    sel.onchange = () => { inp.style.display = sel.value === '__new' ? '' : 'none'; };
+    UI.modal({ title: "I'm funded", body, footer: [{ label: 'Cancel' }, { label: 'Continue the run', cls: 'primary', onClick: c => {
+      const account = sel.value === '__new' ? inp.value.trim() : sel.value;
+      if (!account) { inp.focus(); return; }
+      const pass = U.$('#pmPass', body).value || lastDay;
+      Runs.promote(r.id, { account, type: U.$('#pmType', body).value, passDate: pass, start: sel.value === '__new' ? U.addDays(pass, 1) : '' });
+      c(); App.toast(`${r.name} continues on ${account}`); App.render();
+    } }] });
+  },
+
+  payoutModal(r) {
+    const body = U.h(`<div class="form-row">
+      <div><label class="field-label">Date</label><input class="inp" type="date" id="poDate" value="${U.todayKey()}"></div>
+      <div><label class="field-label">Amount received ($)</label><input class="inp" type="number" min="0" step="1" id="poAmt" placeholder="e.g. 1500"></div></div>`);
+    UI.modal({ title: `Log a payout · ${r.name}`, body, footer: [{ label: 'Cancel' }, { label: 'Save payout', cls: 'primary', onClick: c => {
+      const amt = +U.$('#poAmt', body).value;
+      if (!amt) { U.$('#poAmt', body).focus(); return; }
+      Runs.addPayout(r.id, U.$('#poDate', body).value || U.todayKey(), amt);
+      c(); App.toast('Payout logged 💰'); App.render();
+    } }] });
+  },
+
+  editModal(r) {
+    const isNew = !r;
+    let color = r ? r.color : Runs.PALETTE.find(c => !Runs.all().some(x => x.color === c)) || Runs.PALETTE[0];
+    const stages = r ? r.stages.map(s => ({ ...s })) : [{ id: 's_' + U.uid(), account: Runs.unassigned()[0] || Store.accounts()[0] || '', type: 'Eval', start: '', end: '', result: '' }];
+    const body = U.h(`<div>
+      <div class="form-row">
+        <div><label class="field-label">Run name</label><input class="inp" id="reName" value="${U.esc(r ? r.name : `Run ${Runs.all().length + 1}`)}" placeholder="e.g. Tradeify 50K · Run 2"></div>
+        <div><label class="field-label">Line color</label><div class="swatches" id="reColors">${Runs.PALETTE.map(c => `<button type="button" style="--rc:${c}" data-c="${c}" class="${c === color ? 'on' : ''}" aria-label="Color ${c}"></button>`).join('')}</div></div>
+      </div>
+      <label class="field-label">Stages <span class="help">(in order — e.g. Eval, then Funded)</span></label>
+      <div id="reStages"></div>
+      <button class="btn sm" id="reAdd" type="button">+ Add stage</button>
+      <div class="help" style="margin-top:10px">Leave dates blank to use the account's first and last trade.</div>
+    </div>`);
+    const accts = Store.accounts();
+    const drawStages = () => {
+      U.$('#reStages', body).innerHTML = stages.map((s, i) => `<div class="stage-edit" data-i="${i}">
+        <div><label class="field-label">Account</label><input class="inp" list="reAccts" data-f="account" value="${U.esc(s.account)}"></div>
+        <div><label class="field-label">Type</label><select class="inp" data-f="type">${Runs.TYPES.map(t => `<option ${t === s.type ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
+        <div><label class="field-label">Start</label><input class="inp" type="date" data-f="start" value="${s.start || ''}"></div>
+        <div><label class="field-label">End</label><input class="inp" type="date" data-f="end" value="${s.end || ''}"></div>
+        <div><label class="field-label">Result</label><select class="inp" data-f="result">${Object.entries(Runs.RESULTS).map(([k, v]) => `<option value="${k}" ${k === (s.result || '') ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
+        <button class="btn sm ghost" type="button" data-del="${i}" title="Remove stage" ${stages.length < 2 ? 'disabled' : ''}>✕</button>
+      </div>`).join('') + `<datalist id="reAccts">${accts.map(a => `<option value="${U.esc(a)}">`).join('')}</datalist>`;
+      U.$$('[data-f]', body).forEach(inp => inp.oninput = inp.onchange = () => { stages[+inp.closest('[data-i]').dataset.i][inp.dataset.f] = inp.value; });
+      U.$$('[data-del]', body).forEach(b => b.onclick = () => { stages.splice(+b.dataset.del, 1); drawStages(); });
+    };
+    drawStages();
+    U.$('#reAdd', body).onclick = () => { stages.push({ id: 's_' + U.uid(), account: '', type: 'Funded', start: '', end: '', result: '' }); drawStages(); };
+    U.$$('#reColors button', body).forEach(b => b.onclick = () => { color = b.dataset.c; U.$$('#reColors button', body).forEach(x => x.classList.toggle('on', x === b)); });
+
+    const footer = [];
+    if (!isNew) footer.push({ label: 'Delete run', cls: 'danger left', onClick: async c => {
+      c();
+      if (await UI.confirm('Delete run?', `Removes the <b>${U.esc(r.name)}</b> grouping and its payouts. Your trades are not deleted.`, 'Delete run')) { Runs.remove(r.id); App.toast('Run deleted'); App.render(); }
+    } });
+    footer.push({ label: 'Cancel' }, { label: isNew ? 'Create run' : 'Save', cls: 'primary', onClick: c => {
+      const clean = stages.map(s => ({ ...s, account: (s.account || '').trim() })).filter(s => s.account);
+      if (!clean.length) { App.toast('Add at least one account', 'err'); return; }
+      const name = U.$('#reName', body).value.trim() || 'Untitled run';
+      if (isNew) {
+        const run = Runs.create({ name, account: clean[0].account, type: clean[0].type, start: clean[0].start });
+        Runs.update(run.id, { color, stages: clean.map((s, i) => ({ ...run.stages[0], ...s, id: i ? 's_' + U.uid() : run.stages[0].id })) });
+      } else {
+        Runs.update(r.id, { name, color, stages: clean });
+      }
+      c(); App.toast(isNew ? 'Run created' : 'Run saved'); App.render();
+    } });
+    UI.modal({ title: isNew ? 'New run' : 'Edit run', body, wide: true, footer });
+  },
+};
+
+</script>
+  <script>
+window.Views = window.Views || {};
+
 Views.import = {
   title: 'Import Trades',
   pending: null, // { files:[{name, result, error}] }
 
   render(el) {
-    const accounts = Store.accounts().filter(a => a !== 'Demo');
-    const last = Store.data.imports.find(i => i.account !== 'Demo');
+    const accounts = Store.accounts().filter(a => !/^Demo\b/.test(a));
+    const last = Store.data.imports.find(i => i.id !== 'demo' && !/^Demo\b/.test(i.account));
     const defaultAcct = last ? last.account : (accounts[0] || '');
     el.innerHTML = `
       <div class="grid g-2" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)">
@@ -2468,7 +2950,7 @@ Views.settings = {
             <button class="btn primary" id="sBackup">⇩ Export backup (.json)</button>
             <label class="btn">⇧ Restore backup<input type="file" id="sRestore" accept=".json,application/json" hidden></label>
             <button class="btn" id="sCSV">Export all trades (.csv)</button>
-            <button class="btn" id="sDemo">${accounts.includes('Demo') ? 'Remove demo data' : 'Load demo data'}</button>
+            <button class="btn" id="sDemo">${App.hasDemo() ? 'Remove demo data' : 'Load demo data'}</button>
             <button class="btn danger" id="sClear" style="margin-left:auto">Delete everything</button>
           </div>
           <div class="danger-zone">
@@ -2861,6 +3343,7 @@ const App = {
     { r: 'dashboard', label: 'Dashboard', icon: '<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>' },
     { r: 'journal', label: 'Daily Journal', icon: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/>' },
     { r: 'trades', label: 'Trade Log', icon: '<path d="M4 6h16M4 12h16M4 18h10"/>' },
+    { r: 'runs', label: 'Runs', icon: '<path d="M3 17c3 0 4-5 7-5s4 3 7 3 3-6 4-8"/><circle cx="3" cy="17" r="1.6"/><path d="m18 4 3 .5-.5 3"/>' },
     { r: 'reports', label: 'Reports', icon: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>' },
     { sep: true },
     { r: 'import', label: 'Import Trades', icon: '<path d="M12 15V3m0 12-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/>' },
@@ -2970,8 +3453,8 @@ const App = {
 
   renderBanner() {
     const b = U.$('#banner');
-    const hasDemo = Store.data.trades.some(t => t.account === 'Demo');
-    const onlyDemo = hasDemo && Store.data.trades.every(t => t.account === 'Demo');
+    const hasDemo = this.hasDemo();
+    const onlyDemo = hasDemo && Store.data.trades.every(t => t.importId === 'demo');
     if (hasDemo && !['import', 'settings'].includes(this.route)) {
       b.innerHTML = `<div class="banner"><span class="tagx">DEMO</span><span>${onlyDemo ? 'You are viewing demo trades. Ready to add your own?' : 'Demo trades are mixed in with your data — filter by account or remove them.'}</span>
         <div class="right"><button class="btn sm" data-demo>Remove demo</button><a class="btn sm primary" href="#/import">Add trades</a></div></div>`;
@@ -2985,60 +3468,89 @@ const App = {
   },
 
   /* ---------- Demo data ---------- */
+  hasDemo() { return Store.data.trades.some(t => t.importId === 'demo') || (Store.data.runs || []).some(r => r.demo); },
+
   toggleDemo() {
-    if (Store.data.trades.some(t => t.account === 'Demo')) {
-      Store.removeAccount('Demo');
-      delete Store.data.settings.startingBalances.Demo; Store.save();
+    if (this.hasDemo()) {
+      const demoAccts = new Set(Store.data.trades.filter(t => t.importId === 'demo').map(t => t.account));
+      Store.data.trades = Store.data.trades.filter(t => t.importId !== 'demo');
+      Store.data.imports = Store.data.imports.filter(i => i.id !== 'demo');
+      Store.data.runs = (Store.data.runs || []).filter(r => !r.demo);
+      demoAccts.forEach(a => delete Store.data.settings.startingBalances[a]);
+      Store.save();
       this.toast('Demo data removed');
     } else {
-      const trades = this.makeDemo();
-      Store.commitImport({ id: 'demo', at: U.isoOf(new Date()), file: 'demo-data', account: 'Demo', format: 'Generated', added: trades.length, dupes: 0,
+      const { trades, runs, accounts } = this.makeDemo();
+      Store.commitImport({ id: 'demo', at: U.isoOf(new Date()), file: 'demo-data', account: 'Demo accounts', format: 'Generated', added: trades.length, dupes: 0,
         from: U.dayKey(trades[0].entryTime), to: U.dayKey(trades[trades.length - 1].entryTime) }, trades);
-      Store.data.settings.startingBalances.Demo = 50000; Store.save();
+      accounts.forEach(a => { Store.data.settings.startingBalances[a] = 50000; });
+      Store.data.runs = [...(Store.data.runs || []), ...runs];
+      Store.save();
       this.calMonth = null;
-      this.toast(`Loaded ${trades.length} demo trades`);
+      this.toast(`Loaded ${trades.length} demo trades in ${runs.length} runs`);
     }
     this.refreshFilters();
     this.render();
   },
 
+  /* Three demo runs: a blown eval, an eval that passed into a funded account (with payouts),
+     and a new eval that overlaps the funded account — so the calendar shows stacked run lines. */
   makeDemo() {
     let seed = 7;
     const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+    const A = 'Demo Lucid Eval #1', B1 = 'Demo Tradeify Eval #2', B2 = 'Demo Tradeify Funded #2', C = 'Demo Lucid Eval #3';
+    const plan = [ // [account, fromDaysAgo, toDaysAgo, winProbability]
+      [A, 120, 97, 0.2], [B1, 94, 71, 0.6], [B2, 68, 1, 0.52], [C, 30, 1, 0.5],
+    ];
     const out = [];
     let price = 20400;
     const today = U.todayKey();
     for (let i = 120; i >= 1; i--) {
       const key = U.addDays(today, -i);
       const dow = U.toLocal(key).getDay();
-      if (dow === 0 || dow === 6) continue;
       price += (rnd() - 0.47) * 160;
-      if (rnd() < 0.15) continue; // skipped day
-      const n = 1 + Math.floor(rnd() * 3);
-      let minute = 8 * 60 + 31 + Math.floor(rnd() * 20);
-      for (let j = 0; j < n; j++) {
-        const sym = rnd() < 0.8 ? 'MNQZ6' : 'NQZ6';
-        const root = sym.startsWith('MNQ') ? 'MNQ' : 'NQ';
-        const qty = root === 'MNQ' ? 5 : 1;
-        const side = rnd() < 0.55 ? 'Long' : 'Short';
-        const win = rnd() < 0.47;
-        const pts = win ? 15 + Math.round(rnd() * 70) / 2 * 2 : -(12 + Math.round(rnd() * 14));
-        const tick = v => Math.round(v * 4) / 4;
-        const entry = tick(price + (rnd() - 0.5) * 40);
-        const exit = tick(side === 'Long' ? entry + pts : entry - pts);
-        const hold = 60 + Math.floor(rnd() * 1500);
-        const et = U.toLocal(key); et.setMinutes(minute); et.setSeconds(Math.floor(rnd() * 60));
-        const xt = new Date(et.getTime() + hold * 1000);
-        const pv = Parser.POINT_VALUES[root];
-        out.push({
-          id: 'demo-' + key + '-' + j, account: 'Demo', symbol: sym, root, side, qty, entryPrice: entry, exitPrice: exit,
-          entryTime: U.isoOf(et), exitTime: U.isoOf(xt), gross: Math.round(pts * pv * qty * 100) / 100, fees: root === 'MNQ' ? 0.74 * qty : 2.6,
-          importId: 'demo', setup: ['Opening drive', 'Liquidity sweep', 'Trend pullback'][Math.floor(rnd() * 3)], notes: '', tags: [], rating: 0,
-        });
-        minute += Math.ceil(hold / 60) + 3 + Math.floor(rnd() * 30);
-      }
+      if (dow === 0 || dow === 6) continue;
+      plan.filter(p => i <= p[1] && i >= p[2]).forEach(([account, , , winP], ai) => {
+        if (rnd() < 0.15) return; // skipped day
+        const n = 1 + Math.floor(rnd() * 3);
+        let minute = 8 * 60 + 31 + Math.floor(rnd() * 20) + ai * 7;
+        for (let j = 0; j < n; j++) {
+          const sym = rnd() < 0.8 ? 'MNQZ6' : 'NQZ6';
+          const root = sym.startsWith('MNQ') ? 'MNQ' : 'NQ';
+          const qty = root === 'MNQ' ? 5 : 1;
+          const side = rnd() < 0.55 ? 'Long' : 'Short';
+          const win = rnd() < winP;
+          const pts = win ? 15 + Math.round(rnd() * 70) / 2 * 2 : -(12 + Math.round(rnd() * 14));
+          const tick = v => Math.round(v * 4) / 4;
+          const entry = tick(price + (rnd() - 0.5) * 40);
+          const exit = tick(side === 'Long' ? entry + pts : entry - pts);
+          const hold = 60 + Math.floor(rnd() * 1500);
+          const et = U.toLocal(key); et.setMinutes(minute); et.setSeconds(Math.floor(rnd() * 60));
+          const xt = new Date(et.getTime() + hold * 1000);
+          const pv = Parser.POINT_VALUES[root];
+          out.push({
+            id: `demo-${account.replace(/\W+/g, '')}-${key}-${j}`, account, symbol: sym, root, side, qty, entryPrice: entry, exitPrice: exit,
+            entryTime: U.isoOf(et), exitTime: U.isoOf(xt), gross: Math.round(pts * pv * qty * 100) / 100, fees: root === 'MNQ' ? 0.74 * qty : 2.6,
+            importId: 'demo', setup: ['Opening drive', 'Liquidity sweep', 'Trend pullback'][Math.floor(rnd() * 3)], notes: '', tags: [], rating: 0,
+          });
+          minute += Math.ceil(hold / 60) + 3 + Math.floor(rnd() * 30);
+        }
+      });
     }
-    return out;
+    out.sort((a, b) => (a.entryTime < b.entryTime ? -1 : 1));
+    const days = acct => [...new Set(out.filter(t => t.account === acct).map(t => U.dayKey(t.entryTime)))].sort();
+    const dA = days(A), dB1 = days(B1), dB2 = days(B2);
+    const st = (account, type, result = '', end = '') => ({ id: 's_' + U.uid(), account, type, start: '', end, result });
+    const runs = [
+      { id: 'run_demo1', demo: true, name: 'Lucid 50K · Run 1', color: '#64748B', status: 'blown', payouts: [], createdAt: U.isoOf(new Date()),
+        stages: [st(A, 'Eval', 'blown', dA[dA.length - 1])] },
+      { id: 'run_demo2', demo: true, name: 'Tradeify 50K · Run 2', color: '#4F6BED', status: 'active', createdAt: U.isoOf(new Date()),
+        stages: [st(B1, 'Eval', 'passed', dB1[dB1.length - 1]), st(B2, 'Funded')],
+        payouts: [{ id: 'p_demo1', date: dB2[Math.floor(dB2.length * 0.45)], amount: 1200 }, { id: 'p_demo2', date: dB2[Math.floor(dB2.length * 0.85)], amount: 1650 }] },
+      { id: 'run_demo3', demo: true, name: 'Lucid 50K · Run 3', color: '#F59E0B', status: 'active', payouts: [], createdAt: U.isoOf(new Date()),
+        stages: [st(C, 'Eval')] },
+    ];
+    return { trades: out, runs, accounts: [A, B1, B2, C] };
   },
 };
 
