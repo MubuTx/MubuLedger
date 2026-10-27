@@ -384,6 +384,9 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
 .help { font-size: 12px; color: var(--muted); line-height: 1.55; }
 .help code, .code { background: #F1F3F9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
 
+.danger-zone { display: flex; align-items: center; gap: 16px; margin-top: 18px; padding: 14px 16px; border: 1px solid #F2C4C6; background: #FFF8F8; border-radius: 10px; flex-wrap: wrap; }
+.danger-zone > div { flex: 1; min-width: 220px; }
+
 /* Import */
 .dropzone {
   border: 2px dashed #BFC6E3; border-radius: 14px; padding: 42px 20px; text-align: center; background: #FAFBFF;
@@ -2468,6 +2471,10 @@ Views.settings = {
             <button class="btn" id="sDemo">${accounts.includes('Demo') ? 'Remove demo data' : 'Load demo data'}</button>
             <button class="btn danger" id="sClear" style="margin-left:auto">Delete everything</button>
           </div>
+          <div class="danger-zone">
+            <div><b>Delete my account</b><div class="help">Permanently deletes your login, trades, notes and settings from our servers and this browser. This cannot be undone — export a backup first if you want a copy.</div></div>
+            <button class="btn danger" id="sDelAcct">Delete my account</button>
+          </div>
           <div class="help" style="margin-top:12px">${Store.data.trades.length} trades · ${Object.keys(Store.data.notes).length} journal notes · ${Store.data.imports.length} imports</div>
         </div></div>`;
 
@@ -2536,6 +2543,23 @@ Views.settings = {
     };
     U.$('#sCSV', el).onclick = () => Views.trades.exportCSV([...Store.data.trades].sort(M.byTime));
     U.$('#sDemo', el).onclick = () => { App.toggleDemo(); };
+    U.$('#sDelAcct', el).onclick = () => {
+      const body = U.h(`<div>
+        <p style="margin-top:0;line-height:1.6">This permanently deletes <b>${U.esc(Cloud.user?.email || 'your account')}</b> and all <b>${Store.data.trades.length}</b> trades, notes and settings. It cannot be undone.</p>
+        <label class="field-label">Type <b>DELETE</b> to confirm</label><input class="inp" id="delConfirm" autocomplete="off">
+        <div class="result-box err" id="delErr" style="display:none"></div></div>`);
+      UI.modal({ title: 'Delete account?', body, footer: [
+        { label: 'Export backup first', cls: 'left', onClick: () => U.download(`mubu-journal-backup-${U.todayKey()}.json`, Store.exportJSON(), 'application/json') },
+        { label: 'Cancel' },
+        { label: 'Delete permanently', cls: 'danger', onClick: async (c, b) => {
+          const err = U.$('#delErr', b);
+          if (U.$('#delConfirm', b).value.trim() !== 'DELETE') { err.style.display = ''; err.textContent = 'Type DELETE in capital letters to confirm.'; return; }
+          err.style.display = 'none';
+          try { await Cloud.deleteAccount(); }
+          catch (e) { err.style.display = ''; err.textContent = 'Could not delete: ' + (e.message || e); }
+        } },
+      ] });
+    };
     U.$('#sClear', el).onclick = async () => {
       if (await UI.confirm('Delete everything?', 'All trades, notes, imports and settings in your account will be erased on every device. Export a backup first if you might need it.', 'Delete everything')) {
         Store.clearAll(); App.filters = App.defaultFilters(); App.refreshFilters(); App.toast('All data deleted'); App.render();
@@ -2698,9 +2722,23 @@ const Cloud = (() => {
     history.replaceState(null, '', redirectUrl());
     location.reload();
   }
+  /* Permanently deletes the signed-in user's login and journal (server function delete_my_account). */
+  async function deleteAccount() {
+    clearTimeout(timer);
+    const user = C.user;
+    C.user = null; // stop any further syncing so nothing re-creates the row
+    const { error } = await client().rpc('delete_my_account');
+    if (error) { C.user = user; throw error; }
+    try {
+      Object.keys(localStorage).filter(k => k.startsWith('mubu-journal-v1:' + user.id)).forEach(k => localStorage.removeItem(k));
+    } catch (e) {}
+    try { await client().auth.signOut({ scope: 'local' }); } catch (e) {}
+    history.replaceState(null, '', redirectUrl());
+    location.reload();
+  }
   function onAuth(cb) { client().auth.onAuthStateChange((event, s) => cb(event, s)); }
 
-  return Object.assign(C, { client, queue, flush, loadForUser, session, signIn, signUp, resetPassword, updatePassword, signOut, onAuth, setStatus });
+  return Object.assign(C, { client, queue, flush, loadForUser, session, signIn, signUp, resetPassword, updatePassword, signOut, deleteAccount, onAuth, setStatus });
 })();
 
 </script>
