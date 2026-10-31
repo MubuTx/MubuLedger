@@ -390,6 +390,114 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   .run-pay { width: 12px; height: 12px; font-size: 7px; right: 2px; }
 }
 
+/* Runs page v2 */
+.run-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; }
+.run-tab { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; border: 1px solid var(--border); background: #fff; border-radius: 10px; padding: 9px 12px; font-size: 13px; cursor: pointer; color: var(--text); font-weight: 500; }
+.run-tab:hover { border-color: #C5CBE0; }
+.run-tab.on { border-color: var(--rc); box-shadow: inset 0 -3px 0 var(--rc); font-weight: 600; }
+.run-tab.add { color: var(--brand); border-style: dashed; font-weight: 600; }
+.run-tab .run-dot { width: 9px; height: 9px; }
+.quick-start { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.chip-btn { border: 1px dashed var(--brand-line); background: var(--brand-soft); color: var(--brand); border-radius: 99px; padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.chip-btn:hover { background: #DCE1F8; }
+.run-detail .run-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.crumbs { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.crumb { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: color-mix(in srgb, var(--sc) 14%, #fff); color: color-mix(in srgb, var(--sc) 80%, #000); border: 1px solid color-mix(in srgb, var(--sc) 30%, #fff); }
+.crumb.on { box-shadow: 0 0 0 2px var(--sc); }
+.crumb-arrow { color: var(--faint); }
+.run-kpis.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.run-kpis .sub { font-size: 11px; color: var(--faint); margin-top: 2px; }
+.reality-kpi { border-left: 3px solid var(--red); padding-left: 10px; }
+.reality-kpi .v { color: var(--red-strong); }
+.reality-strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; padding: 10px 14px; border-radius: 10px; background: #FFF5F5; border: 1px solid #F6D0D2; font-size: 13px; }
+.reality-strip .arr { color: var(--faint); }
+.reality-strip .btn { margin-left: auto; }
+.pay-list { margin-top: 12px; font-size: 13px; }
+.pay-list summary { cursor: pointer; color: var(--text-2); font-weight: 600; }
+.pay-list .row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid #F0F2F7; }
+.menu-wrap { position: relative; }
+.menu { position: absolute; right: 0; top: calc(100% + 6px); background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 12px 30px rgba(14,21,48,.14); padding: 6px; min-width: 180px; z-index: 20; }
+.menu button { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 8px 10px; border-radius: 7px; font-size: 13px; cursor: pointer; color: var(--text); }
+.menu button:hover { background: var(--gray-cell); }
+.menu button.danger { color: var(--red-strong); }
+.seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 9px; overflow: hidden; }
+.seg button { background: #fff; border: 0; padding: 8px 14px; font-size: 13px; cursor: pointer; color: var(--text-2); }
+.seg button.on { background: var(--brand); color: #fff; font-weight: 600; }
+@media (max-width: 900px) { .run-kpis.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } .reality-strip .btn { margin-left: 0; } }
+
+.inline-date { border: 1px solid var(--border-strong); border-radius: 6px; padding: 2px 6px; font-size: 12px; }
+
+.chart-top { display: flex; align-items: center; gap: 12px; margin: 6px 0 4px; }
+.mini-legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.mini-legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.mini-legend i.dash { background: repeating-linear-gradient(90deg, var(--c) 0 4px, transparent 4px 7px); }
+.chart-top .btn { margin-left: auto; }
+.run-detail .card-head { border-bottom: 0; padding-bottom: 4px; }
+.run-kpis.four > div { background: #FAFBFD; border-radius: 10px; padding: 12px 14px; }
+.run-kpis.four .v { font-size: 20px; letter-spacing: -.01em; }
+.reality-kpi { border-left: 0 !important; padding-left: 14px !important; background: #FFF6F6 !important; }
+.tog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tog { display: flex; gap: 8px; align-items: center; font-size: 13px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 9px; cursor: pointer; }
+.tog input { accent-color: var(--brand); }
+
+/* Ledger */
+.lg-head { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin: 4px 0 18px; }
+.lg-eyebrow { font-size: 13px; color: var(--muted); font-weight: 500; }
+.lg-big { font-size: 44px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; margin: 4px 0 6px; }
+.lg-sub { color: var(--text-2); font-size: 14px; }
+.lg-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.lg-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.lg-stats > div { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.lg-stats .k { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.lg-stats .v { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.lg-stats .sub { font-size: 11.5px; color: var(--faint); margin-top: 2px; }
+.lg-chart-card { margin-bottom: 16px; }
+.lg-forecast { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 14px; }
+.lg-fc-num { font-size: 15px; margin-bottom: 10px; }
+.lg-disclaimer { font-size: 12.5px; line-height: 1.55; color: #7A4A00; background: #FFF8EB; border: 1px solid #F3D9A8; border-radius: 10px; padding: 10px 12px; }
+.seg.sm button { padding: 5px 10px; font-size: 12px; }
+.lg-tbl tr.sel td { background: var(--brand-soft); }
+.card-head .right.btn, .card-head .help.right { margin-left: auto; }
+.lg-type { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--gray-cell); color: var(--text-2); }
+.lg-type.t-expense { background: var(--red-bg); color: var(--red-strong); }
+.lg-type.t-payout { background: var(--green-bg); color: var(--green-strong); }
+.lg-type.t-livepl { background: var(--brand-soft); color: var(--brand); }
+.lg-eq { font-size: 13.5px; color: var(--text-2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.lg-eq .op { color: var(--faint); margin: 0 4px; }
+.lg-legend button { background: none; border: 0; padding: 2px 4px; font: inherit; color: var(--text-2); cursor: pointer; border-radius: 6px; }
+.lg-legend button:hover { background: var(--gray-cell); }
+.lg-legend button.off { opacity: .4; text-decoration: line-through; }
+.lg-legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+.lg-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+.lg-fc-card { margin-bottom: 16px; }
+.lg-fc-top { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 14px; }
+.lg-fc-top > div:first-child { flex: 1; min-width: 260px; }
+.lg-fc-big { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 4px; }
+.lg-disclaimer { font-size: 13px !important; }
+.lg-filter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: -6px 0 14px; }
+.lg-sep { width: 1px; height: 20px; background: var(--border-strong); margin: 0 4px; }
+.lg-chip { border: 1px solid var(--border-strong); background: #fff; color: var(--text); border-radius: 99px; padding: 5px 12px; font-size: 12.5px; font-weight: 500; cursor: pointer; }
+.lg-chip:hover { border-color: var(--brand-line); }
+.lg-chip.off { background: transparent; color: var(--faint); border-style: dashed; text-decoration: line-through; }
+.lg-switch { display: inline-flex; align-items: center; gap: 8px; border: 0; background: none; font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; padding: 4px 2px; }
+.lg-switch .knob { width: 32px; height: 18px; border-radius: 99px; background: #D5DAE8; position: relative; transition: background .15s; }
+.lg-switch .knob::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: left .15s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.lg-switch.on .knob { background: var(--brand); }
+.lg-switch.on .knob::after { left: 16px; }
+.lg-excl { color: var(--muted); font-weight: 400; }
+.lg-fc-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.lg-fc-facts > div { background: #FAFBFD; border-radius: 10px; padding: 10px 12px; }
+.lg-fc-facts .k { font-size: 11.5px; color: var(--muted); margin-bottom: 3px; }
+.lg-fc-facts .v { font-size: 15px; font-weight: 600; }
+@media (max-width: 900px) { .lg-fc-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.lg-kind { font-size: 10.5px; font-weight: 600; border: 1px solid var(--border); background: #fff; color: var(--muted); border-radius: 99px; padding: 1px 7px; margin-left: 6px; cursor: pointer; }
+.lg-kind.tool { background: #FFF6E5; color: #9A6200; border-color: #F3D9A8; }
+.lk-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px solid #F0F2F7; flex-wrap: wrap; }
+.lk-lbl { width: 150px; font-size: 13px; font-weight: 500; }
+.swatches.sm button { width: 22px; height: 22px; }
+.swatches input[type=color] { width: 26px; height: 24px; border: 0; background: none; padding: 0; cursor: pointer; }
+@media (max-width: 900px) { .lg-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lg-big { font-size: 34px; } .lg-actions { margin-left: 0; } }
+
 /* Mini calendar */
 .mini-cal { padding: 14px; }
 .mini-cal .mh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
@@ -732,12 +840,14 @@ const Store = (() => {
       notes: {},   // { 'YYYY-MM-DD': 'text' }
       checks: {},  // { 'YYYY-MM-DD': ['r1','r3'] }
       runs: [],    // eval → funded progressions (see js/runs.js)
+      ledger: [],  // money in/out: eval fees, resets, data, payouts (see js/views/ledger.js)
       settings: {
         defaultCommission: 0,          // round-turn $ per contract when no root-specific value
         commissions: {},               // { NQ: 4.04, MNQ: 1.24 }
         pointValues: {},               // overrides of Parser.POINT_VALUES
         startingBalances: {},          // { 'Tradeify 50K': 50000 }
         rules: DEFAULT_RULES.map((text, i) => ({ id: 'r' + (i + 1), text })),
+        reality: { withdrawPct: 50, splitPct: 90 }, // funded "take-home" assumptions (Runs page)
       },
       ui: { filters: null, calMonth: null },
     };
@@ -764,6 +874,7 @@ const Store = (() => {
         if (!Array.isArray(d.trades)) d.trades = [];
         if (!Array.isArray(d.imports)) d.imports = [];
         if (!Array.isArray(d.runs)) d.runs = [];
+        if (!Array.isArray(d.ledger)) d.ledger = [];
       }
       return d;
     },
@@ -1549,8 +1660,22 @@ const Runs = (() => {
     });
     const sp = span(run);
     const payouts = (run.payouts || []).reduce((a, p) => a + (+p.amount || 0), 0);
-    return { s, trades, stages: byStage, span: sp, calendarDays: sp ? Math.round((U.toLocal(sp.to) - U.toLocal(sp.from)) / 864e5) + 1 : 0, payouts };
+    const evalNet = byStage.filter(x => x.type === 'Eval').reduce((a, x) => a + x.net, 0);
+    const fundedNet = byStage.filter(x => x.type !== 'Eval').reduce((a, x) => a + x.net, 0);
+    const rs = realityOf(run);
+    const realKeep = takeHome(fundedNet, rs);
+    return { s, trades, stages: byStage, span: sp, calendarDays: sp ? Math.round((U.toLocal(sp.to) - U.toLocal(sp.from)) / 864e5) + 1 : 0, payouts,
+      evalNet, fundedNet, reality: rs, realKeep, hasFunded: byStage.some(x => x.type !== 'Eval') };
   }
+
+  /* "Reality": funded profit is not money in your pocket. Only part of it can be withdrawn,
+     and the firm keeps its share of what you withdraw. Eval profit pays nothing. */
+  function realityOf(run) {
+    const d = Object.assign({ withdrawPct: 50, splitPct: 90 }, Store.data.settings.reality || {});
+    const o = (run && run.reality) || {};
+    return { withdrawPct: o.withdrawPct != null ? +o.withdrawPct : +d.withdrawPct, splitPct: o.splitPct != null ? +o.splitPct : +d.splitPct, custom: !!(run && run.reality) };
+  }
+  function takeHome(fundedProfit, rs) { return Math.max(0, fundedProfit) * (rs.withdrawPct / 100) * (rs.splitPct / 100); }
 
   function statusLabel(run) {
     const last = run.stages[run.stages.length - 1];
@@ -1562,7 +1687,7 @@ const Runs = (() => {
 
   /* ---------- mutations ---------- */
   function create({ name, account, type = 'Eval', start = '' }) {
-    const run = { id: 'run_' + U.uid(), name: name || `Run ${all().length + 1}`, color: nextColor(), status: 'active',
+    const run = { id: 'run_' + U.uid(), name: name || account || `Run ${all().length + 1}`, color: nextColor(), status: 'active',
       stages: [{ id: 's_' + U.uid(), account, type, start, end: '', result: '' }], payouts: [], createdAt: U.isoOf(new Date()) };
     all().push(run); Store.save(); return run;
   }
@@ -1604,7 +1729,7 @@ const Runs = (() => {
     return Store.accounts().filter(a => !used.has(a));
   }
 
-  return { PALETTE, TYPES, RESULTS, all, get, stagesOf, span, tradesOf, onDay, summary, statusLabel,
+  return { PALETTE, TYPES, RESULTS, all, get, stagesOf, span, tradesOf, onDay, summary, statusLabel, realityOf, takeHome,
     create, promote, setStatus, update, remove, addPayout, removePayout, unassigned, accountRange };
 })();
 
@@ -1696,7 +1821,7 @@ const UI = (() => {
         ${lanes.map(r => {
           const sm = Runs.summary(r); const stl = Runs.statusLabel(r);
           const lastType = (r.stages[r.stages.length - 1] || {}).type || 'Eval';
-          return `<a class="run-chip" href="#/runs?id=${r.id}" title="Open run"><span class="run-swatch st-${lastType.toLowerCase()}" style="--rc:${r.color}"></span><b>${U.esc(r.name)}</b><span class="pill ${stl.cls}">${stl.text}</span><span class="${U.cls(sm.s.total)}">${U.moneyShort(sm.s.total)}</span></a>`;
+          return `<a class="run-chip" href="#/runs?id=${r.id}" title="Open run"><span class="run-swatch st-${lastType.toLowerCase()}" style="--rc:${r.color}"></span><b>${U.esc(r.name)}</b><span class="pill ${stl.cls}">${stl.text}</span>${(() => { const cs = sm.stages[sm.stages.length - 1]; return cs ? `<span class="${U.cls(cs.net)}" title="${cs.type} P&L">${cs.type} ${U.moneyShort(cs.net)}</span>` : ''; })()}</a>`;
         }).join('')}
         <span class="run-key"><span class="run-swatch st-eval" style="--rc:#6B7290"></span>Eval <span class="run-swatch st-funded" style="--rc:#6B7290"></span>Funded <i class="run-promo static"></i>Promoted <i class="run-pay static">$</i>Payout</span>
       </div>` : `<div class="run-legend empty"><span class="help">Group an eval and the funded account it became into one <b>run</b> to see your whole progression here.</span><a class="btn sm" href="#/runs">Set up runs</a></div>`;
@@ -2501,115 +2626,215 @@ window.Views = window.Views || {};
 Views.runs = {
   title: 'Runs',
 
+  sel: null,
+  STAGE_COLORS: { Eval: '#F59E0B', Funded: '#4F6BED', Live: '#8B5CF6' },
+  REALITY_COLOR: '#E5484D',
+  LOOK_DEFAULT: { eval: '#F59E0B', funded: '#4F6BED', reality: '#E5484D', smooth: true, fill: true, showReality: true, showGrid: false, thickness: 2.5 },
+  look() { return Object.assign({}, this.LOOK_DEFAULT, Store.data.settings.runLook || {}); },
+  applyLook() { const l = this.look(); this.STAGE_COLORS = { Eval: l.eval, Funded: l.funded, Live: l.funded }; this.REALITY_COLOR = l.reality; return l; },
+
   render(el, params) {
     const runs = Runs.all();
     const order = r => (r.status === 'active' ? 0 : 1);
     const sorted = [...runs].sort((a, b) => order(a) - order(b) || ((Runs.span(b) || {}).from || '').localeCompare((Runs.span(a) || {}).from || ''));
+    if (params.id && Runs.get(params.id)) this.sel = params.id;
+    if (!this.sel || !Runs.get(this.sel)) this.sel = sorted[0] ? sorted[0].id : null;
     const free = Runs.unassigned();
+    const quick = free.length ? `<div class="quick-start">
+        <span class="help">${runs.length ? 'Not in a run yet:' : 'Start a run from one of your accounts:'}</span>
+        ${free.slice(0, 6).map(a => `<button class="chip-btn" data-start="${U.esc(a)}">+ ${U.esc(a)}</button>`).join('')}
+        ${free.length > 6 ? `<span class="help">+${free.length - 6} more</span>` : ''}
+      </div>` : '';
+
+    if (!sorted.length) {
+      el.innerHTML = `<div class="card"><div class="empty">
+        <h3>Track a run from eval to funded</h3>
+        <div style="max-width:520px;margin:0 auto">One click starts a run from an account. When you pass, hit <b>I'm funded</b> and pick the funded account — your progress carries over instead of resetting to zero.</div>
+        ${quick ? `<div style="margin-top:18px">${quick}</div>` : `<div class="actions">${Store.accounts().length ? '' : '<a class="btn primary" href="#/import">Import trades first</a>'}<button class="btn" data-demo>Load demo data</button></div>`}
+      </div></div>`;
+      this.bind(el); return;
+    }
 
     el.innerHTML = `
-      <div class="card" style="margin-bottom:16px"><div class="card-body" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div style="flex:1;min-width:260px">
-          <div style="font-weight:600;margin-bottom:4px">Keep your progress when you get promoted</div>
-          <div class="help">A <b>run</b> links an eval and the funded account it turned into, so your calendar and stats follow the whole journey instead of resetting at zero. Each run gets its own color line under the days on your P&amp;L calendar.</div>
-        </div>
-        <button class="btn primary" id="rNew" ${Store.accounts().length ? '' : 'disabled title="Import trades first"'}>+ New run</button>
-      </div></div>
-      ${free.length && runs.length ? `<div class="result-box warn" style="margin:0 0 16px">${free.length} account${free.length > 1 ? 's are' : ' is'} not in a run yet: ${free.map(a => `<b>${U.esc(a)}</b>`).join(', ')}.</div>` : ''}
-      <div id="rList">${sorted.length ? sorted.map(r => this.card(r)).join('') : `<div class="card"><div class="empty">
-        <h3>No runs yet</h3><div>Create a run for each eval you start. When you pass, click <b>I'm funded</b> and pick the funded account — the run keeps going.</div>
-        <div class="actions">${Store.accounts().length ? '<button class="btn primary" data-new>Create your first run</button>' : '<a class="btn primary" href="#/import">Import trades first</a>'}<button class="btn" data-demo>Load demo data</button></div></div></div>`}</div>`;
-
-    sorted.forEach(r => this.chart(el, r));
-    const newBtn = () => this.editModal(null);
-    U.$('#rNew', el).onclick = newBtn;
-    U.$$('[data-new]', el).forEach(b => b.onclick = newBtn);
-    U.$$('[data-act]', el).forEach(b => b.onclick = () => this.action(b.dataset.act, b.dataset.run, b.dataset.pid));
-    if (params.id) setTimeout(() => document.getElementById('run-' + params.id)?.scrollIntoView({ behavior: 'smooth' }), 60);
+      <div class="run-tabs">
+        ${sorted.map(r => { const sm = Runs.summary(r); const stl = Runs.statusLabel(r);
+          return `<button class="run-tab ${r.id === this.sel ? 'on' : ''}" data-sel="${r.id}" style="--rc:${r.color}">
+            <span class="run-dot"></span><span class="nm">${U.esc(r.name)}</span><span class="pill ${stl.cls}">${stl.text.replace(' · active', '')}</span>${(() => { const cs = sm.stages[sm.stages.length - 1]; return cs ? `<span class="${U.cls(cs.net)}">${U.moneyShort(cs.net)}</span>` : ''; })()}</button>`; }).join('')}
+        <button class="run-tab add" id="rNew" title="New run">+ New run</button>
+      </div>
+      ${quick}
+      <div id="rDetail"></div>`;
+    this.detail(U.$('#rDetail', el), Runs.get(this.sel));
+    this.bind(el);
   },
 
-  card(r) {
+  bind(el) {
+    U.$$('[data-sel]', el).forEach(b => b.onclick = () => { this.sel = b.dataset.sel; App.go(`#/runs?id=${b.dataset.sel}`); });
+    U.$$('[data-start]', el).forEach(b => b.onclick = () => {
+      const r = Runs.create({ account: b.dataset.start, type: /funded|\bpa\b|\bfunded\b/i.test(b.dataset.start) ? 'Funded' : 'Eval' });
+      this.sel = r.id; App.toast(`Run started for ${b.dataset.start}`); App.go(`#/runs?id=${r.id}`);
+    });
+    const nb = U.$('#rNew', el); if (nb) nb.onclick = () => this.newModal();
+  },
+
+  detail(box, r) {
     const sm = Runs.summary(r);
-    const st = Runs.statusLabel(r);
+    const stl = Runs.statusLabel(r);
     const last = r.stages[r.stages.length - 1];
     const canPromote = r.status === 'active' && last && last.type === 'Eval';
-    const funded = r.stages.some(s => s.type !== 'Eval');
     const sp = sm.span;
-    const stagesHtml = sm.stages.map((s, i) => `
-      ${i ? '<div class="stage-arrow">→</div>' : ''}
-      <div class="stage st-${s.type.toLowerCase()}" style="--rc:${r.color}">
-        <div class="k"><span>${s.type}</span><span class="pill ${s.result === 'blown' ? 'r' : s.result === 'passed' || s.result === 'payout' ? 'g' : 'b'}">${s.result ? Runs.RESULTS[s.result] : (r.status === 'active' && i === sm.stages.length - 1 ? 'Active' : 'Ended')}</span></div>
-        <div class="acct" title="${U.esc(s.account)}">${U.esc(s.account)}</div>
-        <div class="meta">${U.fmtShort(s.from)} → ${U.fmtShort(s.to)}<br>${s.days} trading day${s.days === 1 ? '' : 's'} · ${s.trades} trades<br>Net <b class="${U.cls(s.net)}">${U.money(s.net)}</b></div>
-      </div>`).join('');
-    return `<div class="card run-card" id="run-${r.id}" style="--rc:${r.color}">
+    const rs = sm.reality;
+    const primary = canPromote ? `<button class="btn primary" data-act="promote">🎉 I'm funded</button>`
+      : (r.status === 'active' && sm.hasFunded ? `<button class="btn" data-act="payout">+ Log payout</button>` : '');
+    const path = sm.stages.map((s, i) => {
+      const done = s.result === 'passed' ? ' ✓' : s.result === 'blown' ? ' ✗' : '';
+      const active = r.status === 'active' && i === sm.stages.length - 1;
+      return `<span class="crumb ${active ? 'on' : ''}" style="--sc:${this.STAGE_COLORS[s.type]}" title="${U.esc(s.account)} · ${U.fmtShort(s.from)} → ${U.fmtShort(s.to)} · ${U.money(s.net)}">${s.type}${done}</span>`;
+    }).join('<span class="crumb-arrow">→</span>');
+
+    box.innerHTML = `<div class="card run-detail" style="--rc:${r.color}">
       <div class="card-head">
-        <span class="run-dot"></span>
-        <div><div class="run-title">${U.esc(r.name)}</div><div class="run-dates">${sp ? `${U.fmtDate(sp.from)} → ${r.status === 'active' ? 'today' : U.fmtDate(sp.to)}` : 'No trades yet in these accounts'}</div></div>
-        <span class="pill ${st.cls}" style="margin-left:6px">${st.text}</span>
-        <div class="right">
-          ${canPromote ? `<button class="btn sm primary" data-act="promote" data-run="${r.id}">🎉 I'm funded</button>` : ''}
-          ${funded && r.status === 'active' ? `<button class="btn sm" data-act="payout" data-run="${r.id}">+ Payout</button>` : ''}
-          ${r.status === 'active' ? `<button class="btn sm danger" data-act="blown" data-run="${r.id}">Mark blown</button>` : `<button class="btn sm" data-act="reopen" data-run="${r.id}">Reopen</button>`}
-          <button class="btn sm ghost" data-act="edit" data-run="${r.id}">Edit</button>
+        <div style="min-width:0">
+          <div class="run-title">${U.esc(r.name)} <span class="pill ${stl.cls}">${stl.text}</span></div>
+          <div class="run-dates">${sp ? `${U.fmtDate(sp.from)} → ${r.status === 'active' ? 'today' : U.fmtDate(sp.to)} · ${sm.s.dayCount} trading days` : 'No trades in this account yet — import its CSV and it shows up here.'}</div>
+        </div>
+        <div class="right">${primary}
+          <div class="menu-wrap"><button class="btn ghost" data-menu aria-label="More">⋯</button>
+            <div class="menu" hidden>
+              ${r.status === 'active' ? '<button data-act="blown">Mark as blown</button>' : '<button data-act="reopen">Reopen run</button>'}
+              ${sm.hasFunded ? '<button data-act="payout">Log a payout</button>' : ''}
+              <button data-act="reality">Reality settings</button>
+              <button data-act="edit">Edit run</button>
+              <button data-act="delete" class="danger">Delete run</button>
+            </div></div>
         </div>
       </div>
       <div class="card-body">
-        <div class="stages">${stagesHtml || '<div class="help">This run has no stages with trades yet.</div>'}</div>
-        <div class="run-kpis">
-          <div><div class="k">Run net P&amp;L</div><div class="v ${U.cls(sm.s.total)}">${U.money(sm.s.total)}</div></div>
-          <div><div class="k">Payouts</div><div class="v ${sm.payouts ? 'pos' : ''}">${U.money(sm.payouts)}</div></div>
-          <div><div class="k">Trading days</div><div class="v">${sm.s.dayCount}</div></div>
-          <div><div class="k">Calendar days</div><div class="v">${sm.calendarDays}</div></div>
-          <div><div class="k">Win % · PF</div><div class="v">${U.pct(sm.s.winRate, 0)} · ${U.num(sm.s.pf)}</div></div>
-          <div><div class="k">Max drawdown</div><div class="v neg">${U.money(sm.s.maxDD)}</div></div>
+        <div class="crumbs">${path}</div>
+        <div class="run-kpis four">
+          <div><div class="k">Evaluation</div><div class="v ${U.cls(sm.evalNet)}">${U.money(sm.evalNet)}</div><div class="sub">${sm.stages.some(x => x.type === 'Eval' && x.result === 'passed') ? 'passed — this money isn\'t yours' : sm.stages.some(x => x.type === 'Eval' && x.result === 'blown') ? 'blown' : 'in progress — not withdrawable'}</div></div>
+          <div><div class="k">Funded</div><div class="v ${sm.hasFunded ? U.cls(sm.fundedNet) : ''}">${sm.hasFunded ? U.money(sm.fundedNet) : '—'}</div><div class="sub">${sm.hasFunded ? 'started from $0' : 'not funded yet'}</div></div>
+          <div class="reality-kpi"><div class="k">What you'd actually keep</div><div class="v">${sm.hasFunded ? U.money(sm.realKeep) : '$0.00'}</div><div class="sub">${sm.hasFunded ? `after the ${rs.withdrawPct}% withdrawal cap and ${rs.splitPct}% split` : 'eval profit pays $0'}</div></div>
+          <div><div class="k">Paid out so far</div><div class="v ${sm.payouts ? 'pos' : ''}">${U.money(sm.payouts)}</div><div class="sub">${(r.payouts || []).length} payout${(r.payouts || []).length === 1 ? '' : 's'}</div></div>
         </div>
-        <div class="chart-box sm"><canvas id="rc-${r.id}"></canvas></div>
-        ${(r.payouts || []).length ? `<div class="list-rows" style="margin-top:10px">${r.payouts.map(p => `<div class="row"><span>💰 Payout · ${U.fmtLong(p.date)}</span><b class="pos" style="margin-left:auto">${U.money(p.amount)}</b><button class="btn sm ghost" data-act="delpay" data-run="${r.id}" data-pid="${p.id}" title="Remove payout">✕</button></div>`).join('')}</div>` : ''}
+        <div class="chart-top">
+          <div class="mini-legend"><span><i style="background:${this.look().eval}"></i>Evaluation</span><span><i style="background:${this.look().funded}"></i>Funded</span>${sm.hasFunded && this.look().showReality ? `<span><i class="dash" style="--c:${this.look().reality}"></i>What you'd keep</span>` : ''}</div>
+          <button class="btn sm ghost" data-act="look">🎨 Customize</button>
+        </div>
+        <div class="chart-box lg"><canvas id="rcMain"></canvas></div>
+        ${sm.hasFunded ? `<div class="reality-strip">
+          <span><b>Reality check:</b> funded profit <b>${U.money(Math.max(0, sm.fundedNet))}</b></span><span class="arr">→</span>
+          <span>${rs.withdrawPct}% you can withdraw <b>${U.money(Math.max(0, sm.fundedNet) * rs.withdrawPct / 100)}</b></span><span class="arr">→</span>
+          <span>your ${rs.splitPct}% split <b class="neg">${U.money(sm.realKeep)}</b></span>
+          <button class="btn sm ghost" data-act="reality">Adjust</button>
+        </div>` : ''}
+        ${(r.payouts || []).length ? `<details class="pay-list"><summary>${(r.payouts || []).length} payout${r.payouts.length === 1 ? '' : 's'} · ${U.money(sm.payouts)}</summary>
+          ${r.payouts.map(p => `<div class="row"><span>💰 ${U.fmtLong(p.date)}</span><b class="pos" style="margin-left:auto">${U.money(p.amount)}</b><button class="btn sm ghost" data-act="delpay" data-pid="${p.id}" title="Remove">✕</button></div>`).join('')}</details>` : ''}
       </div></div>`;
+
+    this.chart(U.$('#rcMain', box), r, sm);
+    const menu = U.$('.menu', box), mb = U.$('[data-menu]', box);
+    mb.onclick = e => { e.stopPropagation(); menu.hidden = !menu.hidden; };
+    document.addEventListener('click', () => { menu.hidden = true; }, { once: true });
+    U.$$('[data-act]', box).forEach(b => b.onclick = () => { menu.hidden = true; this.action(b.dataset.act, r.id, b.dataset.pid); });
   },
 
-  chart(el, r) {
-    const cv = U.$('#rc-' + r.id, el);
+  /* Each stage is a different account, so each one starts at $0. The chart shows that honestly:
+     the eval curve, a dotted drop back to $0 at promotion, then the funded curve from $0,
+     with the reality (take-home) line under the funded part only. */
+  chart(cv, r, sm) {
     if (!cv) return;
-    const sm = Runs.summary(r);
+    const L = this.applyLook();
     const days = M.days(sm.trades);
     if (!days.length) { cv.parentElement.innerHTML = '<div class="no-data">No trades in this run yet</div>'; return; }
-    const stageOfDay = d => Math.min(...d.trades.map(t => t._stage));
-    let cum = 0;
-    const pts = days.map(d => { cum += d.net; return { key: d.key, y: +cum.toFixed(2), stage: stageOfDay(d) }; });
-    const labels = pts.map(p => U.fmtShort(p.key));
-    const stageIdx = [...new Set(pts.map(p => p.stage))];
     const stInfo = Runs.stagesOf(r);
-    const datasets = stageIdx.map(si => {
-      const type = (stInfo.find(s => s.index === si) || {}).type || 'Eval';
-      const data = pts.map((p, i) => (p.stage === si || (pts[i + 1] && pts[i + 1].stage === si && p.stage !== si) ? p.y : null));
-      return { label: type, data, borderColor: r.color, backgroundColor: r.color + '22', fill: 'origin', borderWidth: 2.2, tension: .25, spanGaps: false,
-        borderDash: type === 'Eval' ? [6, 4] : [], pointRadius: pts.length < 40 ? 2 : 0, pointBackgroundColor: r.color };
+    const typeOf = idx => (stInfo.find(s => s.index === idx) || {}).type || 'Eval';
+    const rs = sm.reality;
+    const pts = []; // {label, key, stage, type, y, real, start}
+    let cur = null, cum = 0;
+    days.forEach(d => {
+      const stage = Math.min(...d.trades.map(t => t._stage));
+      if (stage !== cur) {
+        cur = stage; cum = 0;
+        // synthetic $0 starting point for every stage
+        pts.push({ label: 'Start', key: d.key, stage, type: typeOf(stage), y: 0, real: typeOf(stage) === 'Eval' ? null : 0, start: true });
+      }
+      cum += d.net;
+      const type = typeOf(stage);
+      pts.push({ label: U.fmtShort(d.key), key: d.key, stage, type, y: +cum.toFixed(2), real: type === 'Eval' ? null : +Runs.takeHome(cum, rs).toFixed(2) });
     });
+    const stages = [...new Set(pts.map(p => p.stage))];
+    const datasets = [];
+    stages.forEach(si => {
+      const type = typeOf(si);
+      datasets.push({
+        label: type === 'Eval' ? 'Evaluation' : type, _stage: si, data: pts.map(p => (p.stage === si ? p.y : null)),
+        borderColor: this.STAGE_COLORS[type], backgroundColor: this.STAGE_COLORS[type] + (type === 'Eval' ? '18' : '22'), fill: 'origin',
+        borderWidth: L.thickness, tension: L.smooth ? .35 : 0, fill: L.fill ? 'origin' : false, pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: this.STAGE_COLORS[type], spanGaps: false,
+      });
+    });
+    // dotted "balance resets" drop between stages
+    const resetData = pts.map(() => null);
+    pts.forEach((p, i) => { if (p.start && i > 0) { resetData[i - 1] = pts[i - 1].y; resetData[i] = 0; } });
+    if (resetData.some(v => v != null)) datasets.push({ label: 'New account starts at $0', data: resetData, borderColor: '#C9CEDD', borderDash: [2, 4], borderWidth: 1.2, pointRadius: 0, fill: false, spanGaps: false, tension: 0 });
+    if (sm.hasFunded && L.showReality) datasets.push({ label: 'Reality (take-home)', data: pts.map(p => p.real), borderColor: this.REALITY_COLOR, backgroundColor: 'transparent', fill: false,
+      borderWidth: Math.max(1.5, L.thickness - .5), borderDash: [5, 5], tension: L.smooth ? .35 : 0, pointRadius: 0, pointHoverRadius: 4, spanGaps: false });
     const payKeys = new Map((r.payouts || []).map(p => [p.date, p]));
-    datasets.push({ label: 'Payout', data: pts.map(p => (payKeys.has(p.key) ? p.y : null)), showLine: false, pointRadius: 7, pointHoverRadius: 9,
+    if (payKeys.size) datasets.push({ label: 'Payout', data: pts.map(p => (!p.start && p.type !== 'Eval' && payKeys.has(p.key) ? p.y : null)), showLine: false, pointRadius: 6, pointHoverRadius: 8,
       pointStyle: 'rectRot', pointBackgroundColor: '#12A06A', pointBorderColor: '#fff', pointBorderWidth: 2 });
-    const promos = stInfo.filter(s => s.index > 0).map(s => s.from);
-    datasets.push({ label: 'Promoted', data: pts.map((p, i) => (promos.some(k => p.key >= k && (i === 0 || pts[i - 1].key < k)) ? p.y : null)), showLine: false,
-      pointRadius: 7, pointStyle: 'triangle', pointBackgroundColor: r.color, pointBorderColor: '#fff', pointBorderWidth: 2 });
+
+    // Background bands + labels for each stage
+    const STAGE_COLORS = this.STAGE_COLORS;
+    const bands = stages.map(si => {
+      const idx = pts.map((p, i) => (p.stage === si ? i : -1)).filter(i => i >= 0);
+      const st = stInfo.find(x => x.index === si) || {};
+      const result = st.result === 'passed' ? ' · passed' : st.result === 'blown' ? ' · blown' : '';
+      return { from: idx[0], to: idx[idx.length - 1], type: typeOf(si), text: (typeOf(si) === 'Eval' ? 'Evaluation' : typeOf(si)) + result };
+    });
+    const bandPlugin = {
+      id: 'stageBands',
+      beforeDatasetsDraw(chart) {
+        const { ctx, chartArea: a, scales: { x } } = chart;
+        ctx.save();
+        bands.forEach((b, i) => {
+          const half = (x.getPixelForValue(1) - x.getPixelForValue(0)) / 2 || 0;
+          const x0 = i === 0 ? a.left : x.getPixelForValue(b.from) - half;
+          const x1 = i === bands.length - 1 ? a.right : x.getPixelForValue(b.to) + half;
+          ctx.fillStyle = STAGE_COLORS[b.type] + '0A';
+          ctx.fillRect(x0, a.top, x1 - x0, a.bottom - a.top);
+          if (i > 0) { ctx.strokeStyle = '#D5DAE8'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(x0, a.top); ctx.lineTo(x0, a.bottom); ctx.stroke(); ctx.setLineDash([]); }
+          ctx.fillStyle = STAGE_COLORS[b.type];
+          ctx.font = '500 11px Inter, system-ui, sans-serif';
+          ctx.textBaseline = 'top';
+          ctx.fillText(b.text, x0 + 8, a.top + 6);
+        });
+        ctx.restore();
+      },
+    };
+    const stageLabels = new Set(['Evaluation', 'Funded', 'Live']);
     Charts.make(cv, {
-      type: 'line', data: { labels, datasets },
+      type: 'line', data: { labels: pts.map(p => (p.start ? (p.type === 'Eval' ? 'Start' : `${p.type} start`) : p.label)), datasets },
+      plugins: [bandPlugin],
       options: {
         interaction: { mode: 'index', intersect: false },
+        layout: { padding: { top: 18 } },
         plugins: {
-          legend: { display: true, position: 'bottom', labels: { boxWidth: 18, boxHeight: 2, usePointStyle: false, filter: (it, data) => !['Payout', 'Promoted'].includes(it.text) && data.datasets[it.datasetIndex].data.some(v => v != null) } },
+          legend: { display: false },
           tooltip: {
-            filter: (it, i, items) => ['Payout', 'Promoted'].includes(it.dataset.label) || items.findIndex(x => x.dataIndex === it.dataIndex && !['Payout', 'Promoted'].includes(x.dataset.label)) === i,
-            callbacks: { title: items => items.length ? U.fmtLong(pts[items[0].dataIndex].key) : '', label: ctx => {
-            const p = pts[ctx.dataIndex];
-            if (ctx.dataset.label === 'Payout') return `💰 Payout ${U.money(payKeys.get(p.key).amount)}`;
-            if (ctx.dataset.label === 'Promoted') return '▲ Promoted to the next stage';
-            return `${ctx.dataset.label}: ${U.money(ctx.parsed.y)} run total`;
-          } } },
+            filter: it => it.dataset.label !== 'New account starts at $0',
+            callbacks: {
+              title: items => { if (!items.length) return ''; const p = pts[items[0].dataIndex]; return p.start ? `${p.type === 'Eval' ? 'Evaluation' : p.type} account opened — starts at $0` : U.fmtLong(p.key); },
+              label: ctx => {
+                const p = pts[ctx.dataIndex];
+                if (ctx.dataset.label === 'Payout') return `💰 Payout ${U.money(payKeys.get(p.key).amount)}`;
+                if (ctx.dataset.label.startsWith('Reality')) return `You'd actually keep ${U.money(ctx.parsed.y)}`;
+                return `${p.type === 'Eval' ? 'Eval' : p.type} P&L ${U.money(ctx.parsed.y)}`;
+              },
+            },
+          },
         },
-        scales: { x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8, maxRotation: 0 } },
-          y: { grid: { color: '#EEF1F6' }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 6 } } },
+        scales: { x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 5, maxRotation: 0, autoSkip: true, color: '#9AA1BA' } },
+          y: { grid: { display: L.showGrid, color: '#F1F3F8' }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 4, color: '#9AA1BA' } } },
       },
     });
   },
@@ -2620,13 +2845,89 @@ Views.runs = {
     if (act === 'edit') return this.editModal(r);
     if (act === 'promote') return this.promoteModal(r);
     if (act === 'payout') return this.payoutModal(r);
+    if (act === 'reality') return this.realityModal(r);
+    if (act === 'look') return this.lookModal();
     if (act === 'delpay') { Runs.removePayout(id, pid); App.toast('Payout removed'); return App.render(); }
     if (act === 'reopen') { Runs.setStatus(id, 'active'); App.toast('Run reopened'); return App.render(); }
+    if (act === 'delete') {
+      return UI.confirm('Delete run?', `Removes the <b>${U.esc(r.name)}</b> grouping and its payouts. Your trades stay.`, 'Delete run').then(ok => {
+        if (ok) { Runs.remove(id); this.sel = null; App.toast('Run deleted'); App.go('#/runs'); }
+      });
+    }
     if (act === 'blown') {
-      UI.confirm('Mark run as blown?', `This ends <b>${U.esc(r.name)}</b>. Its line stops on the last trading day, and its history is kept.`, 'Mark blown').then(ok => {
+      UI.confirm('Mark run as blown?', `This ends <b>${U.esc(r.name)}</b>. Its history is kept.`, 'Mark blown').then(ok => {
         if (ok) { Runs.setStatus(id, 'blown'); App.toast('Run marked as blown — onto the next one'); App.render(); }
       });
     }
+  },
+
+  /* Minimal "new run": just pick the account. */
+  newModal() {
+    const free = Runs.unassigned();
+    const body = U.h(`<div>
+      <label class="field-label">Which account is this run starting on?</label>
+      <select class="inp" id="nrAcct">${this.accountOptions(free[0] || '', true)}</select>
+      <input class="inp" id="nrNew" placeholder="Account name as you'll import it" style="margin-top:8px;display:none">
+      <div class="seg" id="nrType" style="margin-top:12px"><button type="button" class="on" data-t="Eval">Evaluation</button><button type="button" data-t="Funded">Already funded</button></div>
+    </div>`);
+    const sel = U.$('#nrAcct', body), inp = U.$('#nrNew', body);
+    let type = 'Eval';
+    if (!free.length) { sel.value = '__new'; inp.style.display = ''; }
+    sel.onchange = () => { inp.style.display = sel.value === '__new' ? '' : 'none'; };
+    U.$$('#nrType button', body).forEach(b => b.onclick = () => { type = b.dataset.t; U.$$('#nrType button', body).forEach(x => x.classList.toggle('on', x === b)); });
+    UI.modal({ title: 'New run', body, footer: [{ label: 'Cancel' }, { label: 'Start run', cls: 'primary', onClick: c => {
+      const account = sel.value === '__new' ? inp.value.trim() : sel.value;
+      if (!account) { inp.style.display = ''; inp.focus(); return; }
+      const run = Runs.create({ account, type });
+      this.sel = run.id; c(); App.toast('Run started'); App.go(`#/runs?id=${run.id}`);
+    } }] });
+  },
+
+  lookModal() {
+    const l = this.look();
+    const SW = ['#F59E0B', '#4F6BED', '#12A06A', '#8B5CF6', '#06B6D4', '#EC4899', '#0E1530', '#E5484D', '#64748B', '#F97316'];
+    const row = (key, label) => `<div style="margin-bottom:14px"><label class="field-label">${label}</label><div class="swatches" data-key="${key}">${SW.map(c => `<button type="button" style="--rc:${c}" data-c="${c}" class="${c === l[key] ? 'on' : ''}"></button>`).join('')}<input type="color" value="${l[key]}" data-custom title="Pick any color" style="width:30px;height:28px;border:0;background:none;padding:0;cursor:pointer"></div></div>`;
+    const tog = (key, label) => `<label class="tog"><input type="checkbox" data-t="${key}" ${l[key] ? 'checked' : ''}> ${label}</label>`;
+    const body = U.h(`<div>
+      ${row('eval', 'Evaluation color')}${row('funded', 'Funded color')}${row('reality', "\"What you'd keep\" color")}
+      <label class="field-label">Line thickness</label>
+      <div class="seg" id="lkTh" style="margin-bottom:14px">${[[1.5, 'Thin'], [2.5, 'Regular'], [3.5, 'Bold']].map(([v, t]) => `<button type="button" data-v="${v}" class="${+l.thickness === v ? 'on' : ''}">${t}</button>`).join('')}</div>
+      <div class="tog-grid">${tog('smooth', 'Smooth curves')}${tog('fill', 'Shade under the line')}${tog('showReality', "Show what you'd keep")}${tog('showGrid', 'Grid lines')}</div>
+    </div>`);
+    const next = { ...l };
+    U.$$('.swatches', body).forEach(g => {
+      const key = g.dataset.key;
+      U.$$('button', g).forEach(b => b.onclick = () => { next[key] = b.dataset.c; U.$$('button', g).forEach(x => x.classList.toggle('on', x === b)); });
+      U.$('[data-custom]', g).oninput = e => { next[key] = e.target.value; U.$$('button', g).forEach(x => x.classList.remove('on')); };
+    });
+    U.$$('#lkTh button', body).forEach(b => b.onclick = () => { next.thickness = +b.dataset.v; U.$$('#lkTh button', body).forEach(x => x.classList.toggle('on', x === b)); });
+    U.$$('[data-t]', body).forEach(i => i.onchange = () => { next[i.dataset.t] = i.checked; });
+    UI.modal({ title: 'Customize your chart', body, footer: [
+      { label: 'Reset', cls: 'left', onClick: c => { delete Store.data.settings.runLook; Store.save(); c(); App.render(); } },
+      { label: 'Cancel' },
+      { label: 'Save', cls: 'primary', onClick: c => { Store.data.settings.runLook = next; Store.save(); c(); App.toast('Chart updated'); App.render(); } },
+    ] });
+  },
+
+  realityModal(r) {
+    const rs = Runs.realityOf(r);
+    const body = U.h(`<div>
+      <p class="help" style="margin-top:0">Funded profit isn't money in your pocket. Most firms only let you withdraw part of your profit, then keep a share of what you withdraw. Set the numbers for this firm.</p>
+      <div class="form-row">
+        <div><label class="field-label">Withdrawable % of profit</label><input class="inp" type="number" min="0" max="100" step="1" id="rlW" value="${rs.withdrawPct}"></div>
+        <div><label class="field-label">Your profit split %</label><input class="inp" type="number" min="0" max="100" step="1" id="rlS" value="${rs.splitPct}"></div>
+      </div>
+      <div class="help" id="rlEx"></div>
+      <label class="checklist" style="display:block;margin-top:10px"><label><input type="checkbox" id="rlAll" ${rs.custom ? '' : 'checked'}> Use these numbers for all runs (default)</label></label>
+    </div>`);
+    const ex = () => { const w = +U.$('#rlW', body).value || 0, sp = +U.$('#rlS', body).value || 0; U.$('#rlEx', body).innerHTML = `Example: <b>$3,000</b> funded profit → ${w}% withdrawable = <b>${U.money(3000 * w / 100)}</b> → your ${sp}% = <b>${U.money(3000 * w / 100 * sp / 100)}</b> take-home.`; };
+    U.$$('input[type=number]', body).forEach(i => i.oninput = ex); ex();
+    UI.modal({ title: 'Reality settings', body, footer: [{ label: 'Cancel' }, { label: 'Save', cls: 'primary', onClick: c => {
+      const w = Math.min(100, Math.max(0, +U.$('#rlW', body).value || 0)), sp = Math.min(100, Math.max(0, +U.$('#rlS', body).value || 0));
+      if (U.$('#rlAll', body).checked) { Store.data.settings.reality = { withdrawPct: w, splitPct: sp }; Runs.update(r.id, { reality: null }); delete r.reality; Store.save(); }
+      else Runs.update(r.id, { reality: { withdrawPct: w, splitPct: sp } });
+      c(); App.toast('Reality settings saved'); App.render();
+    } }] });
   },
 
   accountOptions(selected, preferFree = true) {
@@ -2640,15 +2941,10 @@ Views.runs = {
     const cur = r.stages[r.stages.length - 1];
     const lastDay = Runs.accountRange(cur.account).last || U.todayKey();
     const body = U.h(`<div>
-      <p style="margin-top:0;line-height:1.6">Nice work 🎉 — <b>${U.esc(cur.account)}</b> is marked as <b>passed</b>, and <b>${U.esc(r.name)}</b> continues on the account you pick below. Your progression stays in one line.</p>
-      <div class="form-row">
-        <div><label class="field-label">Passed on</label><input class="inp" type="date" id="pmPass" value="${lastDay}"></div>
-        <div><label class="field-label">New stage</label><select class="inp" id="pmType">${Runs.TYPES.filter(t => t !== 'Eval').map(t => `<option>${t}</option>`).join('')}</select></div>
-      </div>
-      <label class="field-label">Funded account</label>
+      <p style="margin-top:0;line-height:1.6">Nice work 🎉 Which account did <b>${U.esc(cur.account)}</b> turn into?</p>
       <select class="inp" id="pmAcct">${this.accountOptions('', true)}</select>
-      <input class="inp" id="pmNew" placeholder="Name it exactly as you'll import it, e.g. Tradeify Funded 50K" style="margin-top:8px;display:none">
-      <div class="help" style="margin-top:8px">Haven't imported the funded account yet? Pick “Account not imported yet”, type its name, and import its CSV under that same name later — it'll join this run automatically.</div>
+      <input class="inp" id="pmNew" placeholder="Funded account name, as you'll import it" style="margin-top:8px;display:none">
+      <div class="help" style="margin-top:10px">Passed on <input type="date" id="pmPass" value="${lastDay}" class="inline-date"> · not imported yet? Choose “Account not imported yet” and type its name.</div>
     </div>`);
     const sel = U.$('#pmAcct', body), inp = U.$('#pmNew', body);
     const free = Runs.unassigned().filter(a => a !== cur.account);
@@ -2659,7 +2955,7 @@ Views.runs = {
       const account = sel.value === '__new' ? inp.value.trim() : sel.value;
       if (!account) { inp.focus(); return; }
       const pass = U.$('#pmPass', body).value || lastDay;
-      Runs.promote(r.id, { account, type: U.$('#pmType', body).value, passDate: pass, start: sel.value === '__new' ? U.addDays(pass, 1) : '' });
+      Runs.promote(r.id, { account, type: 'Funded', passDate: pass, start: sel.value === '__new' ? U.addDays(pass, 1) : '' });
       c(); App.toast(`${r.name} continues on ${account}`); App.render();
     } }] });
   },
@@ -2725,6 +3021,439 @@ Views.runs = {
       c(); App.toast(isNew ? 'Run created' : 'Run saved'); App.render();
     } });
     UI.modal({ title: isNew ? 'New run' : 'Edit run', body, wide: true, footer });
+  },
+};
+
+</script>
+  <script>
+window.Views = window.Views || {};
+
+/* Ledger: every dollar in and out of prop trading — eval fees, resets, data, payouts —
+   so the trader sees real take-home and return on what they spent. */
+Views.ledger = {
+  title: 'Ledger',
+  year: null,
+  firm: null,
+  showAll: false,
+  pace: 'year',
+  TYPES: ['Expense', 'Payout', 'Live P&L', 'Other income'],
+
+  all() { return (Store.data.ledger = Array.isArray(Store.data.ledger) ? Store.data.ledger : []); },
+  years() { return [...new Set(this.all().map(e => e.date.slice(0, 4)))].sort(); },
+
+  /* ---------- categories & look ---------- */
+  KINDS: { payout: 'Payouts', fee: 'Prop firm fees', tool: 'Tools & data', live: 'Live account', other: 'Other income' },
+  TOOL_RX: /tradingview|ninjatrader|tradovate|rithmic|sierra|bookmap|quantower|motivewave|edgeful|tradezella|tradesyncer|discord|\bdata\b|course|mentor/i,
+  LOOK: { payout: '#12A06A', fee: '#E5484D', tool: '#F59E0B', live: '#8B5CF6', other: '#06B6D4', line: '#1F2E86', forecast: '#9AA1BA', dots: true, showForecast: true },
+  hidden: new Set(),
+  view() { const v = Store.data.settings.ledgerView || {}; return { showLive: v.showLive !== false, excluded: Array.isArray(v.excluded) ? v.excluded : [] }; },
+  setView(patch) { Store.data.settings.ledgerView = Object.assign(this.view(), patch); Store.save(); App.render(); },
+  look() { return Object.assign({}, this.LOOK, Store.data.settings.ledgerLook || {}); },
+  isTool(firm) { const o = Store.data.settings.ledgerTools || {}; return firm in o ? !!o[firm] : this.TOOL_RX.test(firm); },
+  kind(e) { return e.type === 'Payout' ? 'payout' : e.type === 'Expense' ? (this.isTool(e.firm) ? 'tool' : 'fee') : e.type === 'Live P&L' ? 'live' : 'other'; },
+
+  render(el) {
+    const thisYear = String(new Date().getFullYear());
+    const years = this.years();
+    if (!this.year) this.year = years.includes(thisYear) || !years.length ? thisYear : years[years.length - 1];
+    const yearRows = this.all().filter(e => e.date.startsWith(this.year));
+    const V = this.view();
+    const excl = new Set(V.excluded);
+    const rows = yearRows.filter(e => !excl.has(e.firm) && (V.showLive || this.kind(e) !== 'live'));
+    const hasLive = yearRows.some(e => this.kind(e) === 'live');
+    const firmList = [...new Set(yearRows.filter(e => this.kind(e) !== 'live').map(e => e.firm))].sort();
+    const offParts = [...(hasLive && !V.showLive ? ['live account'] : []), ...V.excluded.filter(f => firmList.includes(f))];
+
+    if (!this.all().length) {
+      el.innerHTML = `<div class="card"><div class="empty">
+        <h3>See what you really take home</h3>
+        <div style="max-width:540px;margin:0 auto">Log every eval, reset and data fee, and every payout. Your Ledger adds it all up: what you spent, what you got back, and what's actually left.</div>
+        <div class="actions"><button class="btn primary" data-add>+ Add an entry</button><label class="btn">Import a file (.json or .csv)<input type="file" accept=".json,.csv" data-import hidden></label></div>
+        <div class="help" style="margin-top:14px">CSV columns: <code>date, firm, type, description, amount</code> — type is Expense, Payout or Live P&amp;L.</div>
+      </div></div>`;
+      return this.bind(el);
+    }
+
+    const L = this.look();
+    const s = this.sum(rows);
+    const isYTD = this.year === thisYear;
+    const fc = isYTD ? this.forecast(rows) : null;
+    const eq = [
+      `<span class="pos">${U.money(s.paid)}</span> paid out`,
+      `<span class="neg">${U.money(s.fees)}</span> prop firm fees`,
+      s.tools ? `<span class="neg">${U.money(s.tools)}</span> tools &amp; data` : '',
+      s.live ? `<span class="${U.cls(s.live)}">${s.live < 0 ? '' : '+'}${U.money(s.live)}</span> live account` : '',
+    ].filter(Boolean);
+
+    el.innerHTML = `
+      <div class="lg-head">
+        <div>
+          <div class="lg-eyebrow">${isYTD ? 'True take-home this year' : `True take-home in ${this.year}`}${offParts.length ? ` <span class="lg-excl">· without ${U.esc(offParts.join(', '))}</span>` : ''}</div>
+          <div class="lg-big ${U.cls(s.net)}">${U.money(s.net)}</div>
+          <div class="lg-eq">${eq.join('<span class="op">·</span>')}</div>
+        </div>
+        <div class="lg-actions">
+          ${years.length > 1 ? `<select class="inp" data-year style="width:auto">${years.map(y => `<option ${y === this.year ? 'selected' : ''}>${y}</option>`).join('')}</select>` : ''}
+          <label class="btn">Import<input type="file" accept=".json,.csv" data-import hidden></label>
+          <button class="btn primary" data-add>+ Add entry</button>
+        </div>
+      </div>
+
+      <div class="lg-filter">
+        ${hasLive ? `<button class="lg-switch ${V.showLive ? 'on' : ''}" data-live><span class="knob"></span>Show live</button><span class="lg-sep"></span>` : ''}
+        <span class="help">Firms</span>
+        ${firmList.map(f => `<button class="lg-chip ${excl.has(f) ? 'off' : ''}" data-ex="${U.esc(f)}" title="${excl.has(f) ? 'Include' : 'Exclude'} ${U.esc(f)}">${excl.has(f) ? '' : '✓ '}${U.esc(f)}</button>`).join('')}
+        ${offParts.length ? `<button class="btn sm ghost" data-reset>Show everything</button>` : ''}
+      </div>
+
+      <div class="lg-stats">
+        <div><div class="k">Return on prop firms</div><div class="v ${U.cls(s.roi)}">${s.fees ? (s.roi > 0 ? '+' : '') + (s.roi * 100).toFixed(0) + '%' : '—'}</div><div class="sub">${s.fees ? `every $1 spent came back as $${s.per1.toFixed(2)}` : 'no prop firm fees yet'}</div></div>
+        <div><div class="k">Spent on prop firms</div><div class="v">${U.money(s.fees)}</div><div class="sub">${s.feeCount} evals, resets &amp; activations</div></div>
+        <div><div class="k">Paid out</div><div class="v pos">${U.money(s.paid)}</div><div class="sub">${s.payCount} payout${s.payCount === 1 ? '' : 's'}${s.payCount ? ` · avg ${U.moneyShort(s.paid / s.payCount)}` : ''}</div></div>
+        <div><div class="k">Tools &amp; data</div><div class="v">${U.money(s.tools)}</div><div class="sub">${s.toolCount} charges</div></div>
+      </div>
+
+      <div class="card lg-chart-card">
+        <div class="card-body">
+          <div class="chart-top">
+            <div class="mini-legend lg-legend">
+              <span class="static"><i style="background:${L.line}"></i>Take-home</span>
+              ${Object.keys(this.KINDS).filter(k => s.kinds[k]).map(k => `<button type="button" data-kind="${k}" class="${this.hidden.has(k) ? 'off' : ''}"><i class="dot" style="background:${L[k]}"></i>${this.KINDS[k]}</button>`).join('')}
+              ${fc && L.showForecast ? `<span class="static"><i class="dash" style="--c:${L.forecast}"></i>Forecast</span>` : ''}
+            </div>
+            <button class="btn sm ghost" data-look style="margin-left:auto">🎨 Customize</button>
+          </div>
+          <div class="chart-box lg"><canvas id="lgChart"></canvas></div>
+          <div class="help" style="text-align:center;margin-top:4px">Every dot is one entry — hover for details. Tap a color above to hide it.</div>
+        </div>
+      </div>
+
+      ${fc && L.showForecast ? `<div class="card lg-fc-card"><div class="card-body">
+        <div class="lg-fc-top">
+          <div>
+            <div class="lg-eyebrow">Year-end forecast · ${fc.sims.toLocaleString()} simulations</div>
+            <div class="lg-fc-big ${U.cls(fc.end)}">${U.money(fc.end)}</div>
+            <div class="lg-sub">We replayed the rest of ${this.year} ${fc.sims.toLocaleString()} times using random days from ${this.pace === 'year' ? 'your year so far' : 'your last 90 days'}. This is the middle result.</div>
+          </div>
+          <div class="seg sm" data-pace><button class="${this.pace === 'year' ? 'on' : ''}" data-p="year">Based on whole year</button><button class="${this.pace === '90' ? 'on' : ''}" data-p="90">Last 90 days</button></div>
+        </div>
+        <div class="lg-fc-facts">
+          <div><div class="k">8 in 10 simulations ended between</div><div class="v">${U.money(fc.lo)} – ${U.money(fc.hi)}</div></div>
+          <div><div class="k">Half ended between</div><div class="v">${U.money(fc.p25)} – ${U.money(fc.p75)}</div></div>
+          <div><div class="k">Ended below today's ${U.moneyShort(fc.net)}</div><div class="v ${fc.worse > .3 ? 'neg' : ''}">${Math.round(fc.worse * 100)}%</div></div>
+          <div><div class="k">Ended the year in the red</div><div class="v ${fc.negative > .1 ? 'neg' : ''}">${Math.round(fc.negative * 100)}%</div></div>
+        </div>
+        <div class="lg-disclaimer"><b>⚠ This is only a forecast — not a prediction or a promise.</b> Past results do not indicate future performance. The simulation assumes your future days look like your past days; real markets, rules and your own trading can change at any time. Most traders lose money, payouts are never guaranteed, and one bad month can erase this. This is not financial advice.</div>
+      </div></div>` : ''}
+
+      <div class="grid g-2">
+        <div class="card">
+          <div class="card-head"><h3>By firm</h3>${this.firm ? `<button class="btn sm ghost right" data-clear>Show all</button>` : '<span class="help right">Tap a firm to filter</span>'}</div>
+          <div class="table-wrap"><table class="tbl lg-tbl"><thead><tr><th>Firm</th><th class="num">Spent</th><th class="num">Got back</th><th class="num">Net</th><th class="num">Return</th></tr></thead><tbody>
+            ${s.firms.map(f => `<tr class="clickable ${this.firm === f.firm ? 'sel' : ''}" data-firm="${U.esc(f.firm)}">
+              <td><b>${U.esc(f.firm)}</b> ${f.spent ? `<button class="lg-kind ${f.tool ? 'tool' : ''}" data-tool="${U.esc(f.firm)}" title="Tap to switch between prop firm and tool">${f.tool ? 'tool' : 'prop firm'}</button>` : ''}</td>
+              <td class="num">${f.spent ? U.money(f.spent) : '—'}</td><td class="num ${f.in ? U.cls(f.in) : ''}">${f.in ? U.money(f.in) : '—'}</td>
+              <td class="num ${U.cls(f.net)}"><b>${U.money(f.net)}</b></td>
+              <td class="num ${U.cls(f.net)}">${f.spent && !f.tool ? ((f.net / f.spent) * 100).toFixed(0) + '%' : '—'}</td></tr>`).join('')}
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>By month</h3></div>
+          <div class="card-body"><div class="chart-box sm"><canvas id="lgMonths"></canvas></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>${this.firm ? U.esc(this.firm) : 'All entries'}</h3><span class="help">${this.list(rows).length} total</span>
+          <div class="right"><button class="btn sm ghost" data-export>Export CSV</button></div></div>
+        <div class="table-wrap"><table class="tbl"><tbody>${this.entryRows(rows)}</tbody></table></div>
+        ${this.list(rows).length > 12 && !this.showAll ? `<div class="card-body" style="text-align:center"><button class="btn sm" data-more>Show all ${this.list(rows).length}</button></div>` : ''}
+      </div>`;
+
+    this.chart(U.$('#lgChart', el), rows, fc);
+    this.monthChart(U.$('#lgMonths', el), rows);
+    this.bind(el);
+  },
+
+  list(rows) { return rows.filter(e => !this.firm || e.firm === this.firm).sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)); },
+
+  entryRows(rows) {
+    const L = this.look();
+    const list = this.list(rows);
+    const shown = this.showAll ? list : list.slice(0, 12);
+    return shown.map(e => { const k = this.kind(e); return `<tr class="clickable" data-edit="${e.id}">
+      <td class="help" style="width:84px">${U.fmtShort(e.date)}</td>
+      <td><i class="lg-dot" style="background:${L[k]}"></i><b>${U.esc(e.firm)}</b> <span class="help">${U.esc(e.description || '')}</span></td>
+      <td class="help">${this.KINDS[k].replace(/s$/, '')}</td>
+      <td class="num ${U.cls(e.amount)}"><b>${U.money(e.amount)}</b></td></tr>`; }).join('') || '<tr class="empty-row"><td>No entries</td></tr>';
+  },
+
+  sum(rows) {
+    let fees = 0, tools = 0, paid = 0, live = 0, other = 0, feeCount = 0, toolCount = 0, payCount = 0;
+    const kinds = {}, by = new Map();
+    rows.forEach(e => {
+      const k = this.kind(e); kinds[k] = (kinds[k] || 0) + 1;
+      const f = by.get(e.firm) || { firm: e.firm, spent: 0, in: 0, net: 0, tool: this.isTool(e.firm) };
+      if (k === 'fee') { fees += -e.amount; feeCount++; f.spent += -e.amount; }
+      else if (k === 'tool') { tools += -e.amount; toolCount++; f.spent += -e.amount; }
+      else if (k === 'payout') { paid += e.amount; payCount++; f.in += e.amount; }
+      else if (k === 'live') { live += e.amount; f.in += e.amount; }
+      else { other += e.amount; f.in += e.amount; }
+      f.net += e.amount; by.set(e.firm, f);
+    });
+    const firms = [...by.values()].sort((a, b) => b.net - a.net);
+    const net = paid + live + other - fees - tools;
+    return { fees, tools, paid, live: live + other, net, feeCount, toolCount, payCount, firms, kinds,
+      roi: fees ? (paid - fees) / fees : 0, per1: fees ? paid / fees : 0 };
+  },
+
+  /* Monte Carlo forecast: replay the rest of the year 2,000 times by drawing random days
+     from your own history (with replacement), then read the spread of outcomes. */
+  SIMS: 2000,
+  forecast(rows) {
+    const today = U.todayKey(), y = this.year;
+    const start = `${y}-01-01`, end = `${y}-12-31`;
+    const dayN = k => Math.round((U.toLocal(k) - U.toLocal(start)) / 864e5);
+    const net = rows.filter(e => e.date <= today).reduce((a, e) => a + e.amount, 0);
+    const todayN = dayN(today), endN = dayN(end), left = Math.max(0, endN - todayN);
+    const from = this.pace === '90' ? U.addDays(today, -89) : start;
+    const byDay = new Map();
+    rows.forEach(e => { if (e.date >= from && e.date <= today) byDay.set(e.date, (byDay.get(e.date) || 0) + e.amount); });
+    const pool = [];
+    for (let k = from; k <= today; k = U.addDays(k, 1)) pool.push(byDay.get(k) || 0);
+    if (!pool.length || !left) return null;
+    // seeded RNG so the forecast doesn't jump around on every refresh
+    let seed = 0; const sig = pool.join(','); for (let i = 0; i < sig.length; i++) seed = (seed * 31 + sig.charCodeAt(i)) >>> 0;
+    seed = seed || 1;
+    const rnd = () => { seed ^= seed << 13; seed >>>= 0; seed ^= seed >> 17; seed ^= seed << 5; seed >>>= 0; return seed / 4294967296; };
+    const N = this.SIMS, step = Math.max(1, Math.round(left / 40));
+    const checkpoints = []; for (let d = step; d < left; d += step) checkpoints.push(d); checkpoints.push(left);
+    const at = checkpoints.map(() => new Float64Array(N));
+    const finals = new Float64Array(N);
+    for (let s = 0; s < N; s++) {
+      let v = net, c = 0;
+      for (let d = 1; d <= left; d++) {
+        v += pool[(rnd() * pool.length) | 0];
+        if (d === checkpoints[c]) { at[c][s] = v; c++; }
+      }
+      finals[s] = v;
+    }
+    const pct = (arr, q) => { const a = Float64Array.from(arr).sort(); return a[Math.min(a.length - 1, Math.floor(q * (a.length - 1)))]; };
+    const path = checkpoints.map((d, i) => ({ x: todayN + d, p10: pct(at[i], .1), p25: pct(at[i], .25), p50: pct(at[i], .5), p75: pct(at[i], .75), p90: pct(at[i], .9) }));
+    let below = 0, neg = 0; finals.forEach(v => { if (v < net) below++; if (v < 0) neg++; });
+    return { net, today, todayN, endN, left, sims: N, days: pool.length,
+      end: pct(finals, .5), lo: pct(finals, .1), hi: pct(finals, .9), p25: pct(finals, .25), p75: pct(finals, .75),
+      worse: below / N, negative: neg / N, path };
+  },
+
+  chart(cv, rows, fc) {
+    if (!cv) return;
+    const L = this.look();
+    const y = this.year, start = `${y}-01-01`;
+    const dayN = k => Math.round((U.toLocal(k) - U.toLocal(start)) / 864e5);
+    const sorted = [...rows].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+    let cum = 0, lastDay = null, k = 0;
+    const pts = sorted.map(e => {
+      k = e.date === lastDay ? k + 1 : 0; lastDay = e.date;
+      cum += e.amount;
+      return { x: dayN(e.date) + Math.min(.8, k * .12), y: +cum.toFixed(2), e, kind: this.kind(e) };
+    });
+    const lastN = fc ? fc.endN : (pts.length ? Math.ceil(pts[pts.length - 1].x) + 3 : 30);
+    const datasets = [{ label: 'Take-home', data: [{ x: 0, y: 0 }, ...pts.map(p => ({ x: p.x, y: p.y }))], borderColor: L.line, backgroundColor: L.line + '12',
+      fill: 'origin', borderWidth: 2.2, stepped: 'after', pointRadius: 0, pointHoverRadius: 0, order: 3 }];
+    if (L.dots) Object.keys(this.KINDS).forEach(kd => {
+      if (this.hidden.has(kd)) return;
+      const d = pts.filter(p => p.kind === kd);
+      if (d.length) datasets.push({ label: this.KINDS[kd], _kind: kd, type: 'scatter', data: d, pointRadius: 4.5, pointHoverRadius: 7, pointBackgroundColor: L[kd],
+        pointBorderColor: '#fff', pointBorderWidth: 1.5, order: 1 });
+    });
+    if (fc && L.showForecast) {
+      const a = { x: fc.todayN, y: +fc.net.toFixed(2) };
+      const ln = q => [a, ...fc.path.map(p => ({ x: p.x, y: +p[q].toFixed(2) }))];
+      datasets.push({ label: '_p10', data: ln('p10'), borderColor: 'transparent', pointRadius: 0, fill: false, tension: .3, order: 5 });
+      datasets.push({ label: '_p90', data: ln('p90'), borderColor: 'transparent', backgroundColor: L.forecast + '22', pointRadius: 0, fill: '-1', tension: .3, order: 5 });
+      datasets.push({ label: '_p25', data: ln('p25'), borderColor: 'transparent', pointRadius: 0, fill: false, tension: .3, order: 4 });
+      datasets.push({ label: '_p75', data: ln('p75'), borderColor: 'transparent', backgroundColor: L.forecast + '33', pointRadius: 0, fill: '-1', tension: .3, order: 4 });
+      datasets.push({ label: 'Forecast', data: ln('p50'), borderColor: L.forecast, borderDash: [6, 5], borderWidth: 2, tension: .3,
+        pointRadius: ctx => (ctx.dataIndex === fc.path.length ? 4 : 0), pointBackgroundColor: L.forecast, fill: false, order: 2 });
+    }
+    const monthStarts = Array.from({ length: 12 }, (_, i) => dayN(`${y}-${U.pad(i + 1)}-01`)).filter(v => v <= lastN);
+    Charts.make(cv, {
+      type: 'line', data: { datasets },
+      options: {
+        parsing: true,
+        interaction: { mode: 'nearest', intersect: true },
+        plugins: { legend: { display: false }, tooltip: {
+          filter: it => !it.dataset.label.startsWith('_') && it.dataset.label !== 'Take-home',
+          callbacks: {
+            title: it => { const r = it[0] && it[0].raw; return r && r.e ? U.fmtLong(r.e.date) : (it[0] && it[0].dataset.label === 'Forecast' ? 'Middle simulated outcome' : ''); },
+            label: c => { const r = c.raw; if (r && r.e) return [`${r.e.firm}${r.e.description ? ' — ' + r.e.description : ''}`, `${U.money(r.e.amount)}  ·  take-home ${U.money(r.y)}`];
+              return `${U.money(c.parsed.y)} — a simulation, not a guarantee`; },
+          } } },
+        scales: {
+          x: { type: 'linear', min: 0, max: lastN, grid: { display: false }, border: { display: false },
+            afterBuildTicks: ax => { ax.ticks = monthStarts.map(v => ({ value: v })); },
+            ticks: { color: '#9AA1BA', maxRotation: 0, autoSkip: true, autoSkipPadding: 6, callback: v => { const i = monthStarts.indexOf(v); return i >= 0 ? U.MONTHS[i].slice(0, cv.parentElement.clientWidth < 500 ? 1 : 3) : ''; } } },
+          y: { grid: { color: c => (c.tick && c.tick.value === 0 ? '#C9CEDD' : '#F1F3F8') }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 6, color: '#9AA1BA' } },
+        },
+      },
+    });
+  },
+
+  monthChart(cv, rows) {
+    if (!cv) return;
+    if (!rows.length) { cv.parentElement.innerHTML = '<div class="no-data">Nothing to show with these filters</div>'; return; }
+    const L = this.look();
+    const last = Math.max(...rows.map(e => +e.date.slice(5, 7)));
+    const labels = U.MONTHS.slice(0, last).map(x => x.slice(0, 3));
+    const order = ['payout', 'live', 'other', 'fee', 'tool'];
+    const sums = Object.fromEntries(order.map(k => [k, Array(last).fill(0)]));
+    rows.forEach(e => { sums[this.kind(e)][+e.date.slice(5, 7) - 1] += e.amount; });
+    const datasets = order.filter(k => sums[k].some(v => v) && !this.hidden.has(k)).map(k => ({ label: this.KINDS[k], data: sums[k].map(v => +v.toFixed(2)),
+      backgroundColor: L[k], borderRadius: 3, maxBarThickness: 18, stack: 's' }));
+    const net = Array.from({ length: last }, (_, i) => +order.reduce((a, k) => a + sums[k][i], 0).toFixed(2));
+    datasets.push({ type: 'line', label: 'Net', data: net, borderColor: L.line, backgroundColor: L.line, borderWidth: 1.5, pointRadius: 3, tension: .3 });
+    Charts.make(cv, {
+      type: 'bar', data: { labels, datasets },
+      options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.dataset.label}: ${U.money(c.parsed.y)}` } } },
+        scales: { x: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: '#9AA1BA' } },
+          y: { stacked: true, grid: { color: c => (c.tick && c.tick.value === 0 ? '#C9CEDD' : '#F1F3F8') }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 5, color: '#9AA1BA' } } } },
+    });
+  },
+
+  bind(el) {
+    U.$$('[data-add]', el).forEach(b => b.onclick = () => this.editModal(null));
+    U.$$('[data-edit]', el).forEach(r => r.onclick = () => this.editModal(this.all().find(e => e.id === r.dataset.edit)));
+    U.$$('[data-firm]', el).forEach(r => r.onclick = ev => { if (ev.target.closest('[data-tool]')) return; this.firm = this.firm === r.dataset.firm ? null : r.dataset.firm; this.showAll = false; App.render(); });
+    U.$$('[data-tool]', el).forEach(b => b.onclick = ev => {
+      ev.stopPropagation();
+      const f = b.dataset.tool; const o = Store.data.settings.ledgerTools = Store.data.settings.ledgerTools || {};
+      o[f] = !this.isTool(f); Store.save(); App.toast(`${f} now counts as ${o[f] ? 'a tool' : 'a prop firm'}`); App.render();
+    });
+    U.$$('[data-kind]', el).forEach(b => b.onclick = () => { const k = b.dataset.kind; this.hidden.has(k) ? this.hidden.delete(k) : this.hidden.add(k); App.render(); });
+    U.$$('[data-look]', el).forEach(b => b.onclick = () => this.lookModal());
+    U.$$('[data-live]', el).forEach(b => b.onclick = () => this.setView({ showLive: !this.view().showLive }));
+    U.$$('[data-ex]', el).forEach(b => b.onclick = () => {
+      const f = b.dataset.ex, ex = this.view().excluded;
+      if (this.firm === f) this.firm = null;
+      this.setView({ excluded: ex.includes(f) ? ex.filter(x => x !== f) : [...ex, f] });
+    });
+    U.$$('[data-reset]', el).forEach(b => b.onclick = () => this.setView({ showLive: true, excluded: [] }));
+    U.$$('[data-clear]', el).forEach(b => b.onclick = () => { this.firm = null; App.render(); });
+    U.$$('[data-more]', el).forEach(b => b.onclick = () => { this.showAll = true; App.render(); });
+    U.$$('[data-year]', el).forEach(s => s.onchange = () => { this.year = s.value; this.firm = null; App.render(); });
+    U.$$('[data-pace] button', el).forEach(b => b.onclick = () => { this.pace = b.dataset.p; App.render(); });
+    U.$$('[data-import]', el).forEach(i => i.onchange = async () => { const f = i.files[0]; i.value = ''; if (f) this.importFile(f); });
+    U.$$('[data-export]', el).forEach(b => b.onclick = () => this.exportCSV());
+  },
+
+  lookModal() {
+    const l = this.look();
+    const SW = ['#12A06A', '#E5484D', '#F59E0B', '#8B5CF6', '#06B6D4', '#4F6BED', '#1F2E86', '#EC4899', '#64748B', '#0E1530'];
+    const rows = [['payout', 'Payouts'], ['fee', 'Prop firm fees'], ['tool', 'Tools & data'], ['live', 'Live account'], ['line', 'Take-home line'], ['forecast', 'Forecast']];
+    const body = U.h(`<div>
+      ${rows.map(([key, label]) => `<div class="lk-row"><span class="lk-lbl"><i class="lg-dot" data-prev="${key}" style="background:${l[key]}"></i>${label}</span>
+        <div class="swatches sm" data-key="${key}">${SW.map(c => `<button type="button" style="--rc:${c}" data-c="${c}" class="${c === l[key] ? 'on' : ''}"></button>`).join('')}<input type="color" value="${l[key]}" data-custom title="Any color"></div></div>`).join('')}
+      <div class="tog-grid" style="margin-top:14px">
+        <label class="tog"><input type="checkbox" data-t="dots" ${l.dots ? 'checked' : ''}> A dot for every entry</label>
+        <label class="tog"><input type="checkbox" data-t="showForecast" ${l.showForecast ? 'checked' : ''}> Show year-end forecast</label>
+      </div></div>`);
+    const next = { ...l };
+    U.$$('.swatches', body).forEach(g => {
+      const key = g.dataset.key, prev = U.$(`[data-prev="${key}"]`, body);
+      U.$$('button', g).forEach(b => b.onclick = () => { next[key] = b.dataset.c; prev.style.background = b.dataset.c; U.$$('button', g).forEach(x => x.classList.toggle('on', x === b)); });
+      U.$('[data-custom]', g).oninput = e => { next[key] = e.target.value; prev.style.background = e.target.value; U.$$('button', g).forEach(x => x.classList.remove('on')); };
+    });
+    U.$$('[data-t]', body).forEach(i => i.onchange = () => { next[i.dataset.t] = i.checked; });
+    UI.modal({ title: 'Customize your Ledger', body, footer: [
+      { label: 'Reset', cls: 'left', onClick: c => { delete Store.data.settings.ledgerLook; Store.save(); c(); App.render(); } },
+      { label: 'Cancel' },
+      { label: 'Save', cls: 'primary', onClick: c => { Store.data.settings.ledgerLook = next; Store.save(); c(); App.toast('Ledger updated'); App.render(); } },
+    ] });
+  },
+
+  editModal(e) {
+    const isNew = !e;
+    const firms = [...new Set(this.all().map(x => x.firm))].sort();
+    let type = e ? e.type : 'Expense';
+    const body = U.h(`<div>
+      <div class="seg" id="leType" style="margin-bottom:14px;flex-wrap:wrap">${this.TYPES.map(t => `<button type="button" data-t="${t}" class="${t === type ? 'on' : ''}">${t === 'Expense' ? 'Spent' : t === 'Payout' ? 'Got paid' : t}</button>`).join('')}</div>
+      <div class="form-row">
+        <div><label class="field-label">Firm or service</label><input class="inp" id="leFirm" list="leFirms" value="${U.esc(e ? e.firm : (firms[0] || ''))}" placeholder="e.g. Tradeify"><datalist id="leFirms">${firms.map(f => `<option value="${U.esc(f)}">`).join('')}</datalist></div>
+        <div><label class="field-label">Amount ($)</label><input class="inp" id="leAmt" type="number" step="0.01" value="${e ? Math.abs(e.amount) : ''}" placeholder="e.g. 99"></div>
+      </div>
+      <div class="form-row">
+        <div><label class="field-label">Date</label><input class="inp" id="leDate" type="date" value="${e ? e.date : U.todayKey()}"></div>
+        <div><label class="field-label">What was it? (optional)</label><input class="inp" id="leDesc" value="${U.esc(e ? e.description || '' : '')}" placeholder="e.g. 50K eval, reset, payout"></div>
+      </div>
+      <label class="tog" id="leLossWrap" style="display:${type === 'Live P&L' ? 'flex' : 'none'};width:fit-content"><input type="checkbox" id="leLoss" ${e && e.type === 'Live P&L' && e.amount < 0 ? 'checked' : ''}> This was a loss</label>
+    </div>`);
+    U.$$('#leType button', body).forEach(b => b.onclick = () => {
+      type = b.dataset.t; U.$$('#leType button', body).forEach(x => x.classList.toggle('on', x === b));
+      U.$('#leLossWrap', body).style.display = type === 'Live P&L' ? 'flex' : 'none';
+    });
+    const footer = [];
+    if (!isNew) footer.push({ label: 'Delete', cls: 'danger left', onClick: c => { Store.data.ledger = this.all().filter(x => x.id !== e.id); Store.save(); c(); App.toast('Entry deleted'); App.render(); } });
+    footer.push({ label: 'Cancel' }, { label: isNew ? 'Add' : 'Save', cls: 'primary', onClick: c => {
+      const amt = Math.abs(+U.$('#leAmt', body).value), firm = U.$('#leFirm', body).value.trim(), date = U.$('#leDate', body).value;
+      if (!amt || !firm || !date) { App.toast('Fill in firm, amount and date', 'err'); return; }
+      const sign = type === 'Expense' || (type === 'Live P&L' && U.$('#leLoss', body).checked) ? -1 : 1;
+      const rec = { date, firm, type, description: U.$('#leDesc', body).value.trim(), amount: Math.round(sign * amt * 100) / 100 };
+      if (isNew) this.all().push({ id: 'l_' + U.uid(), ...rec }); else Object.assign(e, rec);
+      Store.save(); c(); App.toast(isNew ? 'Added to your ledger' : 'Saved'); App.render();
+    } });
+    UI.modal({ title: isNew ? 'Add to ledger' : 'Edit entry', body, footer });
+  },
+
+  normType(t, amount) {
+    t = String(t || '').trim().toLowerCase();
+    if (/payout|withdraw/.test(t)) return 'Payout';
+    if (/live/.test(t)) return 'Live P&L';
+    if (/expense|cost|fee|purchase|reset|eval|sub/.test(t)) return 'Expense';
+    if (/income|other|refund/.test(t)) return 'Other income';
+    return amount < 0 ? 'Expense' : 'Payout';
+  },
+
+  async importFile(file) {
+    let raw;
+    try {
+      const text = await U.readFile(file);
+      if (/\.json$/i.test(file.name) || text.trim().startsWith('[') || text.trim().startsWith('{')) {
+        const j = JSON.parse(text); raw = Array.isArray(j) ? j : (j.ledger || j.entries || []);
+      } else {
+        const rows = Parser.parseCSV(text), h = rows[0].map(x => x.trim().toLowerCase());
+        const ix = n => h.findIndex(x => n.includes(x));
+        const c = { date: ix(['date']), firm: ix(['firm', 'company', 'vendor', 'service']), type: ix(['type', 'category', 'kind']), desc: ix(['description', 'desc', 'note', 'notes', 'item']), amt: ix(['amount', 'value', 'total', '$']) };
+        if (c.date < 0 || c.amt < 0) throw new Error('The CSV needs at least a date and an amount column.');
+        raw = rows.slice(1).map(r => ({ date: r[c.date], firm: c.firm >= 0 ? r[c.firm] : 'Unknown', type: c.type >= 0 ? r[c.type] : '', description: c.desc >= 0 ? r[c.desc] : '', amount: r[c.amt] }));
+      }
+    } catch (err) { App.toast('Could not read that file: ' + err.message, 'err'); return; }
+    const sig = e => [e.date, e.firm, e.type, e.description, e.amount.toFixed(2)].join('|');
+    const have = new Map();
+    this.all().forEach(e => have.set(sig(e), (have.get(sig(e)) || 0) + 1));
+    let added = 0, dup = 0, bad = 0;
+    raw.forEach(r => {
+      const iso = Parser.parseDate(r.date);
+      let amount = typeof r.amount === 'number' ? r.amount : Parser.parseMoney(r.amount);
+      if (!iso || !isFinite(amount)) { bad++; return; }
+      const type = this.normType(r.type, amount);
+      if (type === 'Expense') amount = -Math.abs(amount);
+      if (type === 'Payout') amount = Math.abs(amount);
+      const rec = { date: iso.slice(0, 10), firm: String(r.firm || 'Unknown').trim(), type, description: String(r.description || '').trim(), amount: Math.round(amount * 100) / 100 };
+      const k = sig(rec), n = have.get(k) || 0;
+      if (n > 0) { have.set(k, n - 1); dup++; return; } // same entry already in the ledger
+      this.all().push({ id: 'l_' + U.uid(), ...rec }); added++;
+    });
+    Store.save();
+    this.year = null;
+    App.toast(`Added ${added} entr${added === 1 ? 'y' : 'ies'}${dup ? ` · ${dup} already there` : ''}${bad ? ` · ${bad} skipped` : ''}`);
+    App.render();
+  },
+
+  exportCSV() {
+    const q = v => { v = String(v ?? ''); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
+    const lines = ['date,firm,type,description,amount'].concat([...this.all()].sort((a, b) => (a.date < b.date ? -1 : 1)).map(e => [e.date, e.firm, e.type, e.description, e.amount].map(q).join(',')));
+    U.download(`mubu-ledger-${U.todayKey()}.csv`, lines.join('\n'), 'text/csv');
   },
 };
 
@@ -3344,6 +4073,7 @@ const App = {
     { r: 'journal', label: 'Daily Journal', icon: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/>' },
     { r: 'trades', label: 'Trade Log', icon: '<path d="M4 6h16M4 12h16M4 18h10"/>' },
     { r: 'runs', label: 'Runs', icon: '<path d="M3 17c3 0 4-5 7-5s4 3 7 3 3-6 4-8"/><circle cx="3" cy="17" r="1.6"/><path d="m18 4 3 .5-.5 3"/>' },
+    { r: 'ledger', label: 'Ledger', icon: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>' },
     { r: 'reports', label: 'Reports', icon: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>' },
     { sep: true },
     { r: 'import', label: 'Import Trades', icon: '<path d="M12 15V3m0 12-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/>' },
@@ -3444,7 +4174,7 @@ const App = {
     U.$$('#nav a').forEach(a => a.classList.toggle('active', a.dataset.route === this.route));
     U.$('#pageTitle').textContent = view.title;
     document.title = `${view.title} · Mubu Journal`;
-    U.$('#filters').style.display = ['import', 'settings'].includes(this.route) ? 'none' : '';
+    U.$('#filters').style.display = ['import', 'settings', 'ledger'].includes(this.route) ? 'none' : '';
     this.renderBanner();
     const el = U.$('#view');
     try { view.render(el, this.params); }
@@ -3455,7 +4185,7 @@ const App = {
     const b = U.$('#banner');
     const hasDemo = this.hasDemo();
     const onlyDemo = hasDemo && Store.data.trades.every(t => t.importId === 'demo');
-    if (hasDemo && !['import', 'settings'].includes(this.route)) {
+    if (hasDemo && !['import', 'settings', 'ledger'].includes(this.route)) {
       b.innerHTML = `<div class="banner"><span class="tagx">DEMO</span><span>${onlyDemo ? 'You are viewing demo trades. Ready to add your own?' : 'Demo trades are mixed in with your data — filter by account or remove them.'}</span>
         <div class="right"><button class="btn sm" data-demo>Remove demo</button><a class="btn sm primary" href="#/import">Add trades</a></div></div>`;
     } else b.innerHTML = '';
