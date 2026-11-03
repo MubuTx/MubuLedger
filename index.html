@@ -474,6 +474,51 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .lg-fc-top > div:first-child { flex: 1; min-width: 260px; }
 .lg-fc-big { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0 4px; }
 .lg-disclaimer { font-size: 13px !important; }
+.lg-goal { margin-bottom: 16px; }
+.lg-goal-empty .card-body { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+.lg-goal-set { display: flex; align-items: center; gap: 8px; }
+.lg-goal-set .inp { width: 140px; }
+.lg-goal-head { display: flex; align-items: flex-end; gap: 12px; }
+.lg-goal-title { font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.lg-goal-pct { margin-left: auto; font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+.lg-track { height: 10px; background: var(--gray-cell); border-radius: 99px; overflow: hidden; margin: 12px 0 16px; }
+.lg-track > div { height: 100%; background: var(--green); border-radius: 99px; }
+.lg-goal-meta, .lg-rates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.lg-rates { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; }
+.lg-goal-meta > div, .lg-rates > div { background: #FAFBFD; border-radius: 10px; padding: 10px 12px; }
+.lg-goal-meta span, .lg-rates span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+.lg-goal-meta b, .lg-rates b { font-size: 17px; font-weight: 700; }
+.lg-goal-meta i, .lg-rates i { display: block; font-style: normal; font-size: 11.5px; color: var(--faint); margin-top: 2px; }
+.lg-goal-meta i.pos { color: var(--green-strong); } .lg-goal-meta i.neg { color: var(--red-strong); }
+.lg-section-title { font-size: 15px; font-weight: 600; margin: 8px 2px 12px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.lg-ch-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+.lg-ch-head h3 { margin: 0 0 3px; font-size: 15px; }
+.lg-kpi { margin-left: auto; text-align: right; white-space: nowrap; }
+.lg-kpi b { display: block; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.lg-kpi span { font-size: 11.5px; color: var(--muted); }
+.funnel { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.fn-row { display: grid; grid-template-columns: 130px 1fr auto; gap: 12px; align-items: center; font-size: 13px; }
+.fn-lbl { color: var(--text-2); font-weight: 500; }
+.fn-track { height: 22px; background: var(--gray-cell); border-radius: 6px; overflow: hidden; }
+.fn-track > div { height: 100%; border-radius: 6px; }
+.fn-row b { min-width: 40px; text-align: right; }
+.fl-steps { display: flex; align-items: stretch; gap: 6px; margin: 12px 0 14px; }
+.fl-step { flex: 1; background: #FAFBFD; border-radius: 10px; padding: 10px 12px; text-align: center; min-width: 0; }
+.fl-step b { display: block; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.fl-step span { font-size: 12px; color: var(--muted); }
+.fl-step i { display: block; font-style: normal; font-size: 11px; color: var(--faint); }
+.fl-arrow { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 74px; color: var(--muted); position: relative; }
+.fl-arrow b { font-size: 14px; color: var(--brand); }
+.fl-arrow span { font-size: 10.5px; white-space: nowrap; }
+.fl-arrow::after { content: '→'; color: var(--faint); font-size: 14px; line-height: 1; }
+.fl-tbl td, .fl-tbl th { padding: 7px 8px; }
+.fl-in { width: 56px; text-align: right; border: 1px solid var(--border-strong); border-radius: 7px; padding: 4px 6px; font-size: 13px; background: #fff; }
+.fl-in:focus { outline: 2px solid #C9D0F4; border-color: var(--brand-line); }
+.fl-in::placeholder { color: #C9CEDD; }
+.fl-in:disabled { background: transparent; border-color: transparent; }
+@media (max-width: 900px) { .fl-steps { flex-wrap: wrap; } .fl-arrow { min-width: 60px; } }
+.lg-first { font-size: 10px; font-weight: 700; color: var(--green-strong); background: var(--green-bg); border-radius: 99px; padding: 1px 6px; }
+@media (max-width: 900px) { .lg-goal-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lg-rates { grid-template-columns: 1fr; } .fn-row { grid-template-columns: 100px 1fr auto; } }
 .lg-filter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: -6px 0 14px; }
 .lg-sep { width: 1px; height: 20px; background: var(--border-strong); margin: 0 4px; }
 .lg-chip { border: 1px solid var(--border-strong); background: #fff; color: var(--text); border-radius: 99px; padding: 5px 12px; font-size: 12.5px; font-weight: 500; cursor: pointer; }
@@ -671,6 +716,50 @@ textarea.notes:focus, input.inp:focus, select.inp:focus { outline: 2px solid #C9
   .card { box-shadow: none; break-inside: avoid; }
   body { background: #fff; }
 }
+
+/* Ledger: time period picker */
+.lg-period { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: -4px 0 12px; }
+.lg-period .seg { flex-wrap: wrap; }
+.lg-period .inp.sm, .lg-range .inp.sm { width: auto; padding: 5px 9px; font-size: 13px; height: auto; }
+.lg-range { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* Ledger: add entry form (one column, top to bottom) */
+.le-form { display: flex; flex-direction: column; gap: 14px; }
+.le-form .le-type { width: 100%; }
+.le-form .le-type button { flex: 1; }
+.le-field .inp { width: 100%; }
+.le-field .opt { font-weight: 400; color: var(--text-3, #9AA1BA); }
+.le-amt { display: flex; gap: 8px; align-items: stretch; }
+.le-amt .inp { flex: 1; min-width: 0; }
+.le-wl { flex-shrink: 0; }
+.le-wl button.on.win { background: #12A06A; }
+.le-wl button.on.loss { background: #E5484D; }
+.le-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.le-chips button { background: #fff; border: 1px solid var(--border-strong); border-radius: 999px; padding: 6px 12px; font-size: 13px; color: var(--text-2); cursor: pointer; }
+.le-chips button:hover { border-color: var(--brand); }
+.le-chips button.on { background: var(--brand); border-color: var(--brand); color: #fff; font-weight: 600; }
+
+/* Ledger: goal with three boxes, simpler color picker */
+.lg-goal-meta.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 700px) { .lg-goal-meta.three { grid-template-columns: 1fr; } }
+.lk-sws { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lk-sw { width: 28px; height: 28px; border-radius: 8px; background: var(--rc); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--border-strong); cursor: pointer; padding: 0; }
+.lk-sw.on { box-shadow: 0 0 0 2px var(--brand); }
+.lk-add { position: relative; width: 44px; height: 28px; border-radius: 8px; border: 1.5px dashed var(--border-strong); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); font-size: 16px; cursor: pointer; overflow: hidden; }
+.lk-add:hover { border-color: var(--brand); color: var(--brand); }
+.lk-add input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; border: 0; padding: 0; }
+
+/* Ledger: what-if simulation */
+.btn.sim-on { background: #FFF4E5; border-color: #F3B967; color: #8A4B00; }
+.lg-sim { border: 1.5px dashed #F3B967; background: #FFFAF2; border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+.lg-sim-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; font-size: 13px; color: #7A4A00; }
+.lg-sim-top b { background: #F59E0B; color: #fff; border-radius: 6px; padding: 2px 8px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.lg-sim-top .seg { margin-left: auto; }
+.lg-sim-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.lg-sim-kpis > div { background: #fff; border-radius: 10px; padding: 10px 12px; }
+.lg-sim-kpis span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+.lg-sim-kpis b { font-size: 18px; font-weight: 700; }
+@media (max-width: 800px) { .lg-sim-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 </style>
 </head>
@@ -3036,13 +3125,43 @@ Views.ledger = {
   firm: null,
   showAll: false,
   pace: 'year',
-  TYPES: ['Expense', 'Payout', 'Live P&L', 'Other income'],
+  sim: 0, // display-only multiplier for what-if mode; never saved
+  TYPES: ['Expense', 'Payout', 'Live P&L'],
+  TYPE_LABEL: { Expense: 'Expenses', Payout: 'Payout', 'Live P&L': 'Live P&L' },
+  SUBS: [['eval', 'Evaluation'], ['reset', 'Reset'], ['activation', 'Activation fee'], ['instant', 'Instant funded'], ['data', 'Data subscription'], ['other', 'Other']],
 
   all() { return (Store.data.ledger = Array.isArray(Store.data.ledger) ? Store.data.ledger : []); },
   years() { return [...new Set(this.all().map(e => e.date.slice(0, 4)))].sort(); },
 
+  /* ---------- time period ---------- */
+  PERIODS: [['ytd', 'Year to Date'], ['month', 'Monthly'], ['3m', 'Last 3 Months'], ['all', 'All Time'], ['custom', 'Custom']],
+  period() {
+    const p = (Store.data.settings.ledgerView || {}).period || {};
+    const today = U.todayKey(), y = today.slice(0, 4);
+    const type = this.PERIODS.some(x => x[0] === p.p) ? p.p : 'ytd';
+    const month = p.month || today.slice(0, 7);
+    const mName = m => `${U.MONTHS[+m.slice(5, 7) - 1]} ${m.slice(0, 4)}`;
+    let from, to, label;
+    if (type === 'month') {
+      from = month + '-01'; const d = U.toLocal(from); to = U.keyOf(new Date(d.getFullYear(), d.getMonth() + 1, 0)); label = `${mName(month)} Performance`;
+    } else if (type === '3m') {
+      const d = U.toLocal(today); from = U.keyOf(new Date(d.getFullYear(), d.getMonth() - 2, 1)); to = today; label = 'Last 3 Months Performance';
+    } else if (type === 'all') {
+      const ds = this.all().map(e => e.date).sort(); from = ds[0] || today; to = ds.length && ds[ds.length - 1] > today ? ds[ds.length - 1] : today; label = 'All Time Performance';
+    } else if (type === 'custom') {
+      from = p.from || `${y}-01-01`; to = p.to || today; if (from > to) [from, to] = [to, from];
+      label = `Custom: ${U.fmtDate(from)} to ${U.fmtDate(to)}`;
+    } else { from = `${y}-01-01`; to = today; label = 'Year to Date Performance'; }
+    const months = [];
+    for (let d = U.toLocal(from.slice(0, 7) + '-01'); U.keyOf(d).slice(0, 7) <= to.slice(0, 7); d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) months.push(U.keyOf(d).slice(0, 7));
+    const key = type === 'ytd' ? y : `${type}:${from}_${to}`;
+    return { type, from, to, label, months, key, month, multiYear: from.slice(0, 4) !== to.slice(0, 4) };
+  },
+  setPeriod(patch) { const v = this.view(); Store.data.settings.ledgerView = Object.assign(Store.data.settings.ledgerView || {}, { period: Object.assign({}, (Store.data.settings.ledgerView || {}).period, patch) }); this.firm = null; this.showAll = false; Store.save(); App.render(); },
+  mLabel(m, multi) { return U.MONTHS[+m.slice(5, 7) - 1].slice(0, 3) + (multi ? ` '${m.slice(2, 4)}` : ''); },
+
   /* ---------- categories & look ---------- */
-  KINDS: { payout: 'Payouts', fee: 'Prop firm fees', tool: 'Tools & data', live: 'Live account', other: 'Other income' },
+  KINDS: { payout: 'Payouts', fee: 'Prop Firm Fees', tool: 'Tools & Data', live: 'Live Account', other: 'Other Income' },
   TOOL_RX: /tradingview|ninjatrader|tradovate|rithmic|sierra|bookmap|quantower|motivewave|edgeful|tradezella|tradesyncer|discord|\bdata\b|course|mentor/i,
   LOOK: { payout: '#12A06A', fee: '#E5484D', tool: '#F59E0B', live: '#8B5CF6', other: '#06B6D4', line: '#1F2E86', forecast: '#9AA1BA', dots: true, showForecast: true },
   hidden: new Set(),
@@ -3050,16 +3169,35 @@ Views.ledger = {
   setView(patch) { Store.data.settings.ledgerView = Object.assign(this.view(), patch); Store.save(); App.render(); },
   look() { return Object.assign({}, this.LOOK, Store.data.settings.ledgerLook || {}); },
   isTool(firm) { const o = Store.data.settings.ledgerTools || {}; return firm in o ? !!o[firm] : this.TOOL_RX.test(firm); },
-  kind(e) { return e.type === 'Payout' ? 'payout' : e.type === 'Expense' ? (this.isTool(e.firm) ? 'tool' : 'fee') : e.type === 'Live P&L' ? 'live' : 'other'; },
+  kind(e) {
+    if (e.type === 'Expense') return e.sub === 'data' ? 'tool' : e.sub && e.sub !== 'other' ? 'fee' : this.isTool(e.firm) ? 'tool' : 'fee';
+    return e.type === 'Passed' ? 'pass' : e.type === 'Payout' ? 'payout' : e.type === 'Live P&L' ? 'live' : 'other';
+  },
+  subLabel(e) { if (e.type !== 'Expense' || !e.sub) return ''; if (e.sub === 'other') return e.subText || 'Other'; const s = this.SUBS.find(x => x[0] === e.sub); return s ? s[1] : ''; },
+
+  /* What a prop-firm expense bought: an evaluation (packs count as several), a reset, an activation, an instant-funded account, or something else. */
+  buy(e) {
+    if (this.kind(e) !== 'fee') return null;
+    const d = `${e.sub || ''} ${e.description || ''}`;
+    const pack = d.match(/pack\s*(?:of\s*)?(\d+)/i);
+    if (e.sub === 'eval' || e.sub === 'instant') return { kind: e.sub, n: +e.qty || (pack ? +pack[1] : 1) };
+    if (e.sub) return { kind: e.sub, n: 1 };
+    if (/reset/i.test(d)) return { kind: 'reset', n: 1 };
+    if (/activation fee|^\s*activation\s*$/i.test(d)) return { kind: 'activation', n: 1 };
+    if (/level ?up|upgrade/i.test(d)) return { kind: 'other', n: 1 };
+    if (/instant/i.test(d)) return { kind: 'instant', n: pack ? +pack[1] : 1 };
+    return { kind: 'eval', n: pack ? +pack[1] : 1 };
+  },
 
   render(el) {
     const thisYear = String(new Date().getFullYear());
-    const years = this.years();
-    if (!this.year) this.year = years.includes(thisYear) || !years.length ? thisYear : years[years.length - 1];
-    const yearRows = this.all().filter(e => e.date.startsWith(this.year));
+    this.year = thisYear;
+    const P = this.per = this.period();
+    const yearRows = this.all().filter(e => e.date >= P.from && e.date <= P.to);
     const V = this.view();
     const excl = new Set(V.excluded);
-    const rows = yearRows.filter(e => !excl.has(e.firm) && (V.showLive || this.kind(e) !== 'live'));
+    const real = yearRows.filter(e => !excl.has(e.firm) && (V.showLive || this.kind(e) !== 'live'));
+    const rows = this.sim ? real.map(e => ({ ...e, amount: Math.round(e.amount * this.sim * 100) / 100 })) : real;
     const hasLive = yearRows.some(e => this.kind(e) === 'live');
     const firmList = [...new Set(yearRows.filter(e => this.kind(e) !== 'live').map(e => e.firm))].sort();
     const offParts = [...(hasLive && !V.showLive ? ['live account'] : []), ...V.excluded.filter(f => firmList.includes(f))];
@@ -3076,27 +3214,44 @@ Views.ledger = {
 
     const L = this.look();
     const s = this.sum(rows);
-    const isYTD = this.year === thisYear;
+    const isYTD = P.type === 'ytd';
     const fc = isYTD ? this.forecast(rows) : null;
     const eq = [
-      `<span class="pos">${U.money(s.paid)}</span> paid out`,
-      `<span class="neg">${U.money(s.fees)}</span> prop firm fees`,
-      s.tools ? `<span class="neg">${U.money(s.tools)}</span> tools &amp; data` : '',
-      s.live ? `<span class="${U.cls(s.live)}">${s.live < 0 ? '' : '+'}${U.money(s.live)}</span> live account` : '',
+      `<span class="pos">${U.money(s.paid)}</span> in Prop Firm Payouts`,
+      `<span class="neg">${U.money(s.fees)}</span> Prop Firm Expenses`,
+      s.tools ? `<span class="neg">${U.money(s.tools)}</span> Tools &amp; Data` : '',
+      s.kinds.live ? `<span class="${U.cls(s.liveOnly)}">${U.money(s.liveOnly)}</span> Live Account` : '',
+      s.kinds.other ? `<span class="${U.cls(s.otherOnly)}">${U.money(s.otherOnly)}</span> Other` : '',
     ].filter(Boolean);
 
     el.innerHTML = `
       <div class="lg-head">
         <div>
-          <div class="lg-eyebrow">${isYTD ? 'True take-home this year' : `True take-home in ${this.year}`}${offParts.length ? ` <span class="lg-excl">· without ${U.esc(offParts.join(', '))}</span>` : ''}</div>
+          <div class="lg-eyebrow">${U.esc(P.label)}${offParts.length ? ` <span class="lg-excl">· without ${U.esc(offParts.join(', '))}</span>` : ''}</div>
           <div class="lg-big ${U.cls(s.net)}">${U.money(s.net)}</div>
           <div class="lg-eq">${eq.join('<span class="op">·</span>')}</div>
         </div>
         <div class="lg-actions">
-          ${years.length > 1 ? `<select class="inp" data-year style="width:auto">${years.map(y => `<option ${y === this.year ? 'selected' : ''}>${y}</option>`).join('')}</select>` : ''}
+          <button class="btn ${this.sim ? 'sim-on' : ''}" data-sim>${this.sim ? 'Exit Simulation' : 'Simulate'}</button>
           <label class="btn">Import<input type="file" accept=".json,.csv" data-import hidden></label>
           <button class="btn primary" data-add>+ Add entry</button>
         </div>
+      </div>
+      ${this.sim ? `<div class="lg-sim">
+        <div class="lg-sim-top"><b>Simulation</b><span>Every entry × ${this.sim}, as if you traded ${this.sim}× the size. Your real data is untouched.</span>
+          <div class="seg sm" data-simx>${[2, 5, 10].map(x => `<button type="button" data-x="${x}" class="${this.sim === x ? 'on' : ''}">×${x}</button>`).join('')}</div></div>
+        <div class="lg-sim-kpis">
+          <div><span>Real Take-Home</span><b class="${U.cls(this.sum(real).net)}">${U.money(this.sum(real).net)}</b></div>
+          <div><span>At ×${this.sim}</span><b class="${U.cls(s.net)}">${U.money(s.net)}</b></div>
+          <div><span>If 50% Held Up</span><b class="${U.cls(s.net)}">${U.money(s.net * .5)}</b></div>
+          <div><span>If 40% Held Up</span><b class="${U.cls(s.net)}">${U.money(s.net * .4)}</b></div>
+        </div>
+      </div>` : ''}
+
+      <div class="lg-period">
+        <div class="seg sm" data-period>${this.PERIODS.map(([k, t]) => `<button type="button" data-p="${k}" class="${P.type === k ? 'on' : ''}">${t}</button>`).join('')}</div>
+        ${P.type === 'month' ? `<input class="inp sm" type="month" data-pmonth value="${P.month}">` : ''}
+        ${P.type === 'custom' ? `<span class="lg-range"><input class="inp sm" type="date" data-pfrom value="${P.from}"><span class="help">to</span><input class="inp sm" type="date" data-pto value="${P.to}"></span>` : ''}
       </div>
 
       <div class="lg-filter">
@@ -3107,44 +3262,47 @@ Views.ledger = {
       </div>
 
       <div class="lg-stats">
-        <div><div class="k">Return on prop firms</div><div class="v ${U.cls(s.roi)}">${s.fees ? (s.roi > 0 ? '+' : '') + (s.roi * 100).toFixed(0) + '%' : '—'}</div><div class="sub">${s.fees ? `every $1 spent came back as $${s.per1.toFixed(2)}` : 'no prop firm fees yet'}</div></div>
-        <div><div class="k">Spent on prop firms</div><div class="v">${U.money(s.fees)}</div><div class="sub">${s.feeCount} evals, resets &amp; activations</div></div>
-        <div><div class="k">Paid out</div><div class="v pos">${U.money(s.paid)}</div><div class="sub">${s.payCount} payout${s.payCount === 1 ? '' : 's'}${s.payCount ? ` · avg ${U.moneyShort(s.paid / s.payCount)}` : ''}</div></div>
-        <div><div class="k">Tools &amp; data</div><div class="v">${U.money(s.tools)}</div><div class="sub">${s.toolCount} charges</div></div>
+        <div><div class="k">Return on Prop Firms</div><div class="v ${U.cls(s.roi)}">${s.fees ? (s.roi > 0 ? '+' : '') + (s.roi * 100).toFixed(0) + '%' : '—'}</div><div class="sub">${s.fees ? `Every $1 Spent Came Back as $${s.per1.toFixed(2)}` : 'No Prop Firm Fees Yet'}</div></div>
+        <div><div class="k">Prop Firm Expenses</div><div class="v">${U.money(s.fees)}</div><div class="sub">${s.feeCount} Evals, Resets &amp; Activations</div></div>
+        <div><div class="k">Paid Out</div><div class="v pos">${U.money(s.paid)}</div><div class="sub">${s.payCount} Payout${s.payCount === 1 ? '' : 's'}${s.payCount ? ` · Avg ${U.moneyShort(s.paid / s.payCount)}` : ''}</div></div>
+        <div><div class="k">Tools &amp; Data</div><div class="v">${U.money(s.tools)}</div><div class="sub">${s.toolCount} Charge${s.toolCount === 1 ? '' : 's'}</div></div>
       </div>
+
+      ${isYTD ? this.goalCard(s, isYTD) : ''}
 
       <div class="card lg-chart-card">
         <div class="card-body">
           <div class="chart-top">
             <div class="mini-legend lg-legend">
-              <span class="static"><i style="background:${L.line}"></i>Take-home</span>
+              <span class="static"><i style="background:${L.line}"></i>Take-Home</span>
               ${Object.keys(this.KINDS).filter(k => s.kinds[k]).map(k => `<button type="button" data-kind="${k}" class="${this.hidden.has(k) ? 'off' : ''}"><i class="dot" style="background:${L[k]}"></i>${this.KINDS[k]}</button>`).join('')}
               ${fc && L.showForecast ? `<span class="static"><i class="dash" style="--c:${L.forecast}"></i>Forecast</span>` : ''}
             </div>
             <button class="btn sm ghost" data-look style="margin-left:auto">🎨 Customize</button>
           </div>
           <div class="chart-box lg"><canvas id="lgChart"></canvas></div>
-          <div class="help" style="text-align:center;margin-top:4px">Every dot is one entry — hover for details. Tap a color above to hide it.</div>
         </div>
       </div>
 
       ${fc && L.showForecast ? `<div class="card lg-fc-card"><div class="card-body">
         <div class="lg-fc-top">
           <div>
-            <div class="lg-eyebrow">Year-end forecast · ${fc.sims.toLocaleString()} simulations</div>
+            <div class="lg-eyebrow">Year-End Forecast</div>
             <div class="lg-fc-big ${U.cls(fc.end)}">${U.money(fc.end)}</div>
-            <div class="lg-sub">We replayed the rest of ${this.year} ${fc.sims.toLocaleString()} times using random days from ${this.pace === 'year' ? 'your year so far' : 'your last 90 days'}. This is the middle result.</div>
+            <div class="help">Middle of ${fc.sims.toLocaleString()} Simulations</div>
           </div>
-          <div class="seg sm" data-pace><button class="${this.pace === 'year' ? 'on' : ''}" data-p="year">Based on whole year</button><button class="${this.pace === '90' ? 'on' : ''}" data-p="90">Last 90 days</button></div>
+          <div class="seg sm" data-pace><button class="${this.pace === 'year' ? 'on' : ''}" data-p="year">Whole Year</button><button class="${this.pace === '90' ? 'on' : ''}" data-p="90">Last 90 Days</button></div>
         </div>
         <div class="lg-fc-facts">
-          <div><div class="k">8 in 10 simulations ended between</div><div class="v">${U.money(fc.lo)} – ${U.money(fc.hi)}</div></div>
-          <div><div class="k">Half ended between</div><div class="v">${U.money(fc.p25)} – ${U.money(fc.p75)}</div></div>
-          <div><div class="k">Ended below today's ${U.moneyShort(fc.net)}</div><div class="v ${fc.worse > .3 ? 'neg' : ''}">${Math.round(fc.worse * 100)}%</div></div>
-          <div><div class="k">Ended the year in the red</div><div class="v ${fc.negative > .1 ? 'neg' : ''}">${Math.round(fc.negative * 100)}%</div></div>
+          <div><div class="k">8 in 10 Ended Between</div><div class="v">${U.moneyShort(fc.lo)} – ${U.moneyShort(fc.hi)}</div></div>
+          <div><div class="k">Half Ended Between</div><div class="v">${U.moneyShort(fc.p25)} – ${U.moneyShort(fc.p75)}</div></div>
+          <div><div class="k">Ended Below Today</div><div class="v ${fc.worse > .3 ? 'neg' : ''}">${Math.round(fc.worse * 100)}%</div></div>
+          <div><div class="k">Ended in the Red</div><div class="v ${fc.negative > .1 ? 'neg' : ''}">${Math.round(fc.negative * 100)}%</div></div>
         </div>
-        <div class="lg-disclaimer"><b>⚠ This is only a forecast — not a prediction or a promise.</b> Past results do not indicate future performance. The simulation assumes your future days look like your past days; real markets, rules and your own trading can change at any time. Most traders lose money, payouts are never guaranteed, and one bad month can erase this. This is not financial advice.</div>
+        <div class="lg-disclaimer">⚠ A simulation, not a promise. Past results don't predict future performance, payouts are never guaranteed, and most traders lose money. Not financial advice.</div>
       </div></div>` : ''}
+
+      ${this.processHTML(rows)}
 
       <div class="grid g-2">
         <div class="card">
@@ -3158,7 +3316,7 @@ Views.ledger = {
           </tbody></table></div>
         </div>
         <div class="card">
-          <div class="card-head"><h3>By month</h3></div>
+          <div class="card-head"><h3>${P.months.length === 1 ? 'By week' : 'By month'}</h3></div>
           <div class="card-body"><div class="chart-box sm"><canvas id="lgMonths"></canvas></div></div>
         </div>
       </div>
@@ -3172,6 +3330,7 @@ Views.ledger = {
 
     this.chart(U.$('#lgChart', el), rows, fc);
     this.monthChart(U.$('#lgMonths', el), rows);
+    this.processCharts(el, rows);
     this.bind(el);
   },
 
@@ -3181,18 +3340,22 @@ Views.ledger = {
     const L = this.look();
     const list = this.list(rows);
     const shown = this.showAll ? list : list.slice(0, 12);
-    return shown.map(e => { const k = this.kind(e); return `<tr class="clickable" data-edit="${e.id}">
+    return shown.map(e => { const k = this.kind(e);
+      if (k === 'pass') return `<tr class="clickable" data-edit="${e.id}"><td class="help" style="width:84px">${U.fmtShort(e.date)}</td>
+        <td><i class="lg-dot" style="background:${L.line}"></i><b>${U.esc(e.firm)}</b> <span class="help">${U.esc(e.description || 'Passed evaluation')}</span></td>
+        <td class="help">Passed eval</td><td class="num"><b>${(+e.qty || 1) > 1 ? '×' + e.qty : '✓'}</b></td></tr>`;
+      return `<tr class="clickable" data-edit="${e.id}">
       <td class="help" style="width:84px">${U.fmtShort(e.date)}</td>
       <td><i class="lg-dot" style="background:${L[k]}"></i><b>${U.esc(e.firm)}</b> <span class="help">${U.esc(e.description || '')}</span></td>
-      <td class="help">${this.KINDS[k].replace(/s$/, '')}</td>
-      <td class="num ${U.cls(e.amount)}"><b>${U.money(e.amount)}</b></td></tr>`; }).join('') || '<tr class="empty-row"><td>No entries</td></tr>';
+      <td class="help">${U.esc(this.subLabel(e)) || this.KINDS[k].replace(/s$/, '')}</td>
+      <td class="num ${U.cls(e.amount)}">${e.first ? '<span class="lg-first" title="First payout from this account">1st</span> ' : ''}<b>${U.money(e.amount)}</b></td></tr>`; }).join('') || '<tr class="empty-row"><td>No entries</td></tr>';
   },
 
   sum(rows) {
     let fees = 0, tools = 0, paid = 0, live = 0, other = 0, feeCount = 0, toolCount = 0, payCount = 0;
     const kinds = {}, by = new Map();
     rows.forEach(e => {
-      const k = this.kind(e); kinds[k] = (kinds[k] || 0) + 1;
+      const k = this.kind(e); if (k === 'pass') return; kinds[k] = (kinds[k] || 0) + 1;
       const f = by.get(e.firm) || { firm: e.firm, spent: 0, in: 0, net: 0, tool: this.isTool(e.firm) };
       if (k === 'fee') { fees += -e.amount; feeCount++; f.spent += -e.amount; }
       else if (k === 'tool') { tools += -e.amount; toolCount++; f.spent += -e.amount; }
@@ -3203,7 +3366,7 @@ Views.ledger = {
     });
     const firms = [...by.values()].sort((a, b) => b.net - a.net);
     const net = paid + live + other - fees - tools;
-    return { fees, tools, paid, live: live + other, net, feeCount, toolCount, payCount, firms, kinds,
+    return { fees, tools, paid, live: live + other, liveOnly: live, otherOnly: other, net, feeCount, toolCount, payCount, firms, kinds,
       roi: fees ? (paid - fees) / fees : 0, per1: fees ? paid / fees : 0 };
   },
 
@@ -3249,16 +3412,16 @@ Views.ledger = {
   chart(cv, rows, fc) {
     if (!cv) return;
     const L = this.look();
-    const y = this.year, start = `${y}-01-01`;
+    const P = this.per || this.period(), start = P.from;
     const dayN = k => Math.round((U.toLocal(k) - U.toLocal(start)) / 864e5);
-    const sorted = [...rows].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+    const sorted = rows.filter(e => this.kind(e) !== 'pass').sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
     let cum = 0, lastDay = null, k = 0;
     const pts = sorted.map(e => {
       k = e.date === lastDay ? k + 1 : 0; lastDay = e.date;
       cum += e.amount;
       return { x: dayN(e.date) + Math.min(.8, k * .12), y: +cum.toFixed(2), e, kind: this.kind(e) };
     });
-    const lastN = fc ? fc.endN : (pts.length ? Math.ceil(pts[pts.length - 1].x) + 3 : 30);
+    const lastN = fc ? fc.endN : Math.max(dayN(P.to) + 1, pts.length ? Math.ceil(pts[pts.length - 1].x) + 1 : 1);
     const datasets = [{ label: 'Take-home', data: [{ x: 0, y: 0 }, ...pts.map(p => ({ x: p.x, y: p.y }))], borderColor: L.line, backgroundColor: L.line + '12',
       fill: 'origin', borderWidth: 2.2, stepped: 'after', pointRadius: 0, pointHoverRadius: 0, order: 3 }];
     if (L.dots) Object.keys(this.KINDS).forEach(kd => {
@@ -3277,7 +3440,11 @@ Views.ledger = {
       datasets.push({ label: 'Forecast', data: ln('p50'), borderColor: L.forecast, borderDash: [6, 5], borderWidth: 2, tension: .3,
         pointRadius: ctx => (ctx.dataIndex === fc.path.length ? 4 : 0), pointBackgroundColor: L.forecast, fill: false, order: 2 });
     }
-    const monthStarts = Array.from({ length: 12 }, (_, i) => dayN(`${y}-${U.pad(i + 1)}-01`)).filter(v => v <= lastN);
+    // short periods tick weekly with dates; longer ones tick at each month start
+    const ticks = lastN <= 62
+      ? Array.from({ length: Math.floor(lastN / 7) + 1 }, (_, i) => ({ v: i * 7, t: U.fmtShort(U.addDays(start, i * 7)).slice(0, 5) }))
+      : P.months.map(m => ({ v: Math.max(0, dayN(m + '-01')), t: this.mLabel(m, P.multiYear) })).filter(t => t.v <= lastN);
+    const monthStarts = ticks.map(t => t.v);
     Charts.make(cv, {
       type: 'line', data: { datasets },
       options: {
@@ -3287,13 +3454,13 @@ Views.ledger = {
           filter: it => !it.dataset.label.startsWith('_') && it.dataset.label !== 'Take-home',
           callbacks: {
             title: it => { const r = it[0] && it[0].raw; return r && r.e ? U.fmtLong(r.e.date) : (it[0] && it[0].dataset.label === 'Forecast' ? 'Middle simulated outcome' : ''); },
-            label: c => { const r = c.raw; if (r && r.e) return [`${r.e.firm}${r.e.description ? ' — ' + r.e.description : ''}`, `${U.money(r.e.amount)}  ·  take-home ${U.money(r.y)}`];
+            label: c => { const r = c.raw; if (r && r.e) return [`${r.e.firm}${r.e.description ? ' — ' + r.e.description : ''}`, `${U.money(r.e.amount)}  ·  Take-Home ${U.money(r.y)}`];
               return `${U.money(c.parsed.y)} — a simulation, not a guarantee`; },
           } } },
         scales: {
           x: { type: 'linear', min: 0, max: lastN, grid: { display: false }, border: { display: false },
             afterBuildTicks: ax => { ax.ticks = monthStarts.map(v => ({ value: v })); },
-            ticks: { color: '#9AA1BA', maxRotation: 0, autoSkip: true, autoSkipPadding: 6, callback: v => { const i = monthStarts.indexOf(v); return i >= 0 ? U.MONTHS[i].slice(0, cv.parentElement.clientWidth < 500 ? 1 : 3) : ''; } } },
+            ticks: { color: '#9AA1BA', maxRotation: 0, autoSkip: true, autoSkipPadding: 6, callback: v => { const i = monthStarts.indexOf(v); return i >= 0 ? ticks[i].t : ''; } } },
           y: { grid: { color: c => (c.tick && c.tick.value === 0 ? '#C9CEDD' : '#F1F3F8') }, border: { display: false }, ticks: { callback: v => U.moneyAxis(v), maxTicksLimit: 6, color: '#9AA1BA' } },
         },
       },
@@ -3304,11 +3471,16 @@ Views.ledger = {
     if (!cv) return;
     if (!rows.length) { cv.parentElement.innerHTML = '<div class="no-data">Nothing to show with these filters</div>'; return; }
     const L = this.look();
-    const last = Math.max(...rows.map(e => +e.date.slice(5, 7)));
-    const labels = U.MONTHS.slice(0, last).map(x => x.slice(0, 3));
+    const P = this.per || this.period();
+    // one month selected → split it into weeks; otherwise one bar per month
+    const weekly = P.months.length === 1;
+    const buckets = weekly ? [1, 8, 15, 22, 29].filter(d => d <= +P.to.slice(8, 10)).map(d => P.from.slice(0, 8) + U.pad(d)) : P.months;
+    const labels = weekly ? buckets.map((b, i) => `${U.fmtShort(b).slice(0, 5)}–${U.fmtShort(i < buckets.length - 1 ? U.addDays(buckets[i + 1], -1) : P.to).slice(0, 5)}`) : P.months.map(m => this.mLabel(m, P.multiYear));
+    const idx = e => weekly ? Math.min(4, Math.floor((+e.date.slice(8, 10) - 1) / 7)) : P.months.indexOf(e.date.slice(0, 7));
+    const last = buckets.length;
     const order = ['payout', 'live', 'other', 'fee', 'tool'];
     const sums = Object.fromEntries(order.map(k => [k, Array(last).fill(0)]));
-    rows.forEach(e => { sums[this.kind(e)][+e.date.slice(5, 7) - 1] += e.amount; });
+    rows.forEach(e => { const k = this.kind(e), i = idx(e); if (sums[k] && i >= 0 && i < last) sums[k][i] += e.amount; });
     const datasets = order.filter(k => sums[k].some(v => v) && !this.hidden.has(k)).map(k => ({ label: this.KINDS[k], data: sums[k].map(v => +v.toFixed(2)),
       backgroundColor: L[k], borderRadius: 3, maxBarThickness: 18, stack: 's' }));
     const net = Array.from({ length: last }, (_, i) => +order.reduce((a, k) => a + sums[k][i], 0).toFixed(2));
@@ -3332,6 +3504,29 @@ Views.ledger = {
     });
     U.$$('[data-kind]', el).forEach(b => b.onclick = () => { const k = b.dataset.kind; this.hidden.has(k) ? this.hidden.delete(k) : this.hidden.add(k); App.render(); });
     U.$$('[data-look]', el).forEach(b => b.onclick = () => this.lookModal());
+    U.$$('[data-goal-save]', el).forEach(b => b.onclick = () => {
+      const v = Math.round(+U.$('[data-goal-in]', el).value || 0); if (!v) { App.toast('Enter a goal amount', 'err'); return; }
+      Store.data.settings.ledgerGoals = Object.assign(Store.data.settings.ledgerGoals || {}, { [this.year]: v }); Store.save(); App.render();
+    });
+    U.$$('[data-goal-in]', el).forEach(i => i.onkeydown = e => { if (e.key === 'Enter') U.$('[data-goal-save]', el).click(); });
+    U.$$('[data-goal-edit]', el).forEach(b => b.onclick = () => {
+      const body = U.h(`<div><label class="field-label">Take-home goal for ${this.year} ($)</label><input class="inp" type="number" min="0" step="100" value="${this.goal()}"></div>`);
+      UI.modal({ title: 'Edit goal', body, footer: [
+        { label: 'Remove goal', cls: 'left', onClick: c => { delete (Store.data.settings.ledgerGoals || {})[this.year]; Store.save(); c(); App.render(); } },
+        { label: 'Cancel' },
+        { label: 'Save', cls: 'primary', onClick: c => { const v = Math.round(+U.$('input', body).value || 0); if (!v) return; Store.data.settings.ledgerGoals = Object.assign(Store.data.settings.ledgerGoals || {}, { [this.year]: v }); Store.save(); c(); App.render(); } },
+      ] });
+      setTimeout(() => U.$('input', body).select(), 50);
+    });
+    U.$$('[data-fl]', el).forEach(i => i.onchange = () => {
+      const all = Store.data.settings.ledgerFunnel = Store.data.settings.ledgerFunnel || {};
+      const pk = (this.per || this.period()).key;
+      const y = all[pk] = all[pk] || {};
+      const f = y[i.dataset.fl] = y[i.dataset.fl] || {};
+      const v = i.value.trim();
+      f[i.dataset.f] = v === '' ? '' : Math.max(0, Math.round(+v));
+      Store.save(); App.render();
+    });
     U.$$('[data-live]', el).forEach(b => b.onclick = () => this.setView({ showLive: !this.view().showLive }));
     U.$$('[data-ex]', el).forEach(b => b.onclick = () => {
       const f = b.dataset.ex, ex = this.view().excluded;
@@ -3341,72 +3536,319 @@ Views.ledger = {
     U.$$('[data-reset]', el).forEach(b => b.onclick = () => this.setView({ showLive: true, excluded: [] }));
     U.$$('[data-clear]', el).forEach(b => b.onclick = () => { this.firm = null; App.render(); });
     U.$$('[data-more]', el).forEach(b => b.onclick = () => { this.showAll = true; App.render(); });
-    U.$$('[data-year]', el).forEach(s => s.onchange = () => { this.year = s.value; this.firm = null; App.render(); });
+    U.$$('[data-sim]', el).forEach(b => b.onclick = () => { this.sim = this.sim ? 0 : 10; App.render(); });
+    U.$$('[data-simx] button', el).forEach(b => b.onclick = () => { this.sim = +b.dataset.x; App.render(); });
+    U.$$('[data-period] button', el).forEach(b => b.onclick = () => this.setPeriod({ p: b.dataset.p }));
+    U.$$('[data-pmonth]', el).forEach(i => i.onchange = () => { if (i.value) this.setPeriod({ month: i.value }); });
+    U.$$('[data-pfrom], [data-pto]', el).forEach(i => i.onchange = () => {
+      const f = U.$('[data-pfrom]', el).value, t = U.$('[data-pto]', el).value; if (f && t) this.setPeriod({ from: f, to: t });
+    });
     U.$$('[data-pace] button', el).forEach(b => b.onclick = () => { this.pace = b.dataset.p; App.render(); });
     U.$$('[data-import]', el).forEach(i => i.onchange = async () => { const f = i.files[0]; i.value = ''; if (f) this.importFile(f); });
     U.$$('[data-export]', el).forEach(b => b.onclick = () => this.exportCSV());
   },
 
+  /* ---------- goal ---------- */
+  goal() { return +((Store.data.settings.ledgerGoals || {})[this.year] || 0); },
+  goalCard(s, isYTD) {
+    const g = this.goal();
+    if (!g) return `<div class="card lg-goal lg-goal-empty"><div class="card-body">
+      <div><b>Set a Goal for ${this.year}</b><div class="help">How much do you want to take home this year? We'll show what's left and what you need each month.</div></div>
+      <div class="lg-goal-set"><span>$</span><input class="inp" type="number" min="0" step="100" placeholder="10000" data-goal-in><button class="btn primary" data-goal-save>Set goal</button></div>
+    </div></div>`;
+    const y = +this.year, now = new Date();
+    const start = new Date(y, 0, 1), end = new Date(y, 11, 31);
+    const dayMs = 864e5;
+    const elapsedDays = isYTD ? Math.max(1, Math.round((now - start) / dayMs) + 1) : 365;
+    const leftDays = isYTD ? Math.max(0, Math.round((end - now) / dayMs)) : 0;
+    const monthsLeft = isYTD ? Math.max(1, Math.ceil(leftDays / 30.44)) : 0;
+    const still = Math.max(0, g - s.net);
+    const pctv = Math.max(0, Math.min(100, s.net / g * 100));
+    const avgMonth = s.net / (elapsedDays / 30.44);
+    const need = monthsLeft ? still / monthsLeft : 0;
+    const onTrack = still <= 0 || avgMonth >= need;
+    return `<div class="card lg-goal"><div class="card-body">
+      <div class="lg-goal-head">
+        <div><div class="lg-eyebrow">${this.year} Goal</div><div class="lg-goal-title">${U.money(g)} Take-Home <button class="btn sm ghost" data-goal-edit>Edit</button></div></div>
+        <div class="lg-goal-pct ${s.net >= g ? 'pos' : ''}">${pctv.toFixed(0)}%</div>
+      </div>
+      <div class="lg-track"><div style="width:${pctv}%"></div></div>
+      <div class="lg-goal-meta three">
+        <div><span>Needed to Complete Goal</span><b>${still ? U.money(still) : 'Goal Reached 🎉'}</b></div>
+        <div><span>Needed per Month</span><b>${isYTD && still ? U.money(need) : '—'}</b></div>
+        <div><span>Averaging per Month</span><b class="${U.cls(avgMonth)}">${U.money(avgMonth)}</b>${isYTD && still ? `<i class="${onTrack ? 'pos' : 'neg'}">${onTrack ? 'On Pace' : `${U.money(need - avgMonth)} Short a Month`}</i>` : ''}</div>
+      </div>
+    </div></div>`;
+  },
+
+  /* ---------- process metrics ---------- */
+  process(rows) {
+    const Per = this.per || this.period();
+    const lastM = Per.months.length;
+    const months = Per.months.map(() => ({ bought: 0, payouts: 0 }));
+    let evals = 0, instant = 0, resets = 0, passes = 0;
+    const firms = new Map();
+    const F = f => firms.get(f) || (firms.set(f, { firm: f, evals: 0, instant: 0, payouts: 0 }), firms.get(f));
+    rows.forEach(e => {
+      const m = Per.months.indexOf(e.date.slice(0, 7)); if (m < 0) return;
+      const b = this.buy(e);
+      if (b) {
+        if (b.kind === 'eval') { evals += b.n; months[m].bought += b.n; F(e.firm).evals += b.n; }
+        else if (b.kind === 'instant') { instant += b.n; months[m].bought += b.n; F(e.firm).instant += b.n; }
+        else if (b.kind === 'reset') resets++;
+      }
+      if (this.kind(e) === 'payout') F(e.firm).payouts++;
+      if (this.kind(e) === 'pass') passes += +e.qty || 1;
+      if (this.kind(e) === 'payout') months[m].payouts++;
+    });
+    const payouts = rows.filter(e => this.kind(e) === 'payout').sort((a, b) => (a.date < b.date ? -1 : 1));
+    const flagged = payouts.filter(p => p.first).length;
+    const anyFlag = payouts.some(p => p.first !== undefined);
+    const funded = passes + instant;
+    const gaps = payouts.slice(1).map((p, i) => Math.round((U.toLocal(p.date) - U.toLocal(payouts[i].date)) / 864e5));
+    const firstM = payouts.length ? Per.months.indexOf(payouts[0].date.slice(0, 7)) + 1 : null;
+    const saved = (Store.data.settings.ledgerFunnel || {})[Per.key] || {};
+    const firmRows = [...firms.values()].filter(f => f.evals || f.instant || f.payouts).map(f => {
+      const sv = saved[f.firm] || {};
+      const passed = sv.passed === '' || sv.passed == null ? null : +sv.passed;
+      const paid = sv.paid === '' || sv.paid == null ? null : +sv.paid;
+      const fundedF = (passed || 0) + f.instant;
+      return { ...f, passed, paid, funded: fundedF,
+        passRate: passed != null && f.evals ? passed / f.evals : null,
+        f2p: paid != null && fundedF ? Math.min(1, paid / fundedF) : null };
+    }).sort((a, b) => (b.evals + b.instant) - (a.evals + a.instant));
+    const tPassed = firmRows.some(r => r.passed != null) ? firmRows.reduce((a, r) => a + (r.passed || 0), 0) : null;
+    const tPaid = firmRows.some(r => r.paid != null) ? firmRows.reduce((a, r) => a + (r.paid || 0), 0) : null;
+    const tEvalsWithPass = firmRows.filter(r => r.passed != null).reduce((a, r) => a + r.evals, 0);
+    const tFundedWithPaid = firmRows.filter(r => r.paid != null).reduce((a, r) => a + r.funded, 0);
+    return { lastM, months, evals, instant, resets, passes, funded, payouts, flagged, anyFlag, gaps, firmRows,
+      tPassed, tPaid, tFunded: (tPassed || 0) + instant,
+      tPassRate: tPassed != null && tEvalsWithPass ? tPassed / tEvalsWithPass : null,
+      tF2P: tPaid != null && tFundedWithPaid ? Math.min(1, firmRows.filter(r => r.paid != null).reduce((a, r) => a + r.paid, 0) / tFundedWithPaid) : null,
+      bought: evals + instant,
+      avgPerMonth: firstM ? payouts.length / (lastM - firstM + 1) : 0,
+      avgPayout: payouts.length ? payouts.reduce((a, p) => a + p.amount, 0) / payouts.length : 0,
+      evalsPerPayout: payouts.length ? (evals + instant) / payouts.length : null,
+      passRate: evals && passes ? passes / evals : null,
+      f2p: funded && flagged ? Math.min(1, flagged / funded) : null,
+      avgGap: gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : null };
+  },
+
+  processHTML(rows) {
+    const P = this.process(rows), L = this.look();
+    if (!P.bought && !P.payouts.length) return '';
+    const pct = v => (v == null ? '—' : (v * 100).toFixed(v < .1 ? 1 : 0) + '%');
+    const bar = (n, max, color, label, value) => `<div class="fn-row"><span class="fn-lbl">${label}</span><div class="fn-track"><div style="width:${max ? Math.max(n ? 2 : 0, n / max * 100) : 0}%;background:${color}"></div></div><b>${value}</b></div>`;
+    const max = Math.max(P.bought, 1);
+    return `
+      <div class="lg-section-title">Key Performance Indicators <span class="help">Prop Firms Only · Live Account Excluded</span></div>
+      <div class="grid g-2">
+        <div class="card"><div class="card-body">
+          <div class="lg-ch-head"><div><h3>Payouts per month</h3><div class="help">Dashed line is your average since the first payout.</div></div>
+            <div class="lg-kpi"><b>${P.avgPerMonth.toFixed(1)}</b><span>avg a month</span></div></div>
+          <div class="chart-box sm"><canvas id="pcPerMonth"></canvas></div>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div class="lg-ch-head"><div><h3>Evals per payout, by month</h3><div class="help">Accounts bought for each payout that month. Lower is better. The line is the running average.</div></div>
+            <div class="lg-kpi"><b>${P.evalsPerPayout == null ? '—' : P.evalsPerPayout.toFixed(1)}</b><span>${this.per && this.per.type === 'ytd' ? 'for the year' : 'for this period'}</span></div></div>
+          <div class="chart-box sm"><canvas id="pcYield"></canvas></div>
+        </div></div>
+      </div>
+      <div class="grid g-2">
+        <div class="card"><div class="card-body">
+          <div class="lg-ch-head"><div><h3>From purchase to payout</h3><div class="help">Type how many passed and how many paid you out. The rest is automatic.</div></div></div>
+          <div class="fl-steps">
+            <div class="fl-step"><b>${P.bought}</b><span>accounts bought</span></div>
+            <div class="fl-arrow"><b>${pct(P.tPassRate)}</b><span>pass rate</span></div>
+            <div class="fl-step"><b>${P.tPassed == null && !P.instant ? '—' : P.tFunded}</b><span>got funded</span>${P.instant ? `<i>incl. ${P.instant} instant</i>` : ''}</div>
+            <div class="fl-arrow"><b>${pct(P.tF2P)}</b><span>funded → payout</span></div>
+            <div class="fl-step"><b>${P.tPaid == null ? '—' : P.tPaid}</b><span>paid out</span></div>
+          </div>
+          <div class="table-wrap"><table class="tbl fl-tbl"><thead><tr><th>Firm</th><th class="num">Bought</th><th class="num">Passed</th><th class="num">Paid out</th><th class="num">Pass rate</th><th class="num">Funded → payout</th></tr></thead><tbody>
+            ${P.firmRows.map(r => `<tr>
+              <td><b>${U.esc(r.firm)}</b></td>
+              <td class="num">${r.evals ? r.evals : ''}${r.instant ? `<span class="help">${r.evals ? ' +' : ''}${r.instant} instant</span>` : ''}</td>
+              <td class="num">${r.evals ? `<input class="fl-in" type="number" min="0" max="${r.evals}" data-fl="${U.esc(r.firm)}" data-f="passed" value="${r.passed ?? ''}" placeholder="?">` : '<span class="help">—</span>'}</td>
+              <td class="num"><input class="fl-in" type="number" min="0" data-fl="${U.esc(r.firm)}" data-f="paid" value="${r.paid ?? ''}" placeholder="?"></td>
+              <td class="num">${pct(r.passRate)}</td>
+              <td class="num">${pct(r.f2p)}</td></tr>`).join('')}
+          </tbody></table></div>
+          <div class="help" style="margin-top:8px">${P.payouts.length} payout${P.payouts.length === 1 ? '' : 's'} from ${P.bought} accounts${P.payouts.length ? ` · one payout for every ${(P.bought / P.payouts.length).toFixed(1)} accounts bought` : ''}${P.resets ? ` · ${P.resets} reset${P.resets === 1 ? '' : 's'} not counted as new accounts` : ''}.</div>
+        </div></div>
+        <div class="card"><div class="card-body">
+          <div class="lg-ch-head"><div><h3>Payout sizes</h3><div class="help">Every payout, in order. Dashed line is the average.</div></div>
+            <div class="lg-kpi"><b>${U.moneyShort(P.avgPayout)}</b><span>average payout</span></div></div>
+          <div class="chart-box sm"><canvas id="pcSizes"></canvas></div>
+        </div></div>
+      </div>
+      <div class="card" style="margin-bottom:16px"><div class="card-body">
+        <div class="lg-ch-head"><div><h3>Days between payouts</h3><div class="help">How long each payout took to arrive after the one before it.</div></div>
+          <div class="lg-kpi"><b>${P.avgGap == null ? '—' : Math.round(P.avgGap) + 'd'}</b><span>average wait</span></div></div>
+        ${P.gaps.length ? `<div class="chart-box sm"><canvas id="pcCycle"></canvas></div>
+          <div class="lg-rates three"><div><span>First → second payout</span><b>${P.gaps[0]} days</b></div><div><span>Fastest</span><b>${Math.min(...P.gaps)} days</b></div><div><span>Latest wait</span><b>${P.gaps[P.gaps.length - 1]} days</b></div></div>`
+        : `<div class="no-data">Needs at least two payouts. ${P.payouts.length} so far.</div>`}
+      </div></div>`;
+  },
+
+  processCharts(el, rows) {
+    const P = this.process(rows), L = this.look();
+    const Per = this.per || this.period();
+    const mLabels = Per.months.map(m => this.mLabel(m, Per.multiYear));
+    const axisY = (money, extra = {}) => ({ grid: { color: '#F1F3F8' }, border: { display: false }, ticks: { color: '#9AA1BA', maxTicksLimit: 5, precision: 0, ...(money ? { callback: v => U.moneyAxis(v) } : {}) }, ...extra });
+    const axisX = { grid: { display: false }, border: { display: false }, ticks: { color: '#9AA1BA', maxRotation: 0, autoSkip: true } };
+    const cv1 = U.$('#pcPerMonth', el);
+    if (cv1) {
+      const firstIdx = P.months.findIndex(m => m.payouts);
+      Charts.make(cv1, { type: 'bar', data: { labels: mLabels, datasets: [
+        { label: 'Payouts', data: P.months.map(m => m.payouts), backgroundColor: L.payout, borderRadius: 4, maxBarThickness: 26, order: 2 },
+        { type: 'line', label: 'Average', data: P.months.map((m, i) => (firstIdx >= 0 && i >= firstIdx ? +P.avgPerMonth.toFixed(2) : null)), borderColor: L.line, borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, order: 1 },
+      ] }, options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.dataset.label === 'Average' ? `Average ${c.parsed.y.toFixed(1)} a month` : `${c.parsed.y} payout${c.parsed.y === 1 ? '' : 's'}` } } },
+        scales: { x: axisX, y: axisY(false, { beginAtZero: true }) } } });
+    }
+    const cv2 = U.$('#pcYield', el);
+    if (cv2) {
+      let cb = 0, cp = 0;
+      const ratio = P.months.map(m => (m.payouts ? +(m.bought / m.payouts).toFixed(2) : null));
+      const run = P.months.map(m => { cb += m.bought; cp += m.payouts; return cp ? +(cb / cp).toFixed(2) : null; });
+      const noPay = P.months.map(m => (!m.payouts && m.bought ? 0 : null));
+      Charts.make(cv2, { type: 'bar', data: { labels: mLabels, datasets: [
+        { label: 'Evals per payout', data: ratio, backgroundColor: L.fee + 'CC', borderRadius: 4, maxBarThickness: 26, order: 2 },
+        { type: 'line', label: 'Running average', data: run, borderColor: L.line, borderWidth: 2, pointRadius: 2.5, pointBackgroundColor: L.line, tension: .3, spanGaps: true, order: 1 },
+        { type: 'scatter', label: 'No payout', data: noPay, pointStyle: 'crossRot', pointRadius: 6, borderColor: '#C9CEDD', borderWidth: 2, order: 0 },
+      ] }, options: { plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => {
+          const m = P.months[c.dataIndex];
+          if (c.dataset.label === 'No payout') return `${m.bought} bought · no payout`;
+          if (c.dataset.label === 'Running average') return `Running average ${c.parsed.y.toFixed(1)}`;
+          return `${m.bought} bought ÷ ${m.payouts} payout${m.payouts === 1 ? '' : 's'} = ${c.parsed.y.toFixed(1)}`; } } } },
+        scales: { x: axisX, y: axisY(false, { beginAtZero: true }) } } });
+    }
+    const cv3 = U.$('#pcSizes', el);
+    if (cv3 && P.payouts.length) {
+      Charts.make(cv3, { type: 'bar', data: { labels: P.payouts.map(p => U.fmtShort(p.date)), datasets: [
+        { label: 'Payout', data: P.payouts.map(p => p.amount), backgroundColor: L.payout, borderRadius: 4, maxBarThickness: 30, order: 2 },
+        { type: 'line', label: 'Average', data: P.payouts.map(() => +P.avgPayout.toFixed(2)), borderColor: L.line, borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, order: 1 },
+      ] }, options: { plugins: { legend: { display: false }, tooltip: { callbacks: {
+          title: it => { const p = P.payouts[it[0].dataIndex]; return `${p.firm} · ${U.fmtLong(p.date)}`; },
+          label: c => (c.dataset.label === 'Average' ? `Average ${U.money(c.parsed.y)}` : U.money(c.parsed.y)) } } },
+        scales: { x: { ...axisX, ticks: { ...axisX.ticks, maxTicksLimit: 6 } }, y: axisY(true, { beginAtZero: true }) } } });
+    }
+    const cv4 = U.$('#pcCycle', el);
+    if (cv4 && P.gaps.length) {
+      const ord = n => n + (['th', 'st', 'nd', 'rd'][(n % 100 - 20) % 10] || ['th', 'st', 'nd', 'rd'][n % 100] || 'th');
+      Charts.make(cv4, { type: 'bar', data: { labels: P.gaps.map((g, i) => `${ord(i + 1)}→${ord(i + 2)}`), datasets: [
+        { label: 'Days', data: P.gaps, backgroundColor: L.line + 'CC', borderRadius: 4, maxBarThickness: 30, order: 2 },
+        { type: 'line', label: 'Average', data: P.gaps.map(() => +P.avgGap.toFixed(1)), borderColor: L.forecast, borderDash: [5, 4], borderWidth: 1.6, pointRadius: 0, order: 1 },
+      ] }, options: { plugins: { legend: { display: false }, tooltip: { callbacks: {
+          title: it => { const i = it[0].dataIndex; return `${U.fmtShort(P.payouts[i].date)} → ${U.fmtShort(P.payouts[i + 1].date)}`; },
+          label: c => (c.dataset.label === 'Average' ? `Average ${Math.round(c.parsed.y)} days` : `${c.parsed.y} days (${P.payouts[c.dataIndex + 1].firm})`) } } },
+        scales: { x: axisX, y: axisY(false, { beginAtZero: true, ticks: { color: '#9AA1BA', maxTicksLimit: 5, callback: v => v + 'd' } }) } } });
+    }
+  },
+
   lookModal() {
     const l = this.look();
-    const SW = ['#12A06A', '#E5484D', '#F59E0B', '#8B5CF6', '#06B6D4', '#4F6BED', '#1F2E86', '#EC4899', '#64748B', '#0E1530'];
-    const rows = [['payout', 'Payouts'], ['fee', 'Prop firm fees'], ['tool', 'Tools & data'], ['live', 'Live account'], ['line', 'Take-home line'], ['forecast', 'Forecast']];
-    const body = U.h(`<div>
-      ${rows.map(([key, label]) => `<div class="lk-row"><span class="lk-lbl"><i class="lg-dot" data-prev="${key}" style="background:${l[key]}"></i>${label}</span>
-        <div class="swatches sm" data-key="${key}">${SW.map(c => `<button type="button" style="--rc:${c}" data-c="${c}" class="${c === l[key] ? 'on' : ''}"></button>`).join('')}<input type="color" value="${l[key]}" data-custom title="Any color"></div></div>`).join('')}
-      <div class="tog-grid" style="margin-top:14px">
-        <label class="tog"><input type="checkbox" data-t="dots" ${l.dots ? 'checked' : ''}> A dot for every entry</label>
-        <label class="tog"><input type="checkbox" data-t="showForecast" ${l.showForecast ? 'checked' : ''}> Show year-end forecast</label>
-      </div></div>`);
+    const saved = () => (Array.isArray(Store.data.settings.ledgerColors) ? Store.data.settings.ledgerColors : []);
+    let added = [...saved()];
+    const rows = [['payout', 'Payouts'], ['fee', 'Prop Firm Fees'], ['tool', 'Tools & Data'], ['live', 'Live Account'], ['line', 'Take-Home Line'], ['forecast', 'Forecast']];
     const next = { ...l };
-    U.$$('.swatches', body).forEach(g => {
-      const key = g.dataset.key, prev = U.$(`[data-prev="${key}"]`, body);
-      U.$$('button', g).forEach(b => b.onclick = () => { next[key] = b.dataset.c; prev.style.background = b.dataset.c; U.$$('button', g).forEach(x => x.classList.toggle('on', x === b)); });
-      U.$('[data-custom]', g).oninput = e => { next[key] = e.target.value; prev.style.background = e.target.value; U.$$('button', g).forEach(x => x.classList.remove('on')); };
+    const sw = (key, c, isDef) => `<button type="button" class="lk-sw ${next[key].toLowerCase() === c.toLowerCase() ? 'on' : ''}" style="--rc:${c}" data-c="${c}" title="${isDef ? 'Default' : c}"></button>`;
+    const rowHTML = key => `${sw(key, this.LOOK[key], true)}${added.filter(c => c.toLowerCase() !== this.LOOK[key].toLowerCase()).map(c => sw(key, c)).join('')}
+      <label class="lk-add" title="Add a color">+<input type="color" value="${next[key]}" data-custom></label>`;
+    const body = U.h(`<div>
+      ${rows.map(([key, label]) => `<div class="lk-row"><span class="lk-lbl">${label}</span><div class="lk-sws" data-key="${key}"></div></div>`).join('')}
+      <div class="tog-grid" style="margin-top:14px">
+        <label class="tog"><input type="checkbox" data-t="dots" ${l.dots ? 'checked' : ''}> A Dot for Every Entry</label>
+        <label class="tog"><input type="checkbox" data-t="showForecast" ${l.showForecast ? 'checked' : ''}> Show Year-End Forecast</label>
+      </div></div>`);
+    const paint = () => U.$$('.lk-sws', body).forEach(g => {
+      const key = g.dataset.key; g.innerHTML = rowHTML(key);
+      U.$$('.lk-sw', g).forEach(b => b.onclick = () => { next[key] = b.dataset.c; paint(); });
+      U.$('[data-custom]', g).onchange = e => {
+        const c = e.target.value; next[key] = c;
+        if (c.toLowerCase() !== this.LOOK[key].toLowerCase() && !added.some(x => x.toLowerCase() === c.toLowerCase())) added.push(c);
+        paint();
+      };
     });
+    paint();
     U.$$('[data-t]', body).forEach(i => i.onchange = () => { next[i.dataset.t] = i.checked; });
-    UI.modal({ title: 'Customize your Ledger', body, footer: [
+    UI.modal({ title: 'Customize Your Ledger', body, footer: [
       { label: 'Reset', cls: 'left', onClick: c => { delete Store.data.settings.ledgerLook; Store.save(); c(); App.render(); } },
       { label: 'Cancel' },
-      { label: 'Save', cls: 'primary', onClick: c => { Store.data.settings.ledgerLook = next; Store.save(); c(); App.toast('Ledger updated'); App.render(); } },
+      { label: 'Save', cls: 'primary', onClick: c => { Store.data.settings.ledgerLook = next; Store.data.settings.ledgerColors = added.slice(-8); Store.save(); c(); App.toast('Ledger updated'); App.render(); } },
     ] });
   },
 
-  editModal(e) {
+  editModal(e, presetType) {
     const isNew = !e;
-    const firms = [...new Set(this.all().map(x => x.firm))].sort();
-    let type = e ? e.type : 'Expense';
-    const body = U.h(`<div>
-      <div class="seg" id="leType" style="margin-bottom:14px;flex-wrap:wrap">${this.TYPES.map(t => `<button type="button" data-t="${t}" class="${t === type ? 'on' : ''}">${t === 'Expense' ? 'Spent' : t === 'Payout' ? 'Got paid' : t}</button>`).join('')}</div>
-      <div class="form-row">
-        <div><label class="field-label">Firm or service</label><input class="inp" id="leFirm" list="leFirms" value="${U.esc(e ? e.firm : (firms[0] || ''))}" placeholder="e.g. Tradeify"><datalist id="leFirms">${firms.map(f => `<option value="${U.esc(f)}">`).join('')}</datalist></div>
-        <div><label class="field-label">Amount ($)</label><input class="inp" id="leAmt" type="number" step="0.01" value="${e ? Math.abs(e.amount) : ''}" placeholder="e.g. 99"></div>
-      </div>
-      <div class="form-row">
-        <div><label class="field-label">Date</label><input class="inp" id="leDate" type="date" value="${e ? e.date : U.todayKey()}"></div>
-        <div><label class="field-label">What was it? (optional)</label><input class="inp" id="leDesc" value="${U.esc(e ? e.description || '' : '')}" placeholder="e.g. 50K eval, reset, payout"></div>
-      </div>
-      <label class="tog" id="leLossWrap" style="display:${type === 'Live P&L' ? 'flex' : 'none'};width:fit-content"><input type="checkbox" id="leLoss" ${e && e.type === 'Live P&L' && e.amount < 0 ? 'checked' : ''}> This was a loss</label>
+    let type = e ? (this.TYPES.includes(e.type) ? e.type : e.type) : (presetType || 'Expense');
+    const firmsOf = live => [...new Set(this.all().filter(x => (this.kind(x) === 'live') === live).map(x => x.firm))].sort();
+    // existing entries without a saved choice get their best guess preselected
+    let sub = e && e.type === 'Expense' ? (e.sub || (this.kind(e) === 'tool' ? 'data' : ((this.buy(e) || {}).kind || ''))) : '';
+    let win = e ? e.amount >= 0 : true;
+    const showTypes = this.TYPES.includes(type) ? this.TYPES : [...this.TYPES, type];
+    const body = U.h(`<div class="le-form">
+      <div class="seg le-type" id="leType">${showTypes.map(t => `<button type="button" data-t="${t}" class="${t === type ? 'on' : ''}">${this.TYPE_LABEL[t] || t}</button>`).join('')}</div>
+      <div class="le-field"><label class="field-label" id="leFirmLbl"></label>
+        <input class="inp" id="leFirm" list="leFirms" value="${U.esc(e ? e.firm : '')}"><datalist id="leFirms"></datalist></div>
+      <div class="le-field"><label class="field-label">Amount ($)</label>
+        <div class="le-amt"><input class="inp" id="leAmt" type="number" min="0" step="0.01" value="${e ? Math.abs(e.amount) : ''}" placeholder="e.g. 99">
+          <div class="seg le-wl" data-show="live"><button type="button" data-w="1" class="${win ? 'on win' : ''}">Win</button><button type="button" data-w="0" class="${!win ? 'on loss' : ''}">Loss</button></div></div></div>
+      <div class="le-field"><label class="field-label">Date</label><input class="inp" id="leDate" type="date" value="${e ? e.date : U.todayKey()}"></div>
+      <div class="le-field" data-show="spent"><label class="field-label">What was it?</label>
+        <div class="le-chips" id="leSub">${this.SUBS.map(([v, t]) => `<button type="button" data-v="${v}" class="${sub === v ? 'on' : ''}">${t}</button>`).join('')}</div>
+        <input class="inp" id="leSubText" style="margin-top:8px;display:${sub === 'other' ? '' : 'none'}" value="${U.esc(e && e.subText || '')}" placeholder="What exactly was it? e.g. Course, platform fee"></div>
+      <div class="le-field" data-show="spent"><label class="field-label">More details <span class="opt">(optional)</span></label>
+        <input class="inp" id="leDescE" value="${U.esc(e && e.type === 'Expense' ? e.description || '' : '')}" placeholder="e.g. 50K eval, Pack of 5"></div>
+      <div class="le-field" data-show="payout"><label class="field-label">What was it? <span class="opt">(optional)</span></label>
+        <input class="inp" id="leDescP" value="${U.esc(e && e.type !== 'Expense' ? e.description || '' : '')}" placeholder="e.g. Growth, Instant funded, Flex"></div>
     </div>`);
+    const showFor = () => {
+      const live = type === 'Live P&L';
+      U.$$('[data-show]', body).forEach(x => {
+        const w = x.dataset.show;
+        x.style.display = (w === 'spent' && type === 'Expense') || (w === 'payout' && (type === 'Payout' || type === 'Other income')) || (w === 'live' && live) ? '' : 'none';
+      });
+      U.$('#leFirmLbl', body).textContent = live ? 'Broker' : type === 'Expense' ? 'Prop firm or service' : 'Prop firm';
+      U.$('#leFirm', body).placeholder = live ? 'e.g. AMP, NinjaTrader' : type === 'Expense' ? 'e.g. Tradeify, TradingView' : 'e.g. Tradeify';
+      U.$('#leFirms', body).innerHTML = firmsOf(live).map(f => `<option value="${U.esc(f)}">`).join('');
+    };
     U.$$('#leType button', body).forEach(b => b.onclick = () => {
-      type = b.dataset.t; U.$$('#leType button', body).forEach(x => x.classList.toggle('on', x === b));
-      U.$('#leLossWrap', body).style.display = type === 'Live P&L' ? 'flex' : 'none';
+      type = b.dataset.t; U.$$('#leType button', body).forEach(x => x.classList.toggle('on', x === b)); showFor();
     });
+    U.$$('#leSub button', body).forEach(b => b.onclick = () => {
+      sub = b.dataset.v; U.$$('#leSub button', body).forEach(x => x.classList.toggle('on', x === b));
+      const t = U.$('#leSubText', body); t.style.display = sub === 'other' ? '' : 'none'; if (sub === 'other') t.focus();
+    });
+    U.$$('.le-wl button', body).forEach(b => b.onclick = () => {
+      win = b.dataset.w === '1';
+      U.$$('.le-wl button', body).forEach(x => { const on = x === b; x.classList.toggle('on', on); x.classList.toggle('win', on && win); x.classList.toggle('loss', on && !win); });
+    });
+    showFor();
     const footer = [];
     if (!isNew) footer.push({ label: 'Delete', cls: 'danger left', onClick: c => { Store.data.ledger = this.all().filter(x => x.id !== e.id); Store.save(); c(); App.toast('Entry deleted'); App.render(); } });
     footer.push({ label: 'Cancel' }, { label: isNew ? 'Add' : 'Save', cls: 'primary', onClick: c => {
       const amt = Math.abs(+U.$('#leAmt', body).value), firm = U.$('#leFirm', body).value.trim(), date = U.$('#leDate', body).value;
-      if (!amt || !firm || !date) { App.toast('Fill in firm, amount and date', 'err'); return; }
-      const sign = type === 'Expense' || (type === 'Live P&L' && U.$('#leLoss', body).checked) ? -1 : 1;
-      const rec = { date, firm, type, description: U.$('#leDesc', body).value.trim(), amount: Math.round(sign * amt * 100) / 100 };
-      if (isNew) this.all().push({ id: 'l_' + U.uid(), ...rec }); else Object.assign(e, rec);
+      if (!firm) { App.toast(type === 'Live P&L' ? 'Enter the broker' : 'Enter the prop firm or service', 'err'); return; }
+      if (!amt) { App.toast('Enter an amount', 'err'); return; }
+      if (!date) { App.toast('Pick a date', 'err'); return; }
+      if (type === 'Expense' && !sub) { App.toast('Pick what it was', 'err'); return; }
+      const subText = U.$('#leSubText', body).value.trim();
+      if (type === 'Expense' && sub === 'other' && !subText) { App.toast('Write what it was', 'err'); U.$('#leSubText', body).focus(); return; }
+      const sign = type === 'Expense' || (type === 'Live P&L' && !win) ? -1 : 1;
+      const desc = type === 'Expense' ? U.$('#leDescE', body).value.trim() : type === 'Live P&L' ? '' : U.$('#leDescP', body).value.trim();
+      const rec = { date, firm, type, description: desc, amount: Math.round(sign * amt * 100) / 100 };
+      if (isNew) this.all().push({ id: 'l_' + U.uid(), ...rec }); else { Object.assign(e, rec); delete e.sub; delete e.subText; delete e.qty; delete e.first; }
+      const target = isNew ? this.all()[this.all().length - 1] : e;
+      if (type === 'Expense') { target.sub = sub; if (sub === 'other') target.subText = subText; }
       Store.save(); c(); App.toast(isNew ? 'Added to your ledger' : 'Saved'); App.render();
     } });
     UI.modal({ title: isNew ? 'Add to ledger' : 'Edit entry', body, footer });
+    if (isNew) setTimeout(() => U.$('#leFirm', body).focus(), 50);
   },
 
   normType(t, amount) {
     t = String(t || '').trim().toLowerCase();
+    if (/pass|funded account/.test(t)) return 'Passed';
     if (/payout|withdraw/.test(t)) return 'Payout';
     if (/live/.test(t)) return 'Live P&L';
     if (/expense|cost|fee|purchase|reset|eval|sub/.test(t)) return 'Expense';
@@ -3435,6 +3877,8 @@ Views.ledger = {
     raw.forEach(r => {
       const iso = Parser.parseDate(r.date);
       let amount = typeof r.amount === 'number' ? r.amount : Parser.parseMoney(r.amount);
+      const type0 = this.normType(r.type, amount || 0);
+      if (type0 === 'Passed' && !isFinite(amount)) amount = 0;
       if (!iso || !isFinite(amount)) { bad++; return; }
       const type = this.normType(r.type, amount);
       if (type === 'Expense') amount = -Math.abs(amount);
